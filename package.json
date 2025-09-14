@@ -1,0 +1,18 @@
+{
+  "name": "explorers",
+  "version": "1.0.0",
+  "description": "Explorers! A TTRPG",
+  "main": "explorers.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "createSymlinks": "node ./tools/create-symlinks.mjs"
+  },
+  "keywords": [],
+  "author": "sec",
+  "license": "MIT",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "js-yaml": "^4.1.0",
+    "path": "^0.12.7"
+  }
+}

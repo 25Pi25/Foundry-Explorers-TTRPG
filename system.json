@@ -11,11 +11,15 @@
     "name": "sec",
     "discord": "25pi25"
   }],
-  "esmodules": ["explorers.js"],
+  "esmodules": ["explorers.mjs"],
   "styles": ["explorers.css"],
   "packs": [],
   "relationships": [],
-  "languages": ["en"],
+  "languages": [{
+    "lang": "en",
+    "name": "English",
+    "path": "lang/en.json"
+  }],
   "documentTypes": [],
   "socket": false,
   "initiative": "@dex.mod",
