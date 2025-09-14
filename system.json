@@ -1,0 +1,27 @@
+{
+  "id": "explorers",
+  "title": "Explorers! a TTRPG",
+  "description": "A tabletop roleplaying game for explorers",
+  "version": "0.0.1",
+  "compatibility": {
+    "minimum": 13,
+    "verified": 13
+  },
+  "authors": [{
+    "name": "sec",
+    "discord": "25pi25"
+  }],
+  "esmodules": ["explorers.js"],
+  "styles": ["explorers.css"],
+  "packs": [],
+  "relationships": [],
+  "languages": ["en"],
+  "documentTypes": [],
+  "socket": false,
+  "initiative": "@dex.mod",
+  "grid": {
+    "distance": 5,
+    "units": "ft"
+  },
+  "primaryTokenAttribute": "hp"
+}
