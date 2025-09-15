@@ -20,7 +20,11 @@
     "name": "English",
     "path": "lang/en.json"
   }],
-  "documentTypes": [],
+  "documentTypes": {
+    "Actor": {
+      "character": {}
+    }
+  },
   "socket": false,
   "initiative": "@dex.mod",
   "grid": {

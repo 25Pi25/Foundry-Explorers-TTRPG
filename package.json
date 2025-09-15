@@ -5,7 +5,8 @@
   "main": "explorers.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "createSymlinks": "node ./tools/create-symlinks.mjs"
+    "createSymlinks": "node ./tools/create-symlinks.mjs",
+    "postinstall": "npm run createSymlinks"
   },
   "keywords": [],
   "author": "sec",
