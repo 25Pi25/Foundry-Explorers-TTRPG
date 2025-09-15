@@ -8,7 +8,7 @@
     },
   },
   "exclude": ["node_modules", "**/node_modules/*"],
-  "include": ["explorers.mjs", "**/*.mjs", "foundry/client/client.mjs", "foundry/client/global.d.mts", "foundry/common/primitives/global.d.mts", "global.d.ts"],
+  "include": ["explorers.mjs", "**/*.mjs", "**/*.ts", "foundry/client/client.mjs", "foundry/client/global.d.mts", "foundry/common/primitives/global.d.mts", "global.d.ts", "module/data-models copy.mjs"],
   "typeAcquisition": {
     "include": ["jquery"]
   }
