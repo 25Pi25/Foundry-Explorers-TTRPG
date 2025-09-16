@@ -26,7 +26,7 @@
     }
   },
   "socket": false,
-  "initiative": "@ability.spe.mod",
+  "initiative": "@abilities.spe.mod",
   "grid": {
     "distance": 5,
     "units": "ft"

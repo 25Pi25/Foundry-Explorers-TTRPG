@@ -17,11 +17,11 @@ Hooks.once("init", () => {
 
   // Configure trackable attributes.
   CONFIG.Actor.trackableAttributes = {
-    hero: {
+    character: {
       bar: ["hp"],
       value: []
     },
-    pawn: {
+    player: {
       bar: ["hp"],
       value: []
     }
