@@ -8,20 +8,20 @@ Hooks.once("init", () => {
 
   // Configure System Data Models.
   CONFIG.Actor.dataModels = {
-    character: CharacterDataModel,
-    player: PlayerDataModel 
+    Character: CharacterDataModel,
+    Player: PlayerDataModel 
   };
   CONFIG.Item.dataModels = {
-    move: MoveDataModel
+    Move: MoveDataModel
   };
 
   // Configure trackable attributes.
   CONFIG.Actor.trackableAttributes = {
-    character: {
+    Character: {
       bar: ["hp"],
       value: []
     },
-    player: {
+    Player: {
       bar: ["hp"],
       value: []
     }

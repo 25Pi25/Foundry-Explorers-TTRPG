@@ -22,7 +22,11 @@
   }],
   "documentTypes": {
     "Actor": {
-      "character": {}
+      "Character": {},
+      "Player": {}
+    },
+    "Item": {
+      "Move": {}
     }
   },
   "socket": false,

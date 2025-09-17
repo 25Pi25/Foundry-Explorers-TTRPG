@@ -98,10 +98,12 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
   }
 
   prepareDerivedData() {
-    hp.mod = Math.floor(Math.ceil(hp.max / 5) / 2)
+    this.hp.mod = Math.floor(Math.ceil(this.hp.max / 5) / 2)
     for (const ability in this.abilities) {
-      abilities[ability].mod = Math.ceil(abilities[ability].value / 5);
+      this.abilities[ability].mod = Math.ceil(this.abilities[ability].value / 5);
     }
+    this.tileVisibility = Math.floor(this.abilities.spatk / 2) + 4 // TODO: tie this derived attribute to token visibility
+    if (this.tileVisibility % 10 === 8) this.tileVisibility--; // I have no idea why the visibility table was like this
   }
 
   getTypeMatchup(attackType) {
@@ -235,10 +237,10 @@ export class MoveDataModel extends foundry.abstract.TypeDataModel {
     if (data.effects.some(effect => ['statUp', 'statDown'].includes(effect.effect) === (!effect.ability || !effect.count))) {
       throw new Error("Attribute \"ability\" and \"count\" should only be specified for Stat Up/Stat Down.");
     }
-    if (data.range === null && data.target !== 'self') {
+    if ((data.range === null) === (data.target !== 'self')) {
       throw new Error("You can only have no range if you are targeting yourself.");
     }
-    if (data.target === null && data.target !== 'special') {
+    if ((data.target === null) === (data.target !== 'special')) {
       throw new Error("You can only have no target if your move is special.");
     }
   }
