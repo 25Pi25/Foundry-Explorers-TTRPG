@@ -140,7 +140,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
     this.hp.mod = Math.floor(Math.ceil(this.hp.max / 5) / 2)
     for (const ability in this.abilities) {
       this.abilities[ability].mod = Math.ceil(this.abilities[ability].value / 5);
-      this.abilities[ability].value = this.abilities[ability].value; // TODO: add stat up/stat down penalties
+      this.abilities[ability].value = this.abilities[ability].raw; // TODO: add stat up/stat down penalties
     }
   }
 
