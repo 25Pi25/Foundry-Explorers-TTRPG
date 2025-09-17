@@ -1,8 +1,10 @@
 // import { SystemActor, SystemItem } from "./module/documents.mjs";
 import { CharacterDataModel, MoveDataModel, PlayerDataModel } from "./module/data-models.mjs";
+import { SystemToken } from './module/documents.mjs';
 
 Hooks.once("init", () => {
   // Configure custom Document implementations.
+  CONFIG.Token.documentClass = SystemToken;
   // CONFIG.Actor.documentClass = SystemActor;
   // CONFIG.Item.documentClass = SystemItem;
 
@@ -14,7 +16,6 @@ Hooks.once("init", () => {
   CONFIG.Item.dataModels = {
     Move: MoveDataModel
   };
-
   // Configure trackable attributes.
   CONFIG.Actor.trackableAttributes = {
     Character: {

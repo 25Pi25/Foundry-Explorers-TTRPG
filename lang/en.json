@@ -26,6 +26,13 @@
       "Fury": "Fury",
       "Swift": "Swift",
       "Patient": "Patient"
+    },
+    "Sizes": {
+      "Tiny": "Tiny",
+      "Small": "Small",
+      "Medium": "Medium",
+      "Large": "Large",
+      "Huge": "Huge"
     }
   },
   "TYPES": {

@@ -1,6 +1,4 @@
-import { ArrayField } from '@client/data/fields.mjs';
-
-const { HTMLField, NumberField, SchemaField, StringField } = foundry.data.fields;
+const { HTMLField, NumberField, SchemaField, StringField, ArrayField } = foundry.data.fields;
 
 const proficiencies = {
   major: "CHARACTER.Proficiency.Major",
@@ -45,7 +43,7 @@ const typeChart = {
   dragon: { se: ['dragon'], nve: ['steel'], immune: ['fairy'] },
   dark: { se: ['psychic', 'ghost'], nve: ['dark', 'fairy'], immune: [] },
   fairy: { se: ['fighting', 'dragon', 'dark'], nve: ['fire', 'poison', 'steel'], immune: [] },
-}
+};
 const abilities = {
   atk: "ABILITIES.Attack",
   def: "ABILITIES.Defense",
@@ -70,8 +68,47 @@ const skills = {
   memory: "SKILLS.Memory",
   logic: "SKILLS.Logic",
   traps: "SKILLS.Traps",
-}
+};
+const sizes = {
+  tiny: "CHARACTER.Sizes.Tiny",
+  small: "CHARACTER.Sizes.Small",
+  medium: "CHARACTER.Sizes.Medium",
+  large: "CHARACTER.Sizes.Large",
+  huge: "CHARACTER.Sizes.Huge"
+};
 export class CharacterDataModel extends foundry.abstract.TypeDataModel {
+
+  get tileVisibility() {
+    let result = Math.floor(this.abilities.spatk.mod / 2) + 4
+    if (result % 10 === 8) result--; // I have no idea why the visibility table was like this
+    if (this.skills.awareness === 'major') result += 2;
+    else if (this.skills.awareness === 'minor') result += 1;
+    return result;
+  }
+
+  get tileMovement() {
+    let result = Math.floor(this.abilities.spe.mod / 2) + 1
+    if (this.skills.movement === 'major') result += 4;
+    else if (this.skills.movement === 'minor') result += 2;
+    return result;
+  }
+
+  async _preCreate(data, options, user) {
+    const isAllowed = await super._preCreate(data, options, user);
+    if (isAllowed === false) return false;
+
+    this.parent.updateSource({
+      prototypeToken: {
+        actorLink: true,
+        disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY,
+        sight: {
+          enabled: true,
+          range: this.tileVisibility * game.scenes.viewed.grid.distance
+        }
+      }
+    });
+  }
+
   static defineSchema() {
     const skills = {};
     for (const skill in skills) {
@@ -79,19 +116,21 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
     }
     const abilities = {};
     for (const ability in abilities) {
-      abilities[ability] = new SchemaField({ value: new NumberField({ required: true, integer: true, min: 0, max: 305, initial: 5 }) });
+      abilities[ability] = new SchemaField({ raw: new NumberField({ required: true, integer: true, min: 0, max: 305, initial: 5 }) });
+      // Each ability has a raw/modifier/value attribute. Use value for calculations, use raw for actor sheets.
     }
     return {
       species: new StringField({ required: true }),
-      type1: new StringField({ required: true, choices: types }),
+      type1: new StringField({ required: true, choices: types, initial: 'normal' }),
       type2: new StringField({ required: true, nullable: true, choices: types }),
       heldItem: new StringField({ required: true, nullable: true, initial: null }),
+      size: new StringField({ required: true, choices: sizes, initial: 'medium' }),
       hp: new SchemaField({
         value: new NumberField({ required: true, integer: true, min: 0, initial: 25 }),
         max: new NumberField({ required: true, integer: true, min: 0, initial: 25 })
       }),
-      abilities,
-      skills,
+      abilities: new SchemaField(abilities),
+      skills: new SchemaField(skills),
       moves: new ArrayField(new StringField({ required: true }), { max: 4 }),
       abilities: new ArrayField(new StringField({ required: true }))
     };
@@ -101,9 +140,8 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
     this.hp.mod = Math.floor(Math.ceil(this.hp.max / 5) / 2)
     for (const ability in this.abilities) {
       this.abilities[ability].mod = Math.ceil(this.abilities[ability].value / 5);
+      this.abilities[ability].value = this.abilities[ability].value; // TODO: add stat up/stat down penalties
     }
-    this.tileVisibility = Math.floor(this.abilities.spatk / 2) + 4 // TODO: tie this derived attribute to token visibility
-    if (this.tileVisibility % 10 === 8) this.tileVisibility--; // I have no idea why the visibility table was like this
   }
 
   getTypeMatchup(attackType) {
@@ -147,7 +185,7 @@ export class PlayerDataModel extends CharacterDataModel {
   static defineSchema() {
     return {
       ...super.defineSchema(),
-      class: new StringField({ required: true, choices: classes }),
+      class: new StringField({ required: true, choices: classes, initial: 'explorer' }),
       specialization: new StringField({ required: true, nullable: true, choices: specializations }),
       nature: new StringField({ required: true }),
       origin: new StringField({ required: true }),
@@ -160,7 +198,7 @@ const categories = {
   special: "MOVES.Categories.Special",
   physicalStatus: "MOVES.Categories.PhysicalStatus",
   specialStatus: "MOVES.Categories.SpecialStatus",
-}
+};
 const targets = {
   foe: "MOVES.Targets.Foe",
   foes: "MOVES.Targets.Foes",
@@ -170,7 +208,7 @@ const targets = {
   selfAllies: "MOVES.Targets.SelfAllies",
   selfOrAlly: "MOVES.Targets.SelfOrAlly",
   all: "MOVES.Targets.All"
-}
+};
 const ranges = {
   front: "MOVES.Ranges.Front",
   ahead: "MOVES.Ranges.Ahead",
@@ -180,7 +218,7 @@ const ranges = {
   floor: "MOVES.Ranges.Floor",
   path: "MOVES.Ranges.Path",
   special: "MOVES.Ranges.Special",
-}
+};
 const conditions = {
   statUp: "MOVES.Conditions.StatUp",
   statDown: "MOVES.Conditions.StatDown",
@@ -207,7 +245,7 @@ const conditions = {
   eyedrop: "MOVES.Conditions.Eyedrop",
   insomnia: "MOVES.Conditions.Insomnia",
   invulnerable: "MOVES.Conditions.Invulnerable"
-}
+};
 export class MoveDataModel extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     return {
