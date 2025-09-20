@@ -3,6 +3,7 @@ import { SYSTEM_ID } from './constants.mjs';
 import { CharacterSheet } from './module/actor-sheet.mjs';
 import { CharacterDataModel, MoveDataModel, PlayerDataModel } from "./module/data-models.mjs";
 import { SystemToken } from './module/documents.mjs';
+import { conditions } from './module/types.mjs';
 
 Hooks.once("init", () => {
   // Configure custom Document implementations.
@@ -13,7 +14,7 @@ Hooks.once("init", () => {
   // Configure System Data Models.
   CONFIG.Actor.dataModels = {
     Character: CharacterDataModel,
-    Player: PlayerDataModel 
+    Player: PlayerDataModel
   };
   CONFIG.Item.dataModels = {
     Move: MoveDataModel
@@ -33,5 +34,11 @@ Hooks.once("init", () => {
       value: []
     }
   };
+
+  const statusEffects = [];
+  for (const condition in conditions) {
+    statusEffects.push({ id: condition, name: conditions[condition], img: "./" })
+  }
+  CONFIG.statusEffects = statusEffects;
 });
 
