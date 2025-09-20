@@ -1,4 +1,5 @@
 // import { SystemActor, SystemItem } from "./module/documents.mjs";
+import { CharacterSheet } from './module/actor-sheet.mjs';
 import { CharacterDataModel, MoveDataModel, PlayerDataModel } from "./module/data-models.mjs";
 import { SystemToken } from './module/documents.mjs';
 
@@ -16,6 +17,10 @@ Hooks.once("init", () => {
   CONFIG.Item.dataModels = {
     Move: MoveDataModel
   };
+
+  // Configure Sheets.
+  Actors.registerSheet(SYSTEM_ID, CharacterSheet, { makeDefault: true });
+
   // Configure trackable attributes.
   CONFIG.Actor.trackableAttributes = {
     Character: {

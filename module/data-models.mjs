@@ -1,4 +1,4 @@
-const { HTMLField, NumberField, SchemaField, StringField, ArrayField } = foundry.data.fields;
+const { NumberField, SchemaField, StringField, ArrayField } = foundry.data.fields;
 
 const proficiencies = {
   major: "CHARACTER.Proficiency.Major",
