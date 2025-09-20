@@ -1,3 +1,5 @@
+import { filePath } from '../constants.mjs';
+
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
 
@@ -12,7 +14,7 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   }
 
   static PARTS = {
-    header: { template: `systems/${SYSTEM_ID}/templates/actor-sheet.hbs` }
+    header: { template: filePath("templates/actor-sheet.hbs") }
   }
 
   static async formHandler(event, form, formData) {
