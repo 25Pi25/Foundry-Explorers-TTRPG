@@ -13,6 +13,12 @@
   place-items: center;
 }
 
-.metadata label .form-group{
+.metadata label .form-group {
   width: 100%;
+  padding: 1px;
+}
+
+.actor-name-input {
+  height: 60%;
+  font-size: 2rem;
 }

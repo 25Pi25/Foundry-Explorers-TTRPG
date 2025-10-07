@@ -5,6 +5,7 @@ import { CharacterDataModel, MoveDataModel, PlayerDataModel } from "./module/dat
 import { SystemToken } from './module/documents.mjs';
 import { conditions } from './module/types.mjs';
 
+
 Hooks.once("init", () => {
   // Configure custom Document implementations.
   CONFIG.Token.documentClass = SystemToken;
@@ -22,6 +23,8 @@ Hooks.once("init", () => {
 
   // Configure Sheets.
   Actors.registerSheet(SYSTEM_ID, CharacterSheet, { makeDefault: true });
+  const templates = ["systems/explorers/templates/partials/stat-block.hbs"];
+  foundry.applications.handlebars.loadTemplates(templates);
 
   // Configure trackable attributes.
   CONFIG.Actor.trackableAttributes = {

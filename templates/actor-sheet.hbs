@@ -12,7 +12,6 @@
       <label>
         Species
         {{formGroup systemFields.species value=document.system.species}}
-        {{!-- <input type="text" name="system.species" value="{{document.system.species}}"> --}}
       </label>
       <label>
         Type(s)
@@ -45,6 +44,7 @@
       </label>
     </div>
     <div>
+      {{> "systems/explorers/templates/partials/stat-block.hbs" stat="strength"}}
     </div>
   </div>
 </div>

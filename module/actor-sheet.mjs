@@ -16,7 +16,7 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   }
 
   static PARTS = {
-    header: { template: filePath("templates/actor-sheet.hbs") }
+    header: { template: filePath("templates/actor-sheet.hbs") },
   }
 
   async _prepareContext(options) {
@@ -27,9 +27,5 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
       specializations: toFormGroup(specializations),
       systemFields: this.document.system.schema.fields
     };
-  }
-
-  static async formHandler(event, form, formData) {
-
   }
 }
