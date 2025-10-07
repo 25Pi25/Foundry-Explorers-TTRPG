@@ -1,1 +1,50 @@
-<h1>Hello World!</h1>
+<div class="colored-boxes">
+  <div class="actor-sidebar-grid">
+    <div class="center">
+      <img src="{{document.img}}" data-edit="img" title="{{document.name}}" height="80" width="80" />
+    </div>
+    <div class="center">
+      <input type="text" name="name" value="{{document.name}}" class="actor-name-input">
+    </div>
+  </div>
+  <div class="actor-sidebar-grid">
+    <div class="metadata">
+      <label>
+        Species
+        {{formGroup systemFields.species value=document.system.species}}
+        {{!-- <input type="text" name="system.species" value="{{document.system.species}}"> --}}
+      </label>
+      <label>
+        Type(s)
+        {{formGroup systemFields.type1 value=document.system.type1 options=types localize=true}}
+        {{formGroup systemFields.type2 value=document.system.type2 options=types localize=true}}
+      </label>
+      <label>
+        Class
+        {{formGroup systemFields.class value=document.system.class options=classes localize=true}} 
+      </label>
+      <label>
+        Specialization
+        {{formGroup systemFields.specialization value=document.system.specialization options=specializations localize=true}} 
+      </label>
+      <label>
+        Nature
+        {{formGroup systemFields.nature value=document.system.nature localize=true}} 
+      </label>
+      <label>
+        Origin
+        {{formGroup systemFields.origin value=document.system.origin localize=true}} 
+      </label>
+      <label>
+        Held Item
+        {{formGroup systemFields.item value=document.system.item localize=true}} 
+      </label>
+      <label>
+        Level
+        {{formGroup systemFields.level value=document.system.level localize=true}} 
+      </label>
+    </div>
+    <div>
+    </div>
+  </div>
+</div>

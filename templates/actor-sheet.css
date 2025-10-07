@@ -1,0 +1,18 @@
+.actor-sidebar-grid {
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+
+.center {
+  display: grid;
+  place-items: center;
+}
+
+.metadata label {
+  display: grid;
+  place-items: center;
+}
+
+.metadata label .form-group{
+  width: 100%;
+}

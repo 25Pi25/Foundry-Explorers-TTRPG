@@ -29,21 +29,22 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
         disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY,
         sight: {
           enabled: true,
-          range: this.tileVisibility * game.scenes.viewed.grid.distance
+          range: 20,
+          // range: this.tileVisibility * game.scenes.viewed.grid.distance
+          // TODO: add tile visibility into sight when the derived attribute is computed
         }
       }
     });
   }
 
   static defineSchema() {
-    const skills = {};
+    const skillFields = {};
     for (const skill in skills) {
-      skills[skill] = new StringField({ choices: proficiencies });
+      skillFields[skill] = new StringField({ choices: proficiencies });
     }
-    const abilities = {};
+    const abilityFields = {};
     for (const ability in abilities) {
       abilities[ability] = new SchemaField({ raw: new NumberField({ required: true, integer: true, min: 0, max: 305, initial: 5 }) });
-      // Each ability has a raw/modifier/value attribute. Use value for calculations, use raw for actor sheets.
     }
     return {
       species: new StringField({ required: true }),
@@ -55,8 +56,8 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
         value: new NumberField({ required: true, integer: true, min: 0, initial: 25 }),
         max: new NumberField({ required: true, integer: true, min: 0, initial: 25 })
       }),
-      abilities: new SchemaField(abilities),
-      skills: new SchemaField(skills),
+      abilities: new SchemaField(abilityFields),
+      skills: new SchemaField(skillFields),
       moves: new ArrayField(new StringField({ required: true }), { max: 4 }),
       abilities: new ArrayField(new StringField({ required: true }))
     };
@@ -65,8 +66,9 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
   prepareDerivedData() {
     this.hp.mod = Math.floor(Math.ceil(this.hp.max / 5) / 2)
     for (const ability in this.abilities) {
-      this.abilities[ability].mod = Math.ceil(this.abilities[ability].value / 5);
-      this.abilities[ability].value = this.abilities[ability].raw; // TODO: add stat up/stat down penalties
+      const abilitySettings = this.abilities[ability];
+      abilitySettings.mod = Math.ceil(abilitySettings.raw - abilitySettings.temp / 5);
+      abilitySettings.value = abilitySettings.raw; // TODO: add stat up/stat down penalties
     }
   }
 
@@ -91,6 +93,7 @@ export class PlayerDataModel extends CharacterDataModel {
       specialization: new StringField({ required: true, nullable: true, choices: specializations }),
       nature: new StringField({ required: true }),
       origin: new StringField({ required: true }),
+      item: new StringField({ required: true, nullable: true }),
       level: new NumberField({ required: true, integer: true, min: 1, max: 10, initial: 1 })
     };
   }
