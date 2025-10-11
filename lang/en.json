@@ -1,5 +1,45 @@
 {
   "SYSTEM": {
+    "Tabs": {
+      "Stats": "Stats",
+      "About": "About",
+      "Moves": "Moves",
+      "Conditions": "Conditions",
+      "Tracks": "Tracks",
+      "Feats": "Feats"
+    },
+    "Abilities": {
+      "hp.Full": "HP",
+      "hp.Short": "HP",
+      "atk.Full": "Attack",
+      "atk.Short": "ATK",
+      "def.Full": "Defense",
+      "def.Short": "DEF",
+      "spatk.Full": "Special Attack",
+      "spatk.Short": "SP. ATK",
+      "spdef.Full": "Special Defense",
+      "spdef.Short": "SP. DEF",
+      "spe.Full": "Speed",
+      "spe.Short": "SPE",
+      "iq.Full": "IQ",
+      "iq.Short": "IQ"
+    },
+    "Models": {
+      "Character": {
+        "FIELDS": {
+          "species": { "label": "Species" },
+          "type1": { "label": "Type 1" },
+          "type2": { "label": "Type 2" },
+          "heldItem": { "label": "Held Item" },
+          "size": { "label": "Size" },
+          "hp": { "label": "HP" },
+          "abilities": { "label": "Abilities" },
+          "skills": { "label": "Skills" },
+          "moves": { "label": "Moves" },
+          "feats": { "label": "Feats" }
+        }
+      }
+    },
     "Character": {
       "Proficiency.Major": "Major",
       "Proficiency.Minor": "Minor",
@@ -63,6 +103,7 @@
       "Awareness": "Awareness",
       "SpecialStatusResistance": "Special Status Resistance",
       "Movement": "Movement",
+      "IQSkills": "IQ Skills",
       "Influence": "Influence",
       "Deceive": "Deceive",
       "Intuition": "Intuition",

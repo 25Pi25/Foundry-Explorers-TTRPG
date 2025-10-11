@@ -4,6 +4,8 @@ const { NumberField, SchemaField, StringField, ArrayField } = foundry.data.field
 
 export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 
+  static LOCALIZATION_PREFIXES = ["SYSTEM.Models.Character"];
+
   get tileVisibility() {
     let result = Math.floor(this.abilities.spatk.mod / 2) + 4;
     if (result % 10 === 8) result--; // I have no idea why the visibility table was like this
@@ -44,7 +46,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
     }
     const abilityFields = {};
     for (const ability in abilities) {
-      abilities[ability] = new SchemaField({ raw: new NumberField({ required: true, integer: true, min: 0, max: 305, initial: 5 }) });
+      abilityFields[ability] = new SchemaField({ raw: new NumberField({ required: true, integer: true, min: 0, max: 999, initial: 5 }) });
     }
     return {
       species: new StringField({ required: true }),
@@ -53,13 +55,13 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
       heldItem: new StringField({ required: true, nullable: true, initial: null }),
       size: new StringField({ required: true, choices: sizes, initial: 'medium' }),
       hp: new SchemaField({
-        value: new NumberField({ required: true, integer: true, min: 0, initial: 25 }),
+        raw: new NumberField({ required: true, integer: true, min: 0, initial: 25, max: 3000 }),
         max: new NumberField({ required: true, integer: true, min: 0, initial: 25 })
       }),
       abilities: new SchemaField(abilityFields),
       skills: new SchemaField(skillFields),
       moves: new ArrayField(new StringField({ required: true }), { max: 4 }),
-      abilities: new ArrayField(new StringField({ required: true }))
+      feats: new ArrayField(new StringField({ required: true }))
     };
   }
 
@@ -67,7 +69,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
     this.hp.mod = Math.floor(Math.ceil(this.hp.max / 5) / 2)
     for (const ability in this.abilities) {
       const abilitySettings = this.abilities[ability];
-      abilitySettings.mod = Math.ceil(abilitySettings.raw - abilitySettings.temp / 5);
+      abilitySettings.mod = Math.ceil(abilitySettings.raw / 5);
       abilitySettings.value = abilitySettings.raw; // TODO: add stat up/stat down penalties
     }
   }

@@ -1,6 +1,6 @@
 .actor-sidebar-grid {
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 22% 78%;
 }
 
 .center {
@@ -8,12 +8,12 @@
   place-items: center;
 }
 
-.metadata label {
+.about label {
   display: grid;
   place-items: center;
 }
 
-.metadata label .form-group {
+.about label .form-group {
   width: 100%;
   padding: 1px;
 }
@@ -21,4 +21,38 @@
 .actor-name-input {
   height: 60%;
   font-size: 2rem;
+}
+
+.stat-blocks {
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(7, calc(100% / 7));
+}
+
+.stat-block, .stat-block input {
+  text-align: center;
+  height: auto;
+}
+
+.stat_block .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-block label {
+  display: inline-block;
+}
+
+.stat-block input {
+  width: 75%;
+  margin: 2px;
+  font-size: 1.1rem;
+  aspect-ratio: 1/1;
+}
+
+.skill-blocks {
+  display: grid;
+  grid-template-columns: 50% 50%;
 }

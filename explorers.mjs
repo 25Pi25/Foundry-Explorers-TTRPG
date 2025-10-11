@@ -1,9 +1,11 @@
-// import { SystemActor, SystemItem } from "./module/documents.mjs";
-import { SYSTEM_ID } from './constants.mjs';
+import { SYSTEM_ID, toModString, toSkillString } from './constants.mjs';
 import { CharacterSheet } from './module/actor-sheet.mjs';
 import { CharacterDataModel, MoveDataModel, PlayerDataModel } from "./module/data-models.mjs";
 import { SystemToken } from './module/documents.mjs';
 import { conditions } from './module/types.mjs';
+
+const { Localization } = foundry.helpers;
+const { Actors } = foundry.documents.collections;
 
 
 Hooks.once("init", () => {
@@ -23,8 +25,10 @@ Hooks.once("init", () => {
 
   // Configure Sheets.
   Actors.registerSheet(SYSTEM_ID, CharacterSheet, { makeDefault: true });
-  const templates = ["systems/explorers/templates/partials/stat-block.hbs"];
+  const templates = ["systems/explorers/templates/partials/stat-block.hbs", "systems/explorers/templates/partials/skill-block.hbs"];
   foundry.applications.handlebars.loadTemplates(templates);
+  Handlebars.registerHelper('mod', toModString);
+  Handlebars.registerHelper('skillDie', toSkillString);
 
   // Configure trackable attributes.
   CONFIG.Actor.trackableAttributes = {
@@ -45,3 +49,6 @@ Hooks.once("init", () => {
   CONFIG.statusEffects = statusEffects;
 });
 
+Hooks.once("i18nInit", () => {
+  Localization.localizeDataModel(CharacterDataModel);
+});
