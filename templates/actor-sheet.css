@@ -1,4 +1,6 @@
-.actor-sidebar-grid {
+/* Header */
+
+.character-header {
   display: grid;
   grid-template-columns: 22% 78%;
 }
@@ -8,17 +10,8 @@
   place-items: center;
 }
 
-.about label {
-  display: grid;
-  place-items: center;
-}
 
-.about label .form-group {
-  width: 100%;
-  padding: 1px;
-}
-
-.actor-name-input {
+input.character-name {
   height: 60%;
   font-size: 2rem;
 }
@@ -32,13 +25,13 @@
 .stat-block, .stat-block input {
   text-align: center;
   height: auto;
+  width: fit-content;
 }
 
-.stat_block .form-group {
+.stat-block .form-group {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  gap: 0;
 }
 
 .stat-block label {
@@ -46,13 +39,42 @@
 }
 
 .stat-block input {
-  width: 75%;
-  margin: 2px;
+  width: 60px;
   font-size: 1.1rem;
   aspect-ratio: 1/1;
+}
+
+/* About */
+
+.about {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.about label {
+  display: grid;
+  place-items: center;
+}
+
+.about .form-group {
+  width: 100%;
+  padding: 1px;
 }
 
 .skill-blocks {
   display: grid;
   grid-template-columns: 50% 50%;
+}
+
+.skill-block .form-group {
+  display: grid;
+  grid-template-columns: 60% 40%;
+}
+
+/* Tracks */
+
+.friendship-grid {
+  display: grid;
+  grid-template-columns: 47% 47%;
+  gap: 6%;
 }

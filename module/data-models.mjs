@@ -88,6 +88,8 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 }
 
 export class PlayerDataModel extends CharacterDataModel {
+  static LOCALIZATION_PREFIXES = super.LOCALIZATION_PREFIXES.concat("SYSTEM.Models.Player");
+
   static defineSchema() {
     return {
       ...super.defineSchema(),
@@ -96,8 +98,20 @@ export class PlayerDataModel extends CharacterDataModel {
       nature: new StringField({ required: true }),
       origin: new StringField({ required: true }),
       item: new StringField({ required: true, nullable: true }),
-      level: new NumberField({ required: true, integer: true, min: 1, max: 10, initial: 1 })
+      level: new NumberField({ required: true, integer: true, min: 1, max: 10, initial: 1 }),
+      friendship: new SchemaField({
+        track: new NumberField({ required: true, integer: true, min: 0, max: 5, initial: 0 }),
+        dice: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
+        cleared: new NumberField({ required: true, integer: true, min: 0, initial: 0 })
+      }),
+      tokens: new NumberField({ required: true, integer: true, min: 0, initial: 0 })
     };
+  }
+
+  prepareDerivedData() {
+    super.prepareDerivedData();
+    this.friendship.isClearable = this.friendship.track == 5;
+    // TODO: make hardcoded number equal to max of track
   }
 }
 

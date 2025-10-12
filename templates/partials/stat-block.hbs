@@ -1,9 +1,4 @@
 <div class="stat-block center">
-  <div class="form-group">
-    <label>
-      {{localize name}}
-      {{formInput stat.fields.raw value=value.raw localize=true type="number"}}
-    </label>
-  </div>
-  <span>{{mod value.mod}}</span>
+  {{formGroup stat.fields.raw value=value.raw localize=true type="number" label=name}}
+  <span>{{numberFormat value.mod decimals=0 sign=true}}</span>
 </div>

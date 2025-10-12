@@ -38,6 +38,23 @@
           "moves": { "label": "Moves" },
           "feats": { "label": "Feats" }
         }
+      },
+      "Player": {
+        "FIELDS": {
+          "class": { "label": "Class" },
+          "specialization": { "label": "Specialization" },
+          "nature": { "label": "Nature" },
+          "origin": { "label": "Origin" },
+          "item": { "label": "Item" },
+          "level": { "label": "Level" },
+          "friendship": {
+            "label": "Friendship",
+            "track": { "label": "Friendship Track" },
+            "dice": { "label": "Friendship Dice" },
+            "cleared": { "label": "Tracks Cleared" }
+          },
+          "tokens": { "label": "Adventure Tokens" }
+        }
       }
     },
     "Character": {

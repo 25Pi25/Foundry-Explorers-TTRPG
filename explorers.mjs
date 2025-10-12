@@ -27,7 +27,6 @@ Hooks.once("init", () => {
   Actors.registerSheet(SYSTEM_ID, CharacterSheet, { makeDefault: true });
   const templates = ["systems/explorers/templates/partials/stat-block.hbs", "systems/explorers/templates/partials/skill-block.hbs"];
   foundry.applications.handlebars.loadTemplates(templates);
-  Handlebars.registerHelper('mod', toModString);
   Handlebars.registerHelper('skillDie', toSkillString);
 
   // Configure trackable attributes.
@@ -51,4 +50,5 @@ Hooks.once("init", () => {
 
 Hooks.once("i18nInit", () => {
   Localization.localizeDataModel(CharacterDataModel);
+  Localization.localizeDataModel(PlayerDataModel);
 });

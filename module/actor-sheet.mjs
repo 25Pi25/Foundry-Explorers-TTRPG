@@ -12,19 +12,22 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     tag: "form",
     form: {
       submitOnChange: true
+    },
+    actions: {
+      clearTrack: CharacterSheet.clearTrack
     }
   }
 
   static TABS = {
     primary: {
       tabs: [
-      { id: "stats", label: "SYSTEM.Tabs.Stats", group: "primary" },
-      { id: "about", label: "SYSTEM.Tabs.About", group: "primary" },
-      { id: "moves", label: "SYSTEM.Tabs.Moves", group: "primary" },
-      { id: "conditions", label: "SYSTEM.Tabs.Conditions", group: "primary" },
-      { id: "tracks", label: "SYSTEM.Tabs.Tracks", group: "primary" },
-      { id: "feats", label: "SYSTEM.Tabs.Feats", group: "primary" },
-    ],
+        { id: "stats", label: "SYSTEM.Tabs.Stats", group: "primary" },
+        { id: "about", label: "SYSTEM.Tabs.About", group: "primary" },
+        { id: "moves", label: "SYSTEM.Tabs.Moves", group: "primary" },
+        { id: "conditions", label: "SYSTEM.Tabs.Conditions", group: "primary" },
+        { id: "tracks", label: "SYSTEM.Tabs.Tracks", group: "primary" },
+        { id: "feats", label: "SYSTEM.Tabs.Feats", group: "primary" },
+      ],
       initial: "stats",
       labelPrefix: "",
     }
@@ -49,7 +52,21 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
       abilities: toFormGroup(abilities),
       specializations: toFormGroup(specializations),
       systemFields: this.document.system.schema.fields,
-      tabs: this._prepareTabs("primary")
+      tabs: this._prepareTabs("primary"),
     };
+  }
+
+  static clearTrack() {
+    const friendship = this.document.system.friendship;
+    if (!friendship.isClearable) return;
+    this.document.update({
+      system: {
+        friendship: {
+          track: 0,
+          dice: friendship.dice + 1,
+          cleared: friendship.cleared + 1,
+        }
+      }
+    });
   }
 }
