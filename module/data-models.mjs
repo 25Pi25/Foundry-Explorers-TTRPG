@@ -42,7 +42,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     const skillFields = {};
     for (const skill in skills) {
-      skillFields[skill] = new StringField({ choices: proficiencies });
+      skillFields[skill] = new StringField({ required: true, choices: proficiencies, initial: 'untrained' });
     }
     const abilityFields = {};
     for (const ability in abilities) {
@@ -55,7 +55,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
       heldItem: new StringField({ required: true, nullable: true, initial: null }),
       size: new StringField({ required: true, choices: sizes, initial: 'medium' }),
       hp: new SchemaField({
-        raw: new NumberField({ required: true, integer: true, min: 0, initial: 25, max: 3000 }),
+        raw: new NumberField({ required: true, integer: true, min: 0, initial: 25 }),
         max: new NumberField({ required: true, integer: true, min: 0, initial: 25 })
       }),
       abilities: new SchemaField(abilityFields),
@@ -66,7 +66,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
   }
 
   prepareDerivedData() {
-    this.hp.mod = Math.floor(Math.ceil(this.hp.max / 5) / 2)
+    this.hp.mod = Math.floor(Math.ceil(this.hp.max / 5) / 2);
     for (const ability in this.abilities) {
       const abilitySettings = this.abilities[ability];
       abilitySettings.mod = Math.ceil(abilitySettings.raw / 5);
@@ -104,13 +104,16 @@ export class PlayerDataModel extends CharacterDataModel {
         dice: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
         cleared: new NumberField({ required: true, integer: true, min: 0, initial: 0 })
       }),
-      tokens: new NumberField({ required: true, integer: true, min: 0, initial: 0 })
+      tokens: new SchemaField({
+        available: new NumberField({ required: true, integer: true, min: 0, initial: 0 })
+      })
     };
   }
 
   prepareDerivedData() {
     super.prepareDerivedData();
     this.friendship.isClearable = this.friendship.track == 5;
+    this.tokens.max = this.level + 1;
     // TODO: make hardcoded number equal to max of track
   }
 }

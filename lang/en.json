@@ -1,4 +1,6 @@
 {
+  "TYPES.Actor.Character": "Character",
+  "TYPES.Actor.Player": "Player",
   "SYSTEM": {
     "Tabs": {
       "Stats": "Stats",
@@ -53,13 +55,18 @@
             "dice": { "label": "Friendship Dice" },
             "cleared": { "label": "Tracks Cleared" }
           },
-          "tokens": { "label": "Adventure Tokens" }
+          "tokens": {
+            "label": "Adventure Tokens",
+            "available": { "label": "Available Tokens" },
+            "max": { "label": "Maximum Tokens" }
+          }
         }
       }
     },
     "Character": {
-      "Proficiency.Major": "Major",
-      "Proficiency.Minor": "Minor",
+      "Proficiency.Untrained": "",
+      "Proficiency.Minor": "m",
+      "Proficiency.Major": "M",
       "Class": {
         "Explorer": "Explorer",
         "MissionExpert": "Mission Expert",
@@ -116,20 +123,20 @@
     "Skills": {
       "Endurance": "Endurance",
       "Strength": "Strength",
-      "PhysicalStatusResistance": "Physical Status Resistance",
+      "PhysicalStatusResistance": "Phys. Status Resistance",
       "Awareness": "Awareness",
-      "SpecialStatusResistance": "Special Status Resistance",
+      "SpecialStatusResistance": "Spec. Status Resistance",
       "Movement": "Movement",
       "IQSkills": "IQ Skills",
-      "Influence": "Influence",
-      "Deceive": "Deceive",
-      "Intuition": "Intuition",
-      "Tracking": "Tracking",
-      "Ecology": "Ecology",
-      "Sneak": "Sneak",
-      "Memory": "Memory",
-      "Logic": "Logic",
-      "Traps": "Traps"
+      "Influence": "(Social) Influence",
+      "Deceive": "(Social) Deceive",
+      "Intuition": "(Social) Intuition",
+      "Tracking": "(Exploration) Tracking",
+      "Ecology": "(Exploration) Ecology",
+      "Sneak": "(Exploration) Sneak",
+      "Memory": "(Intellect) Memory",
+      "Logic": "(Intellect) Logic",
+      "Traps": "(Intellect) Traps"
     },
     "Moves": {
       "Categories": {

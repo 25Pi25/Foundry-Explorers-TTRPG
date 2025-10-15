@@ -1,7 +1,7 @@
-<section class="tab standard-form {{tabs.stats.cssClass}}" data-group="primary" data-tab="stats">
+<section class="tab standard-form scrollable {{tabs.stats.cssClass}}" data-group="primary" data-tab="stats">
   <div class="stat-blocks">
-    {{> "systems/explorers/templates/partials/stat-block.hbs" name="SYSTEM.Abilities.hp.Short" stat=systemFields.hp value=document.system.hp}}
-    {{!-- TODO: make HP readonly --}}
+    {{> "systems/explorers/templates/partials/stat-block.hbs" name="SYSTEM.Abilities.hp.Short" stat=systemFields.hp value=document.system.hp useMax=true }}
+    {{!-- TODO: make HP readonly? --}}
     {{> "systems/explorers/templates/partials/stat-block.hbs" name="SYSTEM.Abilities.atk.Short" stat=systemFields.abilities.fields.atk value=document.system.abilities.atk}}
     {{> "systems/explorers/templates/partials/stat-block.hbs" name="SYSTEM.Abilities.def.Short" stat=systemFields.abilities.fields.def value=document.system.abilities.def}}
     {{> "systems/explorers/templates/partials/stat-block.hbs" name="SYSTEM.Abilities.spatk.Short" stat=systemFields.abilities.fields.spatk value=document.system.abilities.spatk}}
@@ -9,14 +9,22 @@
     {{> "systems/explorers/templates/partials/stat-block.hbs" name="SYSTEM.Abilities.spe.Short" stat=systemFields.abilities.fields.spe value=document.system.abilities.spe}}
     {{> "systems/explorers/templates/partials/stat-block.hbs" name="SYSTEM.Abilities.iq.Short" stat=systemFields.abilities.fields.iq value=document.system.abilities.iq}}
   </div>
-    <br>
   <div class="skill-blocks">
-    {{> "systems/explorers/templates/partials/skill-block.hbs" name="SYSTEM.Skills.Endurance" stat=systemFields.skills.fields.endurance value=document.system.skills.endurance mod=document.system.hp.mod}}
-    {{> "systems/explorers/templates/partials/skill-block.hbs" name="SYSTEM.Skills.Strength" stat=systemFields.skills.fields.strength value=document.system.skills.strength mod=document.system.abilities.atk.mod}}
-    {{> "systems/explorers/templates/partials/skill-block.hbs" name="SYSTEM.Skills.PhysicalStatusResistance" stat=systemFields.skills.fields.physicalStatusResistance value=document.system.skills.physicalStatusResistance mod=document.system.abilities.def.mod}}
-    {{> "systems/explorers/templates/partials/skill-block.hbs" name="SYSTEM.Skills.Awareness" stat=systemFields.skills.fields.awareness value=document.system.skills.awareness mod=document.system.abilities.spatk.mod}}
-    {{> "systems/explorers/templates/partials/skill-block.hbs" name="SYSTEM.Skills.SpecialStatusResistance" stat=systemFields.skills.fields.specialStatusResistance value=document.system.skills.specialStatusResistance mod=document.system.abilities.spdef.mod}}
-    {{> "systems/explorers/templates/partials/skill-block.hbs" name="SYSTEM.Skills.Movement" stat=systemFields.skills.fields.movement value=document.system.skills.movement mod=document.system.abilities.spe.mod}}
-    {{> "systems/explorers/templates/partials/skill-block.hbs" name="SYSTEM.Skills.IQSkills" stat=systemFields.skills.fields.iq value=document.system.skills.iq mod=document.system.abilities.iq.mod}}
+    {{> "systems/explorers/templates/partials/skill-block.hbs" name="SYSTEM.Skills.Endurance" skill="endurance" field=systemFields.skills.fields.endurance value=document.system.skills.endurance }}
+    {{> "systems/explorers/templates/partials/skill-block.hbs" name="SYSTEM.Skills.Strength" skill="strength" field=systemFields.skills.fields.strength value=document.system.skills.strength }}
+    {{> "systems/explorers/templates/partials/skill-block.hbs" name="SYSTEM.Skills.PhysicalStatusResistance" skill="physicalStatusResistance" field=systemFields.skills.fields.physicalStatusResistance value=document.system.skills.physicalStatusResistance }}
+    {{> "systems/explorers/templates/partials/skill-block.hbs" name="SYSTEM.Skills.Awareness" skill="awareness" field=systemFields.skills.fields.awareness value=document.system.skills.awareness }}
+    {{> "systems/explorers/templates/partials/skill-block.hbs" name="SYSTEM.Skills.SpecialStatusResistance" skill="specialStatusResistance" field=systemFields.skills.fields.specialStatusResistance value=document.system.skills.specialStatusResistance }}
+    {{> "systems/explorers/templates/partials/skill-block.hbs" name="SYSTEM.Skills.Movement" skill="movement" field=systemFields.skills.fields.movement value=document.system.skills.movement }}
+    {{> "systems/explorers/templates/partials/skill-block.hbs" name="SYSTEM.Skills.IQSkills" skill="iqSkills" field=systemFields.skills.fields.iqSkills value=document.system.skills.iqSkills }}
+    {{> "systems/explorers/templates/partials/skill-block.hbs" name="SYSTEM.Skills.Influence" skill="influence" field=systemFields.skills.fields.influence value=document.system.skills.influence }}
+    {{> "systems/explorers/templates/partials/skill-block.hbs" name="SYSTEM.Skills.Deceive" skill="deceive" field=systemFields.skills.fields.deceive value=document.system.skills.deceive }}
+    {{> "systems/explorers/templates/partials/skill-block.hbs" name="SYSTEM.Skills.Intuition" skill="intuition" field=systemFields.skills.fields.intuition value=document.system.skills.intuition }}
+    {{> "systems/explorers/templates/partials/skill-block.hbs" name="SYSTEM.Skills.Tracking" skill="tracking" field=systemFields.skills.fields.tracking value=document.system.skills.tracking }}
+    {{> "systems/explorers/templates/partials/skill-block.hbs" name="SYSTEM.Skills.Ecology" skill="ecology" field=systemFields.skills.fields.ecology value=document.system.skills.ecology }}
+    {{> "systems/explorers/templates/partials/skill-block.hbs" name="SYSTEM.Skills.Sneak" skill="sneak" field=systemFields.skills.fields.sneak value=document.system.skills.sneak }}
+    {{> "systems/explorers/templates/partials/skill-block.hbs" name="SYSTEM.Skills.Memory" skill="memory" field=systemFields.skills.fields.memory value=document.system.skills.memory }}
+    {{> "systems/explorers/templates/partials/skill-block.hbs" name="SYSTEM.Skills.Traps" skill="traps" field=systemFields.skills.fields.traps value=document.system.skills.traps }}
+    {{> "systems/explorers/templates/partials/skill-block.hbs" name="SYSTEM.Skills.Logic" skill="logic" field=systemFields.skills.fields.logic value=document.system.skills.logic }}
   </div>
 </section>

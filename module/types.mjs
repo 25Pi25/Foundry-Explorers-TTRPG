@@ -1,6 +1,7 @@
 export const proficiencies = {
+  untrained: "SYSTEM.Character.Proficiency.Untrained",
+  minor: "SYSTEM.Character.Proficiency.Minor",
   major: "SYSTEM.Character.Proficiency.Major",
-  minor: "SYSTEM.Character.Proficiency.Minor"
 };
 export const types = {
   normal: "SYSTEM.Types.Normal",
@@ -20,7 +21,7 @@ export const types = {
   ice: "SYSTEM.Types.Ice",
   dragon: "SYSTEM.Types.Dragon",
   dark: "SYSTEM.Types.Dark",
-  fairy: "SYSTEM.Types.Fairy"
+  fairy: "SYSTEM.Types.Fairy",
 };
 export const typeChart = {
   normal: { se: [], nve: ['rock', 'steel'], immune: ['ghost'] },
@@ -43,12 +44,13 @@ export const typeChart = {
   fairy: { se: ['fighting', 'dragon', 'dark'], nve: ['fire', 'poison', 'steel'], immune: [] },
 };
 export const abilities = {
+  hp: "SYSTEM.Abilities.HP",
   atk: "SYSTEM.Abilities.Attack",
   def: "SYSTEM.Abilities.Defense",
   spatk: "SYSTEM.Abilities.SpecialAttack",
   spdef: "SYSTEM.Abilities.SpecialDefense",
   spe: "SYSTEM.Abilities.Speed",
-  iq: "SYSTEM.Abilities.IQ"
+  iq: "SYSTEM.Abilities.IQ",
 };
 export const skills = {
   endurance: "SYSTEM.Skills.Endurance",
@@ -57,6 +59,7 @@ export const skills = {
   awareness: "SYSTEM.Skills.Awareness",
   specialStatusResistance: "SYSTEM.Skills.SpecialStatusResistance",
   movement: "SYSTEM.Skills.Movement",
+  iqSkills: "SYSTEM.Skills.IQSkills",
   influence: "SYSTEM.Skills.Influence",
   deceive: "SYSTEM.Skills.Deceive",
   intuition: "SYSTEM.Skills.Intuition",
@@ -67,12 +70,30 @@ export const skills = {
   logic: "SYSTEM.Skills.Logic",
   traps: "SYSTEM.Skills.Traps",
 };
+export const skillToAbility = {
+  endurance: "hp",
+  strength: "atk",
+  physicalStatusResistance: "def",
+  awareness: "spatk",
+  specialStatusResistance: "spdef",
+  movement: "spe",
+  iqSkills: "iq",
+  influence: "iq",
+  deceive: "iq",
+  intuition: "iq",
+  tracking: "iq",
+  ecology: "iq",
+  sneak: "iq",
+  memory: "iq",
+  logic: "iq",
+  traps: "iq",
+};
 export const sizes = {
   tiny: "SYSTEM.Character.Sizes.Tiny",
   small: "SYSTEM.Character.Sizes.Small",
   medium: "SYSTEM.Character.Sizes.Medium",
   large: "SYSTEM.Character.Sizes.Large",
-  huge: "SYSTEM.Character.Sizes.Huge"
+  huge: "SYSTEM.Character.Sizes.Huge",
 };
 export const classes = {
   explorer: "SYSTEM.Character.Class.Explorer",
@@ -81,7 +102,7 @@ export const classes = {
   icon: "SYSTEM.Character.Class.Icon",
   guardian: "SYSTEM.Character.Class.Guardian",
   brawler: "SYSTEM.Character.Class.Brawler",
-  specialist: "SYSTEM.Character.Class.Specialist"
+  specialist: "SYSTEM.Character.Class.Specialist",
 };
 export const specializations = {
   survivalist: "SYSTEM.Character.Specializations.Survivalist",
@@ -97,7 +118,7 @@ export const specializations = {
   rapid: "SYSTEM.Character.Specializations.Rapid",
   fury: "SYSTEM.Character.Specializations.Fury",
   swift: "SYSTEM.Character.Specializations.Swift",
-  patient: "SYSTEM.Character.Specializations.Patient"
+  patient: "SYSTEM.Character.Specializations.Patient",
 };
 export const categories = {
   physical: "SYSTEM.Moves.Categories.Physical",
@@ -113,7 +134,7 @@ export const targets = {
   self: "SYSTEM.Moves.Targets.Self",
   selfAllies: "SYSTEM.Moves.Targets.SelfAllies",
   selfOrAlly: "SYSTEM.Moves.Targets.SelfOrAlly",
-  all: "SYSTEM.Moves.Targets.All"
+  all: "SYSTEM.Moves.Targets.All",
 };
 export const ranges = {
   front: "SYSTEM.Moves.Ranges.Front",
@@ -160,5 +181,5 @@ export const conditions = {
   magicCoat: "SYSTEM.Conditions.MagicCoat",
   eyedrop: "SYSTEM.Conditions.Eyedrop",
   insomnia: "SYSTEM.Conditions.Insomnia",
-  invulnerable: "SYSTEM.Conditions.Invulnerable"
+  invulnerable: "SYSTEM.Conditions.Invulnerable",
 };

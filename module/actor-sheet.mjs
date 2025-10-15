@@ -1,11 +1,14 @@
-import { filePath } from '../constants.mjs';
-import { abilities, classes, specializations, types } from './types.mjs'
+import { filePath, getSkillDie, toModString } from '../constants.mjs';
+import { abilities, classes, proficiencies, specializations, types } from './types.mjs'
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
+const { ChatMessage } = foundry.documents;
 
 // TODO: move this somewhere more convenient
-const toFormGroup = obj => Object.entries(obj).map(([value, label]) => ({ value, label }));
+function toFormGroup(object) {
+  return Object.entries(object).map(([value, label]) => ({ value, label }));
+}
 
 export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   static DEFAULT_OPTIONS = {
@@ -14,7 +17,8 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
       submitOnChange: true
     },
     actions: {
-      clearTrack: CharacterSheet.clearTrack
+      clearTrack: CharacterSheet.clearTrack,
+      rollDie: CharacterSheet.rollDie
     }
   }
 
@@ -36,7 +40,7 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   static PARTS = {
     header: { template: filePath("templates/actor-sheet.hbs") },
     tabs: { template: "templates/generic/tab-navigation.hbs" },
-    stats: { template: filePath("templates/sections/stats.hbs") },
+    stats: { template: filePath("templates/sections/stats.hbs"), scrollable: [""] },
     about: { template: filePath("templates/sections/about.hbs") },
     moves: { template: filePath("templates/sections/moves.hbs") },
     conditions: { template: filePath("templates/sections/conditions.hbs") },
@@ -51,6 +55,7 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
       classes: toFormGroup(classes),
       abilities: toFormGroup(abilities),
       specializations: toFormGroup(specializations),
+      proficiencies,
       systemFields: this.document.system.schema.fields,
       tabs: this._prepareTabs("primary"),
     };
@@ -67,6 +72,14 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
           cleared: friendship.cleared + 1,
         }
       }
+    });
+  }
+
+  static async rollDie(event, target) {
+    const { sides, modifier } = getSkillDie(this, target.dataset.skill);
+    new Roll(`${sides}d6x${toModString(modifier)}`).toMessage({
+      speaker: ChatMessage.implementation.getSpeaker({ actor: this.document }),
+      flavor: target.dataset.name
     });
   }
 }

@@ -32,12 +32,12 @@ Hooks.once("init", () => {
   // Configure trackable attributes.
   CONFIG.Actor.trackableAttributes = {
     Character: {
-      bar: ["hp"],
-      value: []
+      bar: ["hp.max"],
+      value: ["hp.raw"]
     },
     Player: {
-      bar: ["hp"],
-      value: []
+      bar: ["hp.max"],
+      value: ["hp.raw"]
     }
   };
 

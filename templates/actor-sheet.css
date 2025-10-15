@@ -2,7 +2,9 @@
 
 .character-header {
   display: grid;
-  grid-template-columns: 22% 78%;
+  grid-template-columns: 22% 52% 24%;
+  gap: 1%;
+  margin-bottom: 4px;
 }
 
 .center {
@@ -16,16 +18,31 @@ input.character-name {
   font-size: 2rem;
 }
 
+.tab[data-group="primary"] {
+  margin-top: 7px;
+}
+
+.hp-total {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* Stats */
+
 .stat-blocks {
   display: grid;
   place-items: center;
   grid-template-columns: repeat(7, calc(100% / 7));
 }
 
-.stat-block, .stat-block input {
-  text-align: center;
+.stat-block, .stat-block .form-group input {
   height: auto;
-  width: fit-content;
+  width: 75%;
+}
+
+.stat-block input {
+  text-align: center;
 }
 
 .stat-block .form-group {
@@ -44,6 +61,24 @@ input.character-name {
   aspect-ratio: 1/1;
 }
 
+.skill-blocks {
+  display: grid;
+  grid-template-columns: 48% 48%;
+  gap: 4%;
+  margin-bottom: 2px;
+}
+
+.skill-block .form-group {
+  display: grid;
+  grid-template-columns: 58% 30% 12%;
+  gap: 0;
+}
+
+.skill-block select {
+  appearance: none;
+  text-align: center;
+}
+
 /* About */
 
 .about {
@@ -59,16 +94,6 @@ input.character-name {
 .about .form-group {
   width: 100%;
   padding: 1px;
-}
-
-.skill-blocks {
-  display: grid;
-  grid-template-columns: 50% 50%;
-}
-
-.skill-block .form-group {
-  display: grid;
-  grid-template-columns: 60% 40%;
 }
 
 /* Tracks */

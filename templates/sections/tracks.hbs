@@ -8,4 +8,16 @@
     </div>
     <button data-action="clearTrack" {{#unless document.system.friendship.isClearable}}disabled{{/unless}}>Clear Track</button>
   </fieldset>
+  <fieldset>
+    <legend>{{localize "SYSTEM.Models.Player.FIELDS.tokens.label"}}</legend>
+    <div class="friendship-grid">
+      {{formGroup systemFields.tokens.fields.available value=document.system.tokens.available localize=true classes="slim inline" max=document.system.tokens.max }}
+      <div class="form-group slim inline">
+        <label>{{localize "SYSTEM.Models.Player.FIELDS.tokens.max.label"}}</label>
+        <div class="form-fields">
+          <input disabled value="{{document.system.tokens.max}}" type="number" />
+        </div>
+      </div>
+    </div>
+  </fieldset>
 </section>

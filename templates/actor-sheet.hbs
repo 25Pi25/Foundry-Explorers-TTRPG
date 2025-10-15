@@ -5,4 +5,14 @@
   <div class="center">
     <input type="text" name="name" value="{{document.name}}" class="character-name">
   </div>
+  <div class="center">
+    <label>{{localize "SYSTEM.Models.Character.FIELDS.hp.label"}}</label>
+    <div class="hp-total">
+      {{formGroup systemFields.hp.fields.raw value=document.system.hp.raw type="number"}}
+      <span>/</span>
+      <div class="form-group slim inline">
+        <input type="number" value="{{document.system.hp.max}}" disabled>
+      </div>
+    </div>
+  </div>
 </div>
