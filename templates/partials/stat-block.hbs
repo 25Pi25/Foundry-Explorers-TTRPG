@@ -1,8 +1,8 @@
 <div class="stat-block center">
   {{#if useMax}}
-  {{formGroup stat.fields.max value=value.max localize=true type="number" label=name}}
+  {{formGroup field.fields.max value=value.max localize=true type="number" label=name}}
   {{else}}
-  {{formGroup stat.fields.raw value=value.raw localize=true type="number" label=name}}
+  {{formGroup field.fields.raw value=value.raw localize=true type="number" label=name}}
   {{/if}}
   <input type="text" disabled value="{{numberFormat value.mod decimals=0 sign=true}}">
 </div>

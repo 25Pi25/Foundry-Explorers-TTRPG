@@ -11,20 +11,20 @@
       "Feats": "Feats"
     },
     "Abilities": {
-      "hp.Full": "HP",
-      "hp.Short": "HP",
-      "atk.Full": "Attack",
-      "atk.Short": "ATK",
-      "def.Full": "Defense",
-      "def.Short": "DEF",
-      "spatk.Full": "Special Attack",
-      "spatk.Short": "SP. ATK",
-      "spdef.Full": "Special Defense",
-      "spdef.Short": "SP. DEF",
-      "spe.Full": "Speed",
-      "spe.Short": "SPE",
-      "iq.Full": "IQ",
-      "iq.Short": "IQ"
+      "HP.Full": "HP",
+      "HP.Short": "HP",
+      "Attack.Full": "Attack",
+      "Attack.Short": "ATK",
+      "Defense.Full": "Defense",
+      "Defense.Short": "DEF",
+      "SpecialAttack.Full": "Special Attack",
+      "SpecialAttack.Short": "SP. ATK",
+      "SpecialDefense.Full": "Special Defense",
+      "SpecialDefense.Short": "SP. DEF",
+      "Speed.Full": "Speed",
+      "Speed.Short": "SPE",
+      "IQ.Full": "IQ",
+      "IQ.Short": "IQ"
     },
     "Models": {
       "Character": {

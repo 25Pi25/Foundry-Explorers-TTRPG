@@ -44,13 +44,13 @@ export const typeChart = {
   fairy: { se: ['fighting', 'dragon', 'dark'], nve: ['fire', 'poison', 'steel'], immune: [] },
 };
 export const abilities = {
-  hp: "SYSTEM.Abilities.HP",
-  atk: "SYSTEM.Abilities.Attack",
-  def: "SYSTEM.Abilities.Defense",
-  spatk: "SYSTEM.Abilities.SpecialAttack",
-  spdef: "SYSTEM.Abilities.SpecialDefense",
-  spe: "SYSTEM.Abilities.Speed",
-  iq: "SYSTEM.Abilities.IQ",
+  hp: "SYSTEM.Abilities.HP.Short",
+  atk: "SYSTEM.Abilities.Attack.Short",
+  def: "SYSTEM.Abilities.Defense.Short",
+  spatk: "SYSTEM.Abilities.SpecialAttack.Short",
+  spdef: "SYSTEM.Abilities.SpecialDefense.Short",
+  spe: "SYSTEM.Abilities.Speed.Short",
+  iq: "SYSTEM.Abilities.IQ.Short",
 };
 export const skills = {
   endurance: "SYSTEM.Skills.Endurance",
