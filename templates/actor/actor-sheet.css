@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns: 22% 52% 24%;
   gap: 1%;
-  margin-bottom: 4px;
+  margin-bottom: 10px;
 }
 
 .center {
@@ -14,7 +14,7 @@
 
 
 input.character-name {
-  height: 60%;
+  height: 80%;
   font-size: 2rem;
 }
 

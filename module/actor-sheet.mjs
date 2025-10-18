@@ -38,14 +38,14 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   };
 
   static PARTS = {
-    header: { template: filePath("templates/actor-sheet.hbs") },
+    header: { template: filePath("templates/actor/actor-sheet.hbs") },
     tabs: { template: "templates/generic/tab-navigation.hbs" },
-    stats: { template: filePath("templates/sections/stats.hbs"), scrollable: [""] },
-    about: { template: filePath("templates/sections/about.hbs") },
-    moves: { template: filePath("templates/sections/moves.hbs") },
-    conditions: { template: filePath("templates/sections/conditions.hbs") },
-    tracks: { template: filePath("templates/sections/tracks.hbs") },
-    feats: { template: filePath("templates/sections/feats.hbs") },
+    stats: { template: filePath("templates/actor/sections/stats.hbs"), scrollable: [""] },
+    about: { template: filePath("templates/actor/sections/about.hbs") },
+    moves: { template: filePath("templates/actor/sections/moves.hbs") },
+    conditions: { template: filePath("templates/actor/sections/conditions.hbs") },
+    tracks: { template: filePath("templates/actor/sections/tracks.hbs") },
+    feats: { template: filePath("templates/actor/sections/feats.hbs") },
   }
 
   async _prepareContext(options) {

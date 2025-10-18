@@ -61,6 +61,21 @@
             "max": { "label": "Maximum Tokens" }
           }
         }
+      },
+      "Move": {
+        "FIELDS": {
+          "description": { "label": "Description" },
+          "type": { "label": "Type" },
+          "category": { "label": "Category" },
+          "power": { "label": "Power" },
+          "pp": { "label": "PP" },
+          "effect": { "label": "Effect" },
+          "effectCount": { "label": "Effect Count" },
+          "target": { "label": "Target" },
+          "range": { "label": "Range" },
+          "rangeCount": { "label": "Range Count" },
+          "level": { "label": "Level" }
+        }
       }
     },
     "Character": {

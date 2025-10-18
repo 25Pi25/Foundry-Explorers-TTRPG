@@ -1,0 +1,31 @@
+<section class="standard-form">
+  <div class="move-options">
+    {{formGroup systemFields.type value=document.system.type localize=true choices=types classes="slim inline"}}
+    {{formGroup systemFields.category value=document.system.category localize=true choices=categories classes="slim inline"}}
+    {{formGroup systemFields.power value=document.system.power localize=true type="number" classes="slim inline"}}
+    {{formGroup systemFields.pp value=document.system.pp localize=true type="number" classes="slim inline"}}
+    {{formGroup systemFields.effect value=document.system.effect localize=true classes="slim inline"}}
+    {{formGroup systemFields.effectCount value=document.system.effectCount localize=true classes="slim inline"}}
+    {{formGroup systemFields.level value=document.system.level localize=true classes="slim inline"}}
+    {{formGroup systemFields.rangeCount value=document.system.rangeCount localize=true type="number" classes="slim inline"}}
+    {{formGroup systemFields.target value=document.system.target localize=true choices=targets classes="slim inline"}}
+    {{formGroup systemFields.range value=document.system.range localize=true choices=ranges classes="slim inline"}}
+  </div>
+  {{formGroup systemFields.description value=document.system.description localize=true height=400}}
+  {{!-- <fieldset class="effect-set scrollable">
+    <legend>{{localize "SYSTEM.Models.Move.FIELDS.effects.label"}}</legend>
+    <button type="button" data-action="addEffect">Add Effect</button>
+    {{#each itemEffects}}
+      <fieldset class="effect-section">
+        <div class="effect-fields">
+          {{formGroup fields.triggerType value=values.triggerType name=(concat namePrefix "triggerType") classes="stacked inline" localize=true}}
+          {{formGroup fields.effect value=values.effect name=(concat namePrefix "effect") classes="stacked inline" localize=true}}
+          {{formGroup fields.effectCount value=values.effectCount name=(concat namePrefix "effectCount") classes="stacked inline" localize=true}}
+          {{formGroup fields.offensiveCheck value=values.offensiveCheck name=(concat namePrefix "offensiveCheck") classes="stacked inline" localize=true}}
+          {{formGroup fields.defensiveCheck value=values.defensiveCheck name=(concat namePrefix "defensiveCheck") classes="stacked inline" localize=true}}
+        </div>
+        <button type="button" data-action="deleteEffect" data-effect-id="{{id}}" class="icon fa-solid fa-trash"></button>
+      </fieldset>
+    {{/each}}
+  </fieldset> --}}
+</section>

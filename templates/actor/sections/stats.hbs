@@ -1,0 +1,23 @@
+<section class="tab standard-form scrollable {{tabs.stats.cssClass}}" data-group="primary" data-tab="stats">
+  <div class="stat-blocks">
+    {{> (filePath "templates/actor/partials/stat-block.hbs") name=abilities.hp field=systemFields.hp value=document.system.hp useMax=true }}
+    {{> (filePath "templates/actor/partials/stat-block.hbs") name=abilities.atk field=systemFields.abilities.fields.atk value=document.system.abilities.atk}}
+    {{> (filePath "templates/actor/partials/stat-block.hbs") name=abilities.def field=systemFields.abilities.fields.def value=document.system.abilities.def}}
+    {{> (filePath "templates/actor/partials/stat-block.hbs") name=abilities.spatk field=systemFields.abilities.fields.spatk value=document.system.abilities.spatk}}
+    {{> (filePath "templates/actor/partials/stat-block.hbs") name=abilities.spdef field=systemFields.abilities.fields.spdef value=document.system.abilities.spdef}}
+    {{> (filePath "templates/actor/partials/stat-block.hbs") name=abilities.spe field=systemFields.abilities.fields.spe value=document.system.abilities.spe}}
+    {{> (filePath "templates/actor/partials/stat-block.hbs") name=abilities.iq field=systemFields.abilities.fields.iq value=document.system.abilities.iq}}
+  </div>
+  <div class="skill-blocks">
+    {{#each skills as |name key|}}
+      {{#with ..}}
+        {{> (filePath "templates/actor/partials/skill-block.hbs")
+          name=name
+          skill=key
+          field=(lookup systemFields.skills.fields key)
+          value=(lookup document.system.skills key)
+        }}
+      {{/with}}
+    {{/each}}
+  </div>
+</section>

@@ -1,6 +1,6 @@
 import { proficiencies, types, typeChart, abilities, skills, sizes, classes, specializations, categories, targets, ranges, conditions } from './types.mjs';
 
-const { NumberField, SchemaField, StringField, ArrayField } = foundry.data.fields;
+const { NumberField, SchemaField, StringField, ArrayField, TypedObjectField } = foundry.data.fields;
 
 export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 
@@ -119,22 +119,26 @@ export class PlayerDataModel extends CharacterDataModel {
 }
 
 export class MoveDataModel extends foundry.abstract.TypeDataModel {
+  static LOCALIZATION_PREFIXES = ["SYSTEM.Models.Move"];
+
   static defineSchema() {
     return {
-      name: new StringField({ required: true }),
-      type: new StringField({ required: true, choices: types }),
-      category: new StringField({ required: true, choices: categories }),
+      description: new StringField({ required: true }),
+      type: new StringField({ required: true, choices: types, initial: 'normal' }),
+      category: new StringField({ required: true, choices: categories, initial: 'physical' }),
       power: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
       pp: new NumberField({ required: true, integer: true, min: 0, initial: 20 }),
-      effects: new ArrayField(new SchemaField({
-        triggerType: new StringField({ required: true, nullable: true }),
-        effect: new StringField({ required: true, choices: conditions }),
-        ability: new StringField({ choices: abilities }),
-        offensiveCheck: new StringField({ choices: skills }),
-        defensiveCheck: new StringField({ choices: skills })
-      }), { required: true }),
-      target: new StringField({ required: true, nullable: true, choices: targets }),
-      range: new StringField({ required: true, nullable: true, choices: ranges }),
+      effect: new StringField({ required: true, nullable: true, choices: conditions }),
+      effectCount: new NumberField({ required: true, nullable: true, integer: true }),
+      // effects: new TypedObjectField(new SchemaField({
+      //   triggerType: new StringField({ required: true, nullable: true }),
+      //   effect: new StringField({ required: true, choices: conditions, initial: 'atkUp' }),
+      //   effectCount: new NumberField({ nullable: true, integer: true }),
+      //   offensiveCheck: new StringField({required: true, choices: skills, nullable: true }),
+      //   defensiveCheck: new StringField({ required: true, choices: skills, nullable: true })
+      // })),
+      target: new StringField({ required: true, nullable: true, choices: targets, initial: 'foe' }),
+      range: new StringField({ required: true, nullable: true, choices: ranges, initial: 'front' }),
       rangeCount: new NumberField({ required: true, nullable: true, integer: true, min: 1 }),
       level: new NumberField({ required: true, integer: true, min: 1, max: 5, initial: 1 })
     };
@@ -143,9 +147,9 @@ export class MoveDataModel extends foundry.abstract.TypeDataModel {
     if (['away', 'ahead', 'range'].includes(data.range) === (data.rangeCount === null)) {
       throw new Error("Attribute \"rangeCount\" is either being specified when it shouldn't, or not being specified when it should.");
     }
-    if (data.effects.some(effect => ['statUp', 'statDown'].includes(effect.effect) === !effect.ability)) {
-      throw new Error("Attribute \"ability\" and \"count\" should only be specified for Stat Up/Stat Down.");
-    }
+    // if (data.effects.some(effect => ['statUp', 'statDown'].includes(effect.effect) === !effect.ability)) {
+    //   throw new Error("Attribute \"ability\" and \"count\" should only be specified for Stat Up/Stat Down.");
+    // }
     if ((data.range === null) === (data.target !== 'self')) {
       throw new Error("You can only have no range if you are targeting yourself.");
     }
