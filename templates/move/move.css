@@ -78,6 +78,18 @@ input.move-name {
   text-align: center;
 }
 
+.effect-set {
+  height: 250px;
+}
+
+.effect-set, .effect-set fieldset {
+  padding: 0.5rem;
+}
+
+.wide-button {
+  width: 100%;
+}
+
 /* .effect-set {
   max-height: 400px;
 }

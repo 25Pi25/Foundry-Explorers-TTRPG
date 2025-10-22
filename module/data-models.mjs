@@ -1,4 +1,4 @@
-import { proficiencies, types, typeChart, abilities, skills, sizes, classes, specializations, categories, targets, ranges, conditions } from './types.mjs';
+import { proficiencies, types, typeChart, abilities, skills, sizes, classes, specializations, categories, targets, ranges, triggerTypes, effects } from './types.mjs';
 
 const { NumberField, SchemaField, StringField, HTMLField, ArrayField, TypedObjectField, BooleanField } = foundry.data.fields;
 
@@ -128,10 +128,10 @@ export class MoveDataModel extends foundry.abstract.TypeDataModel {
       power: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
       pp: new NumberField({ required: true, integer: true, min: 0, initial: 20 }),
       effects: new TypedObjectField(new SchemaField({
-        triggerType: new StringField({ required: true, nullable: true }),
-        affectsUser: new BooleanField({ required: true, initial: false }),
+        triggerType: new StringField({ required: true, choices: triggerTypes, initial: 'hit' }),
         appliedEffects: new TypedObjectField(new SchemaField({
-          effect: new StringField({ required: true, choices: conditions, initial: 'atkUp' }),
+          affectsUser: new BooleanField({ required: true, initial: false }),
+          effect: new StringField({ required: true, choices: effects, initial: 'atkUp' }),
           effectCount: new NumberField({ nullable: true, integer: true })
         }))
       })),

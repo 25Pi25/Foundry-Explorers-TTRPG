@@ -1,4 +1,4 @@
-import { skillToAbility } from './module/types.mjs';
+import { skillToAbility, statConditions } from './module/types.mjs';
 
 export const SYSTEM_ID = 'explorers';
 export const filePath = path => `systems/${SYSTEM_ID}/${path}`;
@@ -20,4 +20,7 @@ export function toSkillString(skill) {
 }
 export function toFormGroup(object) {
   return Object.entries(object).map(([value, label]) => ({ value, label }));
+}
+export function isStatCondition(effectName) {
+  return Object.keys(statConditions).includes(effectName);
 }

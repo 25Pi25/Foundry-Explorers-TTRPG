@@ -1,4 +1,4 @@
-import { filePath, SYSTEM_ID, toModString, toSkillString } from './constants.mjs';
+import { filePath, isStatCondition, SYSTEM_ID, toSkillString } from './constants.mjs';
 import { CharacterSheet } from './module/actor-sheet.mjs';
 import { CharacterDataModel, MoveDataModel, PlayerDataModel } from "./module/data-models.mjs";
 import { SystemToken } from './module/documents.mjs';
@@ -31,6 +31,7 @@ Hooks.once("init", () => {
   foundry.applications.handlebars.loadTemplates(templates);
   Handlebars.registerHelper('skillDie', toSkillString);
   Handlebars.registerHelper('filePath', filePath);
+  Handlebars.registerHelper('isStatCondition', isStatCondition);
 
   // Configure trackable attributes.
   CONFIG.Actor.trackableAttributes = {

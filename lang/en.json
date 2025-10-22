@@ -72,11 +72,11 @@
           "effects": {
             "label": "Effects",
             "triggerType": { "label": "Trigger Type" },
-            "affectsUser": { "label": "Affects User" },
             "appliedEffects": {
               "label": "Applied Effects",
               "effect": { "label": "Effect" },
-              "effectCount": { "label": "Effect Count" }
+              "effectCount": { "label": "Effect Count" },
+              "affectsUser": { "label": "Target is User" }
             }
           },
           "offensiveCheck": { "label": "Offensive Check" },
@@ -191,6 +191,12 @@
         "Special": "Special"
       }
     },
+    "TriggerTypes": {
+      "Hit": "On Hit",
+      "D6": "On D6→6",
+      "D56": "On D6→5-6",
+      "StatusCondition": "On Status Hit"
+    },
     "Conditions": {
       "atk.Up": "Attack Up",
       "atk.Down": "Attack Down",
@@ -227,6 +233,12 @@
       "Eyedrop": "Eyedrop",
       "Insomnia": "Insomnia",
       "Invulnerable": "Invulnerable"
+    },
+    "Effects": {
+      "HalfHeal": "Heal Half",
+      "Multihit": "Multihit",
+      "Push": "Push",
+      "Priority": "Priority"
     },
     "Misc": {
       "SkillCheckOverride": "Skill Check Override (Optional)",

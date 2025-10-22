@@ -146,6 +146,12 @@ export const ranges = {
   path: "SYSTEM.Moves.Ranges.Path",
   special: "SYSTEM.Moves.Ranges.Special",
 };
+export const triggerTypes = {
+  hit: "SYSTEM.TriggerTypes.Hit",
+  d6: "SYSTEM.TriggerTypes.D6",
+  d56: "SYSTEM.TriggerTypes.D56",
+  statusCondition: "SYSTEM.TriggerTypes.StatusCondition",
+}
 export const statConditions = {
   atkUp: "SYSTEM.Conditions.atk.Up",
   atkDown: "SYSTEM.Conditions.atk.Down",
@@ -186,3 +192,11 @@ export const conditions = {
   insomnia: "SYSTEM.Conditions.Insomnia",
   invulnerable: "SYSTEM.Conditions.Invulnerable",
 };
+export const effects = {
+  ...conditions,
+  halfHeal: "SYSTEM.Effects.HalfHeal",
+  multihit: "SYSTEM.Effects.Multihit",
+  push: "SYSTEM.Effects.Push",
+  priority: "SYSTEM.Effects.Priority",
+  
+}

@@ -38,8 +38,27 @@
       {{formGroup systemFields.rangeCount value=document.system.rangeCount localize=true type="number" classes="slim inline" disabled=true}}
     {{/if}}
   </fieldset>
-  <fieldset>
+  <fieldset class="effect-set scrollable">
     <legend>Effects</legend>
+    {{#each effectGroups}}
+    <fieldset>
+      {{formGroup fields.triggerType value=values.triggerType name=(concat namePrefix "triggerType") classes="slim inline" label=(localize (concat labelPrefix "triggerType.label")) localize=true}}
+      <fieldset>
+        <legend>{{localize "SYSTEM.Models.Move.FIELDS.effects.appliedEffects.label"}}</legend>
+        {{#each effects}}
+          {{formGroup fields.effect value=values.effect name=(concat namePrefix "effect") classes="slim inline" label=(localize (concat labelPrefix "effect.label")) localize=true}}
+          {{#if (isStatCondition values.effect)}}
+            {{formGroup fields.effectCount value=values.effectCount name=(concat namePrefix "effectCount") classes="slim inline" label=(localize (concat labelPrefix "effectCount.label")) localize=true}}
+          {{/if}}
+          {{formGroup fields.affectsUser value=values.affectsUser name=(concat namePrefix "affectsUser") classes="slim inline" label=(localize (concat labelPrefix "affectsUser.label")) localize=true}}
+          <button type="button" data-action="deleteEffect" data-effect-group-id="{{../id}}" data-effect-id="{{id}}" class="wide-button icon fa-solid fa-trash"></button>
+        {{/each}}
+        <button type="button" data-action="addEffect" data-effect-group-id="{{id}}" class="wide-button icon fa-solid fa-plus"></button>
+      </fieldset>
+      <button type="button" data-action="deleteEffectGroup" data-effect-group-id="{{id}}" class="wide-button icon fa-solid fa-trash"></button>
+    </fieldset>
+    {{/each}}
+      <button type="button" data-action="addEffectGroup" class="wide-button icon fa-solid fa-plus"></button>
   </fieldset>
 </section>
 {{!-- <section class="standard-form">
