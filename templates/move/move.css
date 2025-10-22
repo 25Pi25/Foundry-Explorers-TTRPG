@@ -1,3 +1,27 @@
+.move-tophalf {
+  display: grid;
+  grid-template-columns: 54% 44%;
+  gap: 2%;
+}
+
+.move-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.move-desc {
+  flex: 1
+}
+
+.move-desc .form-fields {
+  height: 110px;
+}
+
+.move-tophalf textarea {
+  height: 100%;
+  resize: none;
+}
+
 .move-header {
   display: grid;
   grid-template-columns: 22% 77%;
@@ -10,7 +34,14 @@ input.move-name {
   font-size: 2rem;
 }
 
+.move-metadata {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
 .move-options {
+  margin-top: 10px;
   display: grid;
   grid-template-columns: 49% 49%;
   gap: 2%;
@@ -18,6 +49,33 @@ input.move-name {
 
 .move-options input {
   width: 100%;
+}
+
+.move-checks {
+  display: grid;
+  grid-template-columns: 39% 20% 39%;
+  gap: 1%;
+  place-items: center;
+  vertical-align: center;
+  text-align: center;
+}
+
+.move-skill-check, .move-desc {
+  text-align: center;
+  gap: 0;
+}
+
+.move-skill-check input[type="checkbox"] {
+  margin: 0;
+}
+
+.move-skill-inputs {
+  display: grid;
+  grid-template-columns: 43% 10% 43%;
+  gap: 2%;
+  place-items: center;
+  vertical-align: center;
+  text-align: center;
 }
 
 /* .effect-set {

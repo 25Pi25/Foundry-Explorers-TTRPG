@@ -146,7 +146,7 @@ export const ranges = {
   path: "SYSTEM.Moves.Ranges.Path",
   special: "SYSTEM.Moves.Ranges.Special",
 };
-export const conditions = {
+export const statConditions = {
   atkUp: "SYSTEM.Conditions.atk.Up",
   atkDown: "SYSTEM.Conditions.atk.Down",
   defUp: "SYSTEM.Conditions.def.Up",
@@ -159,6 +159,9 @@ export const conditions = {
   speDown: "SYSTEM.Conditions.spe.Down",
   iqUp: "SYSTEM.Conditions.iq.Up",
   iqDown: "SYSTEM.Conditions.iq.Down",
+};
+export const conditions = {
+  ...statConditions,
   paralyzed: "SYSTEM.Conditions.Paralyzed",
   burned: "SYSTEM.Conditions.Burned",
   poisoned: "SYSTEM.Conditions.Poisoned",

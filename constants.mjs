@@ -16,5 +16,8 @@ export function getSkillDie(thisContext, skill) {
 }
 export function toSkillString(skill) {
   const { sides, modifier } = getSkillDie(this, skill);
-  return `${sides}d6${modifier !== 0 ? toModString(modifier) : ""}`;
+  return `${sides}d6x${modifier !== 0 ? toModString(modifier) : ""}`;
+}
+export function toFormGroup(object) {
+  return Object.entries(object).map(([value, label]) => ({ value, label }));
 }

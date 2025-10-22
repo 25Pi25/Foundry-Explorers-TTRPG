@@ -69,8 +69,18 @@
           "category": { "label": "Category" },
           "power": { "label": "Power" },
           "pp": { "label": "PP" },
-          "effect": { "label": "Effect" },
-          "effectCount": { "label": "Effect Count" },
+          "effects": {
+            "label": "Effects",
+            "triggerType": { "label": "Trigger Type" },
+            "affectsUser": { "label": "Affects User" },
+            "appliedEffects": {
+              "label": "Applied Effects",
+              "effect": { "label": "Effect" },
+              "effectCount": { "label": "Effect Count" }
+            }
+          },
+          "offensiveCheck": { "label": "Offensive Check" },
+          "defensiveCheck": { "label": "Defensive Check" },
           "target": { "label": "Target" },
           "range": { "label": "Range" },
           "rangeCount": { "label": "Range Count" },
@@ -138,9 +148,9 @@
     "Skills": {
       "Endurance": "Endurance",
       "Strength": "Strength",
-      "PhysicalStatusResistance": "Phys. Status Resistance",
+      "PhysicalStatusResistance": "Phys. Status Resist",
       "Awareness": "Awareness",
-      "SpecialStatusResistance": "Spec. Status Resistance",
+      "SpecialStatusResistance": "Spec. Status Resist",
       "Movement": "Movement",
       "IQSkills": "IQ Skills",
       "Influence": "(Social) Influence",
@@ -157,8 +167,8 @@
       "Categories": {
         "Physical": "Physical",
         "Special": "Special",
-        "PhysicalStatus": "Physical Status",
-        "SpecialStatus": "Special Status"
+        "PhysicalStatus": "Phys. Status",
+        "SpecialStatus": "Spec. Status"
       },
       "Targets": {
         "Foe": "Foe",
@@ -217,6 +227,10 @@
       "Eyedrop": "Eyedrop",
       "Insomnia": "Insomnia",
       "Invulnerable": "Invulnerable"
+    },
+    "Misc": {
+      "SkillCheckOverride": "Skill Check Override (Optional)",
+      "Versus": "vs."
     }
   }
 }

@@ -1,18 +1,49 @@
-<section class="standard-form">
-  <div class="move-options">
-    {{formGroup systemFields.type value=document.system.type localize=true choices=types classes="slim inline"}}
-    {{formGroup systemFields.category value=document.system.category localize=true choices=categories classes="slim inline"}}
-    {{formGroup systemFields.power value=document.system.power localize=true type="number" classes="slim inline"}}
-    {{formGroup systemFields.pp value=document.system.pp localize=true type="number" classes="slim inline"}}
-    {{formGroup systemFields.effect value=document.system.effect localize=true classes="slim inline"}}
-    {{formGroup systemFields.effectCount value=document.system.effectCount localize=true classes="slim inline"}}
-    {{formGroup systemFields.level value=document.system.level localize=true classes="slim inline"}}
-    {{formGroup systemFields.rangeCount value=document.system.rangeCount localize=true type="number" classes="slim inline"}}
-    {{formGroup systemFields.target value=document.system.target localize=true choices=targets classes="slim inline"}}
-    {{formGroup systemFields.range value=document.system.range localize=true choices=ranges classes="slim inline"}}
-  </div>
-  {{formGroup systemFields.description value=document.system.description localize=true height=400}}
-  {{!-- <fieldset class="effect-set scrollable">
+<section class="standard-form move-options">
+  <fieldset>
+    <legend>Range</legend>
+    {{!-- Target Form Group --}}
+    <div class="form-group slim inline">
+      <label>Target</label>
+      <div class="form-fields">
+        {{#if document.system.target}}
+          <select name="system.target">
+            {{selectOptions targets selected=document.system.target localize=true}}
+          </select>
+        {{else}}
+          <select name="system.target" disabled>
+            <option value selected></option>
+          </select>
+        {{/if}}
+      </div>
+    </div>
+    {{!-- Range Form Group --}}
+    <div class="form-group slim inline">
+      <label>Range</label>
+      <div class="form-fields">
+        {{#if document.system.range}}
+          <select name="system.range">
+            {{selectOptions ranges selected=document.system.range localize=true}}
+          </select>
+        {{else}}
+          <select name="system.range" disabled>
+            {{!-- TODO: make this value null for both this and target --}}
+            <option value selected></option>
+          </select>
+        {{/if}}
+      </div>
+    </div>
+    {{#if document.system.withRangeLevel}}
+      {{formGroup systemFields.rangeCount value=document.system.rangeCount localize=true type="number" classes="slim inline"}}
+    {{else}}
+      {{formGroup systemFields.rangeCount value=document.system.rangeCount localize=true type="number" classes="slim inline" disabled=true}}
+    {{/if}}
+  </fieldset>
+  <fieldset>
+    <legend>Effects</legend>
+  </fieldset>
+</section>
+{{!-- <section class="standard-form">
+   <fieldset class="effect-set scrollable">
     <legend>{{localize "SYSTEM.Models.Move.FIELDS.effects.label"}}</legend>
     <button type="button" data-action="addEffect">Add Effect</button>
     {{#each itemEffects}}
@@ -27,5 +58,5 @@
         <button type="button" data-action="deleteEffect" data-effect-id="{{id}}" class="icon fa-solid fa-trash"></button>
       </fieldset>
     {{/each}}
-  </fieldset> --}}
-</section>
+  </fieldset>
+</section> --}}

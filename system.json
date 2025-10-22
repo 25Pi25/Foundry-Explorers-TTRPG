@@ -7,26 +7,30 @@
     "minimum": 13,
     "verified": 13
   },
-  "authors": [{
-    "name": "sec",
-    "discord": "25pi25"
-  }],
+  "authors": [
+    {
+      "name": "sec",
+      "discord": "25pi25"
+    }
+  ],
   "esmodules": ["explorers.mjs"],
   "styles": ["explorers.css"],
   "packs": [],
   "relationships": [],
-  "languages": [{
-    "lang": "en",
-    "name": "English",
-    "path": "lang/en.json"
-  }],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
   "documentTypes": {
     "Actor": {
       "Character": {},
       "Player": {}
     },
     "Item": {
-      "Move": {}
+      "Move": { "htmlFields": ["description"] }
     }
   },
   "socket": false,

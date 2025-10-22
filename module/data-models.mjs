@@ -1,6 +1,6 @@
 import { proficiencies, types, typeChart, abilities, skills, sizes, classes, specializations, categories, targets, ranges, conditions } from './types.mjs';
 
-const { NumberField, SchemaField, StringField, ArrayField, TypedObjectField } = foundry.data.fields;
+const { NumberField, SchemaField, StringField, HTMLField, ArrayField, TypedObjectField, BooleanField } = foundry.data.fields;
 
 export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 
@@ -46,7 +46,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
     }
     const abilityFields = {};
     for (const ability in abilities) {
-      abilityFields[ability] = new SchemaField({ raw: new NumberField({ required: true, integer: true, min: 0, max: 999, initial: 5 }) });
+      abilityFields[ability] = new SchemaField({ raw: new NumberField({ required: true, integer: true, initial: 5 }) });
     }
     return {
       species: new StringField({ required: true }),
@@ -55,8 +55,8 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
       heldItem: new StringField({ required: true, nullable: true, initial: null }),
       size: new StringField({ required: true, choices: sizes, initial: 'medium' }),
       hp: new SchemaField({
-        raw: new NumberField({ required: true, integer: true, min: 0, initial: 25 }),
-        max: new NumberField({ required: true, integer: true, min: 0, initial: 25 })
+        raw: new NumberField({ required: true, integer: true, min: 1, initial: 25 }),
+        max: new NumberField({ required: true, integer: true, min: 1, initial: 25 })
       }),
       abilities: new SchemaField(abilityFields),
       skills: new SchemaField(skillFields),
@@ -114,7 +114,6 @@ export class PlayerDataModel extends CharacterDataModel {
     super.prepareDerivedData();
     this.friendship.isClearable = this.friendship.track == 5;
     this.tokens.max = this.level + 1;
-    // TODO: make hardcoded number equal to max of track
   }
 }
 
@@ -128,33 +127,44 @@ export class MoveDataModel extends foundry.abstract.TypeDataModel {
       category: new StringField({ required: true, choices: categories, initial: 'physical' }),
       power: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
       pp: new NumberField({ required: true, integer: true, min: 0, initial: 20 }),
-      effect: new StringField({ required: true, nullable: true, choices: conditions }),
-      effectCount: new NumberField({ required: true, nullable: true, integer: true }),
-      // effects: new TypedObjectField(new SchemaField({
-      //   triggerType: new StringField({ required: true, nullable: true }),
-      //   effect: new StringField({ required: true, choices: conditions, initial: 'atkUp' }),
-      //   effectCount: new NumberField({ nullable: true, integer: true }),
-      //   offensiveCheck: new StringField({required: true, choices: skills, nullable: true }),
-      //   defensiveCheck: new StringField({ required: true, choices: skills, nullable: true })
-      // })),
+      effects: new TypedObjectField(new SchemaField({
+        triggerType: new StringField({ required: true, nullable: true }),
+        affectsUser: new BooleanField({ required: true, initial: false }),
+        appliedEffects: new TypedObjectField(new SchemaField({
+          effect: new StringField({ required: true, choices: conditions, initial: 'atkUp' }),
+          effectCount: new NumberField({ nullable: true, integer: true })
+        }))
+      })),
+      offensiveCheck: new StringField({ required: true, choices: skills, nullable: true }),
+      defensiveCheck: new StringField({ required: true, choices: skills, nullable: true }),
       target: new StringField({ required: true, nullable: true, choices: targets, initial: 'foe' }),
       range: new StringField({ required: true, nullable: true, choices: ranges, initial: 'front' }),
       rangeCount: new NumberField({ required: true, nullable: true, integer: true, min: 1 }),
       level: new NumberField({ required: true, integer: true, min: 1, max: 5, initial: 1 })
     };
   }
+
+  prepareDerivedData() {
+    this.isStatus = this.category === 'physicalStatus' || this.category === 'specialStatus';
+    this.withRangeLevel = ['away', 'ahead', 'range'].includes(this.range);
+  }
+
   static validateJoint(data) {
-    if (['away', 'ahead', 'range'].includes(data.range) === (data.rangeCount === null)) {
+    if (data.withRangeLevel === (data.rangeCount === null)) {
       throw new Error("Attribute \"rangeCount\" is either being specified when it shouldn't, or not being specified when it should.");
     }
+    // TODO: validate effects
     // if (data.effects.some(effect => ['statUp', 'statDown'].includes(effect.effect) === !effect.ability)) {
     //   throw new Error("Attribute \"ability\" and \"count\" should only be specified for Stat Up/Stat Down.");
     // }
-    if ((data.range === null) === (data.target !== 'self')) {
+    if ((data.range === null) !== (data.target === 'self')) {
       throw new Error("You can only have no range if you are targeting yourself.");
     }
-    if ((data.target === null) === (data.target !== 'special')) {
+    if ((data.target === null) !== (data.range === 'special')) {
       throw new Error("You can only have no target if your move is special.");
+    }
+    if (data.isStatus === !(data.offensiveCheck || data.defensiveCheck)) {
+      throw new Error("You can only override skill checks for status moves.");
     }
   }
 }

@@ -1,4 +1,4 @@
-import { filePath } from '../constants.mjs';
+import { filePath, toFormGroup } from '../constants.mjs';
 import { MoveDataModel } from './data-models.mjs';
 import { ranges, targets, types } from './types.mjs';
 
@@ -11,7 +11,9 @@ export class ItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
     tag: "form",
     form: {
       submitOnChange: true,
-      scroll
+    },
+    position: {
+      width: 600,
     },
     actions: {
       addEffect: ItemSheet.addEffect,
@@ -25,23 +27,43 @@ export class ItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
   }
 
   async _prepareContext(options) {
-    // const itemEffects = [];
-    // for (const [id, values] of Object.entries(this.document.system.effects)) {
-    //   itemEffects.push({
-    //     namePrefix: `system.effects.${id}.`,
-    //     fields: this.document.system.schema.fields.effects.element.fields,
-    //     values,
-    //     id,
-    //   });
-    // }
+    const effectGroups = Object.entries(this.document.system.effects).map(([id, values]) => ({
+      namePrefix: `system.effects.${id}.`,
+      fields: this.document.system.schema.fields.effects.element.fields,
+      values,
+      id,
+    }));
     return {
       ...await super._prepareContext(options),
       systemFields: this.document.system.schema.fields,
       types,
       targets,
       ranges,
-      // itemEffects
+      effectGroups
     };
+  }
+
+  _processFormData(event, form, formData) {
+    const submitData = super._processFormData(event, form, formData);
+    if (!submitData.system.isStatus) {
+      submitData.system.offensiveCheck = null;
+      submitData.system.defensiveCheck = null;
+    }
+    if (!submitData.system.withRangeLevel) {
+      submitData.system.rangeCount = null;
+    }
+    // TODO: check null exactly for else branches instead of falsy
+    if (submitData.system.target === 'self') {
+      submitData.system.range = null;
+    } else if (!submitData.system.range) {
+      submitData.system.range = 'front';
+    }
+    if (submitData.system.range === 'special') {
+      submitData.system.target = null;
+    } else if (!submitData.system.target) {
+      submitData.system.target = 'foe';
+    }
+    return submitData;
   }
 
   // static addEffect() {

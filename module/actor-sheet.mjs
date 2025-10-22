@@ -1,14 +1,9 @@
-import { filePath, getSkillDie, toModString } from '../constants.mjs';
+import { filePath, getSkillDie, toModString, toFormGroup } from '../constants.mjs';
 import { abilities, classes, proficiencies, specializations, types, skills } from './types.mjs'
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
 const { ChatMessage } = foundry.documents;
-
-// TODO: move this somewhere more convenient
-function toFormGroup(object) {
-  return Object.entries(object).map(([value, label]) => ({ value, label }));
-}
 
 export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   static DEFAULT_OPTIONS = {
