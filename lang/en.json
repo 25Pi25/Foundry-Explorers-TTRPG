@@ -153,15 +153,15 @@
       "SpecialStatusResistance": "Spec. Status Resist",
       "Movement": "Movement",
       "IQSkills": "IQ Skills",
-      "Influence": "(Social) Influence",
-      "Deceive": "(Social) Deceive",
-      "Intuition": "(Social) Intuition",
-      "Tracking": "(Exploration) Tracking",
-      "Ecology": "(Exploration) Ecology",
-      "Sneak": "(Exploration) Sneak",
-      "Memory": "(Intellect) Memory",
-      "Logic": "(Intellect) Logic",
-      "Traps": "(Intellect) Traps"
+      "Influence": "Influence",
+      "Deceive": "Deceive",
+      "Intuition": "Intuition",
+      "Tracking": "Tracking",
+      "Ecology": "Ecology",
+      "Sneak": "Sneak",
+      "Memory": "Memory",
+      "Logic": "Logic",
+      "Traps": "Traps"
     },
     "Moves": {
       "Categories": {
@@ -235,10 +235,13 @@
       "Invulnerable": "Invulnerable"
     },
     "Effects": {
-      "HalfHeal": "Heal Half",
-      "Multihit": "Multihit",
-      "Push": "Push",
-      "Priority": "Priority"
+      "Push": "Push"
+    },
+    "Tags": {
+      "Priority": "Priority",
+      "HealPower": "Heal Power",
+      "Absorbing": "Absorbing",
+      "Multihit": "Multihit"
     },
     "Misc": {
       "SkillCheckOverride": "Skill Check Override (Optional)",

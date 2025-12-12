@@ -191,12 +191,39 @@ export const conditions = {
   eyedrop: "SYSTEM.Conditions.Eyedrop",
   insomnia: "SYSTEM.Conditions.Insomnia",
   invulnerable: "SYSTEM.Conditions.Invulnerable",
+
+  flyingDisabled: "SYSTEM.Conditions.FlyingDisabled",
+  disabled: "SYSTEM.Conditions.Disabled",
+  noLoweredStats: "SYSTEM.Conditions.NoLoweredStats",
+  chipDamage: "SYSTEM.Conditions.ChipDamage",
+  damageBoost: "SYSTEM.Conditions.DamageBoost",
+  typeWeakness: "SYSTEM.Conditions.TypeWeakness",
+  levitating: "SYSTEM.Conditions.Levitating"
 };
 export const effects = {
   ...conditions,
-  halfHeal: "SYSTEM.Effects.HalfHeal",
-  multihit: "SYSTEM.Effects.Multihit",
   push: "SYSTEM.Effects.Push",
-  priority: "SYSTEM.Effects.Priority",
-  
+  weakWeather: "SYSTEM.Effects.WeakWeather",
+  sizeChange: "SYSTEM.Effects.SizeChange"
+}
+export const tags = {
+  priority: "SYSTEM.Tags.Priority",
+  healPower: "SYSTEM.Tags.HealPower",
+  absorbing: "SYSTEM.Tags.Absorbing",
+  multihit: "SYSTEM.Effects.Multihit",
+  d6Multihit: "SYSTEM.Effects.D6Multihit"
+}
+export const effectInputs = {
+  push: { number: "SYSTEM.EffectInputs.TileCount" },
+  taunted: { number: "SYSTEM.EffectInputs.Duration" },
+  flyingDisabled: { number: "SYSTEM.EffectInputs.Duration" },
+  disabled: { number: "SYSTEM.EffectInputs.Duration" },
+  weakWeather: { string: "SYSTEM.EffectInputs.Type" },
+  embargo: { number: "SYSTEM.EffectInputs.Duration" },
+  noLoweredStats: { number: "SYSTEM.EffectInputs.Duration" },
+  chipDamage: { string: "SYSTEM.EffectInputs.DieRoll" },
+  damageBoost: { string: "SYSTEM.EffectInputs.DieRoll" },
+  sizeChange: { number: "System.EffectInputs.SizeFactor" },
+  typeWeakness: { string: "SYSTEM.EffectInputs.Type" },
+  insomnia: { number: "SYSTEM.EffectInputs.Duration" }
 }

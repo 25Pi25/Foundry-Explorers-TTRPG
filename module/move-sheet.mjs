@@ -58,11 +58,7 @@ export class ItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
 
   _processFormData(event, form, formData) {
     const submitData = super._processFormData(event, form, formData);
-    if (!submitData.system.isStatus) {
-      submitData.system.offensiveCheck = null;
-      submitData.system.defensiveCheck = null;
-    }
-    if (!submitData.system.withRangeLevel) {
+    if (!['away', 'ahead', 'range'].includes(submitData.system.range)) {
       submitData.system.rangeCount = null;
     }
     // TODO: check null exactly for else branches instead of falsy

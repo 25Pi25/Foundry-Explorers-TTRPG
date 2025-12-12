@@ -132,7 +132,9 @@ export class MoveDataModel extends foundry.abstract.TypeDataModel {
         appliedEffects: new TypedObjectField(new SchemaField({
           affectsUser: new BooleanField({ required: true, initial: false }),
           effect: new StringField({ required: true, choices: effects, initial: 'atkUp' }),
-          effectCount: new NumberField({ nullable: true, integer: true })
+          integerInput: new NumberField({ integer: true }),
+          stringInput: new StringField(),
+          booleanInput: new BooleanField()
         }))
       })),
       offensiveCheck: new StringField({ required: true, choices: skills, nullable: true }),
@@ -162,9 +164,6 @@ export class MoveDataModel extends foundry.abstract.TypeDataModel {
     }
     if ((data.target === null) !== (data.range === 'special')) {
       throw new Error("You can only have no target if your move is special.");
-    }
-    if (data.isStatus === !(data.offensiveCheck || data.defensiveCheck)) {
-      throw new Error("You can only override skill checks for status moves.");
     }
   }
 }

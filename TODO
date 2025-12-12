@@ -1,4 +1,6 @@
 - (DONE) Write a list of status conditions
+- (NEXT) Integrate effect inputs
+- (NEXT) Add move section and draggable moves
 - Integrate status conditions into game mechanics
 - Design actor sheets
 - Design item/move sheets
@@ -18,3 +20,6 @@
 - Finish all TODO comments
 - Fix all GitHub issues
 - Test all the mechanics with 3x3 characters and see if it works out
+
+- Implement the following moves' effects:
+  - Charge

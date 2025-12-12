@@ -19,15 +19,9 @@
     <div class="move-skill-check form-group stacked">
       <label>{{localize "SYSTEM.Misc.SkillCheckOverride"}}</label>
       <div class="move-skill-inputs">
-        {{#if document.system.isStatus}}
-          {{formInput systemFields.offensiveCheck value=document.system.offensiveCheck localize=true}}
-          <span>{{localize "SYSTEM.Misc.Versus"}}</span>
-          {{formInput systemFields.defensiveCheck value=document.system.defensiveCheck localize=true}}
-        {{else}}
-          {{formInput systemFields.offensiveCheck value=document.system.offensiveCheck localize=true disabled=true}}
-          <span>{{localize "SYSTEM.Misc.Versus"}}</span>
-          {{formInput systemFields.defensiveCheck value=document.system.defensiveCheck localize=true disabled=true}}
-        {{/if}}
+        {{formInput systemFields.offensiveCheck value=document.system.offensiveCheck localize=true}}
+        <span>{{localize "SYSTEM.Misc.Versus"}}</span>
+        {{formInput systemFields.defensiveCheck value=document.system.defensiveCheck localize=true}}
       </div>
     </div>
   </div>
