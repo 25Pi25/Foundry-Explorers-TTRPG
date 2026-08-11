@@ -61,7 +61,12 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
       abilities: new SchemaField(abilityFields),
       skills: new SchemaField(skillFields),
       moves: new ArrayField(new StringField({ required: true }), { max: 4 }),
-      feats: new ArrayField(new StringField({ required: true }))
+      feats: new ArrayField(new StringField({ required: true })),
+
+      moveText: new StringField({ required: true }), // TODO: when these sections are implemented, remove the text fields
+      blurbText: new StringField({ required: true }),
+      conditionText: new StringField({ required: true }),
+      featText: new StringField({ required: true }),
     };
   }
 

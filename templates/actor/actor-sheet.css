@@ -103,3 +103,23 @@ input.character-name {
   grid-template-columns: 47% 47%;
   gap: 6%;
 }
+
+/* TODO: remove these blurbs after they've been implemented (except about)*/
+
+.blurb.form-group.blurb-small {
+  height: 200px;
+}
+
+.blurb.form-group {
+  height: 300px;
+  display: inline-block;
+}
+
+.blurb.form-group textarea {
+  resize: none;
+  height: 100%;
+}
+
+.blurb .form-fields, .blurb .form-fields input {
+  height: 100%;
+}
