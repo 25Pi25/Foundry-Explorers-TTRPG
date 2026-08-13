@@ -46,6 +46,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
     }
     const abilityFields = {};
     for (const ability in abilities) {
+      if (ability === "hp") continue; // Not using HP here, it has a separate field
       abilityFields[ability] = new SchemaField({ raw: new NumberField({ required: true, integer: true, initial: 5 }) });
     }
     return {
@@ -98,6 +99,7 @@ export class PlayerDataModel extends CharacterDataModel {
   static defineSchema() {
     return {
       ...super.defineSchema(),
+      statBonus: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
       class: new StringField({ required: true, choices: classes, initial: 'explorer' }),
       specialization: new StringField({ required: true, nullable: true, choices: specializations }),
       nature: new StringField({ required: true }),
@@ -119,6 +121,10 @@ export class PlayerDataModel extends CharacterDataModel {
     super.prepareDerivedData();
     this.friendship.isClearable = this.friendship.track == 5;
     this.tokens.max = this.level + 1;
+    this.statFlatTotal = this.level * 60;
+    this.statTotal = this.statFlatTotal + this.statBonus;
+    this.statMin = this.level * 5;
+    this.statSum = Object.values(this.abilities).reduce((a, field) => a + field.raw, 0);
   }
 }
 
@@ -144,6 +150,7 @@ export class MoveDataModel extends foundry.abstract.TypeDataModel {
       })),
       offensiveCheck: new StringField({ required: true, choices: skills, nullable: true }),
       defensiveCheck: new StringField({ required: true, choices: skills, nullable: true }),
+      priority: new BooleanField({ required: true, initial: false }),
       target: new StringField({ required: true, nullable: true, choices: targets, initial: 'foe' }),
       range: new StringField({ required: true, nullable: true, choices: ranges, initial: 'front' }),
       rangeCount: new NumberField({ required: true, nullable: true, integer: true, min: 1 }),

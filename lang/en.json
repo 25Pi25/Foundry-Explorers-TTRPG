@@ -81,6 +81,7 @@
           },
           "offensiveCheck": { "label": "Offensive Check" },
           "defensiveCheck": { "label": "Defensive Check" },
+          "priority": { "label": "Priority" },
           "target": { "label": "Target" },
           "range": { "label": "Range" },
           "rangeCount": { "label": "Range Count" },
@@ -245,7 +246,10 @@
     },
     "Misc": {
       "SkillCheckOverride": "Skill Check Override (Optional)",
-      "Versus": "vs."
+      "Versus": "vs.",
+      "Points": "pts.",
+      "Bonus": "bonus",
+      "Minimum": "min."
     }
   }
 }

@@ -27,7 +27,9 @@ Hooks.once("init", () => {
   // Configure Sheets.
   Actors.registerSheet(SYSTEM_ID, CharacterSheet, { makeDefault: true });
   Items.registerSheet(SYSTEM_ID, ItemSheet, { makeDefault: true });
-  const templates = ["templates/actor/partials/stat-block.hbs", "templates/actor/partials/skill-block.hbs"].map(filePath);
+  const templates = ["templates/actor/partials/stat-block.hbs",
+    "templates/actor/partials/skill-block.hbs",
+    "templates/actor/partials/move-block.hbs"].map(filePath);
   foundry.applications.handlebars.loadTemplates(templates);
   Handlebars.registerHelper('skillDie', toSkillString);
   Handlebars.registerHelper('filePath', filePath);

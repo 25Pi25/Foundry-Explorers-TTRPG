@@ -2,7 +2,10 @@
   "id": "explorers",
   "title": "Explorers! a TTRPG",
   "description": "A tabletop roleplaying game for explorers",
-  "version": "0.0.1",
+  "version": "1.1.0",
+  "url": "https://github.com/25Pi25/Foundry-Explorers-TTRPG",
+  "manifest": "https://raw.githubusercontent.com/25Pi25/Foundry-Explorers-TTRPG/main/system.json",
+  "download": "https://github.com/25Pi25/Foundry-Explorers-TTRPG/releases/download/v1.0.0/explorers.zip",
   "compatibility": {
     "minimum": 13,
     "verified": 13

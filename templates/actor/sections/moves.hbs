@@ -1,3 +1,6 @@
 <section class="tab standard-form {{tabs.moves.cssClass}}" data-group="primary" data-tab="moves">
-  {{formGroup systemFields.moveText value=document.system.moveText elementType="textarea" classes="blurb"}}
+  <div class="move-grid">
+    <input class="move-block empty" disabled value="Import Move"></input>
+    {{!-- {{> (filePath "templates/actor/partials/move-block.hbs")}} --}}
+  </div>
 </section>

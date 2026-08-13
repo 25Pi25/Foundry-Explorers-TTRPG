@@ -1,3 +1,7 @@
+section[data-tab="stats"] {
+  gap: 0.2rem;
+}
+
 /* Header */
 
 .character-header {
@@ -61,6 +65,22 @@ input.character-name {
   aspect-ratio: 1/1;
 }
 
+.stat-tracking {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bonus-input {
+  display: inline-block;
+}
+
+.bonus-input input {
+  field-sizing: content;
+  height: 1.5rem;
+  flex: none;
+}
+
 .skill-blocks {
   display: grid;
   grid-template-columns: 48% 48%;
@@ -94,6 +114,20 @@ input.character-name {
 .about .form-group {
   width: 100%;
   padding: 1px;
+}
+
+/* Moves */
+
+.move-grid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 200px 200px;
+}
+
+.move-block.empty {
+  display: grid;
+  place-items: center;
+  text-align: center;
 }
 
 /* Tracks */

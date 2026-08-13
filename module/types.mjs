@@ -192,19 +192,20 @@ export const conditions = {
   insomnia: "SYSTEM.Conditions.Insomnia",
   invulnerable: "SYSTEM.Conditions.Invulnerable",
 
-  flyingDisabled: "SYSTEM.Conditions.FlyingDisabled",
-  disabled: "SYSTEM.Conditions.Disabled",
-  noLoweredStats: "SYSTEM.Conditions.NoLoweredStats",
-  chipDamage: "SYSTEM.Conditions.ChipDamage",
-  damageBoost: "SYSTEM.Conditions.DamageBoost",
-  typeWeakness: "SYSTEM.Conditions.TypeWeakness",
-  levitating: "SYSTEM.Conditions.Levitating"
+  /* TODO: If these miscellaneous effects are worth mechanically implementing, I could but I probably won't */
+  // flyingDisabled: "SYSTEM.Conditions.FlyingDisabled", 
+  // disabled: "SYSTEM.Conditions.Disabled",
+  // noLoweredStats: "SYSTEM.Conditions.NoLoweredStats",
+  // chipDamage: "SYSTEM.Conditions.ChipDamage",
+  // damageBoost: "SYSTEM.Conditions.DamageBoost",
+  // typeWeakness: "SYSTEM.Conditions.TypeWeakness",
+  // levitating: "SYSTEM.Conditions.Levitating"
 };
 export const effects = {
   ...conditions,
-  push: "SYSTEM.Effects.Push",
-  weakWeather: "SYSTEM.Effects.WeakWeather",
-  sizeChange: "SYSTEM.Effects.SizeChange"
+  // push: "SYSTEM.Effects.Push",
+  // weakWeather: "SYSTEM.Effects.WeakWeather",
+  // sizeChange: "SYSTEM.Effects.SizeChange"
 }
 export const tags = {
   priority: "SYSTEM.Tags.Priority",
@@ -214,16 +215,16 @@ export const tags = {
   d6Multihit: "SYSTEM.Effects.D6Multihit"
 }
 export const effectInputs = {
-  push: { number: "SYSTEM.EffectInputs.TileCount" },
-  taunted: { number: "SYSTEM.EffectInputs.Duration" },
-  flyingDisabled: { number: "SYSTEM.EffectInputs.Duration" },
-  disabled: { number: "SYSTEM.EffectInputs.Duration" },
-  weakWeather: { string: "SYSTEM.EffectInputs.Type" },
-  embargo: { number: "SYSTEM.EffectInputs.Duration" },
-  noLoweredStats: { number: "SYSTEM.EffectInputs.Duration" },
-  chipDamage: { string: "SYSTEM.EffectInputs.DieRoll" },
-  damageBoost: { string: "SYSTEM.EffectInputs.DieRoll" },
-  sizeChange: { number: "System.EffectInputs.SizeFactor" },
-  typeWeakness: { string: "SYSTEM.EffectInputs.Type" },
-  insomnia: { number: "SYSTEM.EffectInputs.Duration" }
+  // push: { number: "SYSTEM.EffectInputs.TileCount" },
+  // taunted: { number: "SYSTEM.EffectInputs.Duration" },
+  // flyingDisabled: { number: "SYSTEM.EffectInputs.Duration" },
+  // disabled: { number: "SYSTEM.EffectInputs.Duration" },
+  // weakWeather: { string: "SYSTEM.EffectInputs.Type" },
+  // embargo: { number: "SYSTEM.EffectInputs.Duration" },
+  // noLoweredStats: { number: "SYSTEM.EffectInputs.Duration" },
+  // chipDamage: { string: "SYSTEM.EffectInputs.DieRoll" },
+  // damageBoost: { string: "SYSTEM.EffectInputs.DieRoll" },
+  // sizeChange: { number: "System.EffectInputs.SizeFactor" },
+  // typeWeakness: { string: "SYSTEM.EffectInputs.Type" },
+  // insomnia: { number: "SYSTEM.EffectInputs.Duration" }
 }
