@@ -1,6 +1,6 @@
 import { filePath, hasEffectCount, toFormGroup } from '../constants.mjs';
 import { MoveDataModel } from './data-models.mjs';
-import { ranges, tags, targets, types } from './types.mjs';
+import { effects, ranges, tags, targets, triggerTypes, types } from './types.mjs';
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ItemSheetV2 } = foundry.applications.sheets;
@@ -61,8 +61,11 @@ export class ItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
       targets,
       ranges,
       effectGroups,
+      triggerTypes,
+      effects,
       tags,
-      tagGroups
+      tagGroups,
+      isEditable: this.isEditable
     };
   }
 

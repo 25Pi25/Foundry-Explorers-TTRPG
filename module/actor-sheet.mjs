@@ -1,5 +1,5 @@
 import { filePath, getSkillDie, toModString, toFormGroup, getMoveDie } from '../constants.mjs';
-import { abilities, classes, proficiencies, specializations, categories, types, skills } from './types.mjs'
+import { abilities, classes, proficiencies, specializations, categories, types, skills, effects } from './types.mjs'
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
@@ -56,6 +56,7 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
       typesRecord: types,
       categories,
       skills,
+      effects,
       systemFields: this.document.system.schema.fields,
       tabs: this._prepareTabs("primary"),
     };
