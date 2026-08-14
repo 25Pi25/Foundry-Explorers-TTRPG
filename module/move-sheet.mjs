@@ -1,6 +1,6 @@
-import { filePath, isStatCondition, toFormGroup } from '../constants.mjs';
+import { filePath, hasEffectCount, toFormGroup } from '../constants.mjs';
 import { MoveDataModel } from './data-models.mjs';
-import { ranges, targets, types } from './types.mjs';
+import { ranges, tags, targets, types } from './types.mjs';
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ItemSheetV2 } = foundry.applications.sheets;
@@ -20,12 +20,14 @@ export class ItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
       deleteEffectGroup: ItemSheet.deleteEffectGroup,
       addEffect: ItemSheet.addEffect,
       deleteEffect: ItemSheet.deleteEffect,
+      addTag: ItemSheet.addTag,
+      deleteTag: ItemSheet.deleteTag,
     }
   }
 
   static PARTS = {
     move: { template: filePath("templates/move/move.hbs") },
-    options: { template: filePath("templates/move/move-options.hbs"), scrollable: [".effect-set"] },
+    options: { template: filePath("templates/move/move-options.hbs"), scrollable: [".move-options"] },
   }
 
   async _prepareContext(options) {
@@ -46,21 +48,26 @@ export class ItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
         id
       }));
     }
+    const tagGroups = Object.entries(this.document.system.tags).map(([id, value]) => ({
+      namePrefix: `system.tags.${id}`,
+      field: this.document.system.schema.fields.tags.element,
+      value,
+      id,
+    }));
     return {
       ...await super._prepareContext(options),
       systemFields: this.document.system.schema.fields,
       types,
       targets,
       ranges,
-      effectGroups
+      effectGroups,
+      tags,
+      tagGroups
     };
   }
 
   _processFormData(event, form, formData) {
     const submitData = super._processFormData(event, form, formData);
-    if (!['away', 'ahead', 'range'].includes(submitData.system.range)) {
-      submitData.system.rangeCount = null;
-    }
     // TODO: check null exactly for else branches instead of falsy
     if (submitData.system.target === 'self') {
       submitData.system.range = null;
@@ -72,9 +79,12 @@ export class ItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
     } else if (!submitData.system.target) {
       submitData.system.target = 'foe';
     }
+    if (!['away', 'ahead', 'range'].includes(submitData.system.range)) {
+      submitData.system.rangeCount = null;
+    }
     for (const group of Object.values(submitData.system.effects ?? {})) {
       for (const appliedEffect of Object.values(group.appliedEffects ?? {})) {
-        if (!isStatCondition(appliedEffect.effect)) {
+        if (!hasEffectCount(appliedEffect.effect)) {
           appliedEffect.effectCount = null;
         }
       }
@@ -115,5 +125,20 @@ export class ItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
     const groupId = target.dataset.effectGroupId;
     const id = target.dataset.effectId;
     this.document.update({ [`system.effects.${groupId}.appliedEffects.-=${id}`]: null });
+  }
+
+  static addTag() {
+    this.document.update({
+      system: {
+        tags: {
+          [foundry.utils.randomID()]: this.document.system.schema.fields.tags.element.getInitialValue()
+        }
+      }
+    });
+  }
+
+  static deleteTag(event, target) {
+    const id = target.dataset.tagId;
+    this.document.update({ [`system.tags.-=${id}`]: null });
   }
 }

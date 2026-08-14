@@ -8,6 +8,7 @@
     {{> (filePath "templates/actor/partials/stat-block.hbs") name=abilities.spe field=systemFields.abilities.fields.spe value=document.system.abilities.spe}}
     {{> (filePath "templates/actor/partials/stat-block.hbs") name=abilities.iq field=systemFields.abilities.fields.iq value=document.system.abilities.iq}}
   </div>
+  {{#if isPlayerSheet}}
   <div class="stat-tracking">
     <span>{{document.system.statSum}}/{{document.system.statTotal}} {{localize "SYSTEM.Misc.Points"}}</span>
     &nbsp;
@@ -15,6 +16,7 @@
     &nbsp;
     <span>({{localize "SYSTEM.Misc.Minimum"}} {{document.system.statMin}})</span>
   </div>
+  {{/if}}
   <div class="skill-blocks">
     {{#each skills as |name key|}}
       {{#with ..}}

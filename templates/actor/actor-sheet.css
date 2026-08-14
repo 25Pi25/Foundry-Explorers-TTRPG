@@ -118,15 +118,43 @@ input.character-name {
 
 /* Moves */
 
+.move-help {
+  display: grid;
+  place-items: center;
+  height: 410px;
+}
+
 .move-grid {
   display: grid;
   grid-template-columns: 50% 50%;
-  grid-template-rows: 200px 200px;
+  grid-auto-rows: 200px;
+  height: 410px;
+  max-height: 410px;
+  row-gap: 5px;
+  overflow-y: scroll;
 }
 
 .move-block.empty {
   display: grid;
   place-items: center;
+  text-align: center;
+}
+
+.move-block-sections {
+  display: grid;
+  height: 100%;
+  grid-template-rows: 30% 50% 20%;
+  align-items: center;
+}
+
+.move-buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.pp-left {
+  width: 35px;
   text-align: center;
 }
 

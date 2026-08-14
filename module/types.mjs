@@ -150,7 +150,9 @@ export const triggerTypes = {
   hit: "SYSTEM.TriggerTypes.Hit",
   d6: "SYSTEM.TriggerTypes.D6",
   d56: "SYSTEM.TriggerTypes.D56",
-  statusCondition: "SYSTEM.TriggerTypes.StatusCondition",
+  abilitiesutoApplyOnStatus: "SYSTEM.TriggerTypes.AutoApplyOnStatus", // TODO: fix typo without breaking compendium
+  autoApplyToRoom: "SYSTEM.TriggerTypes.AutoApplyToRoom",
+  flexible: "SYSTEM.TriggerTypes.Flexible"
 }
 export const statConditions = {
   atkUp: "SYSTEM.Conditions.atk.Up",
@@ -191,28 +193,54 @@ export const conditions = {
   eyedrop: "SYSTEM.Conditions.Eyedrop",
   insomnia: "SYSTEM.Conditions.Insomnia",
   invulnerable: "SYSTEM.Conditions.Invulnerable",
-
-  /* TODO: If these miscellaneous effects are worth mechanically implementing, I could but I probably won't */
-  // flyingDisabled: "SYSTEM.Conditions.FlyingDisabled", 
-  // disabled: "SYSTEM.Conditions.Disabled",
-  // noLoweredStats: "SYSTEM.Conditions.NoLoweredStats",
-  // chipDamage: "SYSTEM.Conditions.ChipDamage",
-  // damageBoost: "SYSTEM.Conditions.DamageBoost",
-  // typeWeakness: "SYSTEM.Conditions.TypeWeakness",
-  // levitating: "SYSTEM.Conditions.Levitating"
+  
+  disabled: "SYSTEM.Conditions.Disabled",
+  statusDisabled: "SYSTEM.Conditions.StatusDisabled",
+  flyingDisabled: "SYSTEM.Conditions.FlyingDisabled", 
+  noLoweredStats: "SYSTEM.Conditions.NoLoweredStats",
+  embargo: "SYSTEM.Conditions.Embargo",
+  tormented: "SYSTEM.Conditions.Tormented",
+  grudge: "SYSTEM.Conditions.Grudge",
+  seeded: "SYSTEM.Conditions.Seeded",
+  levitating: "SYSTEM.Conditions.Levitating",
+  saltCured: "SYSTEM.Conditions.SaltCured",
+  cursed: "SYSTEM.Conditions.Cursed",
+  helpingHand: "SYSTEM.Conditions.HelpingHand",
+  foresighted: "SYSTEM.Conditions.Foresighted",
+  tarShot: "SYSTEM.Conditions.TarShot",
+  snatch: "SYSTEM.Conditions.Snatch",
+  encore: "SYSTEM.Conditions.Encore",
+  aquaVeil: "SYSTEM.Conditions.AquaVeil",
 };
 export const effects = {
   ...conditions,
-  // push: "SYSTEM.Effects.Push",
-  // weakWeather: "SYSTEM.Effects.WeakWeather",
-  // sizeChange: "SYSTEM.Effects.SizeChange"
+  mudSport: "SYSTEM.Effects.MudSport",
+  waterSport: "SYSTEM.Effects.WaterSport",
+  sizeChange: "SYSTEM.Effects.SizeChange",
+  push: "SYSTEM.Effects.Push"
 }
+export const valueEffects = new Set([ // most of these will be duration, some will have other meanings
+  'insomnia',
+  'magicCoat',
+  'disabled',
+  'statusDisabled',
+  'flyingDisabled',
+  'noLoweredStats',
+  'embargo',
+  'levitating',
+  'aquaVeil',
+  'mudSport',
+  'waterSport',
+  'sizeChange',
+  'push'
+])
 export const tags = {
   priority: "SYSTEM.Tags.Priority",
   healPower: "SYSTEM.Tags.HealPower",
+  healHalf: "SYSTEM.Tags.HealHalf",
   absorbing: "SYSTEM.Tags.Absorbing",
-  multihit: "SYSTEM.Effects.Multihit",
-  d6Multihit: "SYSTEM.Effects.D6Multihit"
+  multihit: "SYSTEM.Tags.Multihit",
+  highCritRatio: "SYSTEM.Tags.HighCritRatio"
 }
 export const effectInputs = {
   // push: { number: "SYSTEM.EffectInputs.TileCount" },

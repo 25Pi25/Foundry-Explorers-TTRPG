@@ -2,13 +2,14 @@
   <div class="about">
     {{formGroup systemFields.type1 value=document.system.type1 options=types localize=true}}
     {{formGroup systemFields.type2 value=document.system.type2 options=types localize=true}}
+    {{formGroup systemFields.species value=document.system.species}}
+    {{#if isPlayerSheet}}
     {{formGroup systemFields.class value=document.system.class options=classes localize=true}}
     {{formGroup systemFields.specialization value=document.system.specialization options=specializations localize=true}}
-    {{formGroup systemFields.species value=document.system.species}}
     {{formGroup systemFields.nature value=document.system.nature localize=true}}
     {{formGroup systemFields.level value=document.system.level localize=true}}
     {{formGroup systemFields.origin value=document.system.origin localize=true}}
-    {{formGroup systemFields.item value=document.system.item localize=true}}
+    {{/if}}
   </div>
   {{formGroup systemFields.blurbText value=document.system.blurbText elementType="textarea" classes="blurb blurb-small"}}
 </section>

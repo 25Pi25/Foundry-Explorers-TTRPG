@@ -1,6 +1,7 @@
 {
   "TYPES.Actor.Character": "Character",
   "TYPES.Actor.Player": "Player",
+  "TYPES.Item.Move": "Move",
   "SYSTEM": {
     "Tabs": {
       "Stats": "Stats",
@@ -37,7 +38,6 @@
           "hp": { "label": "HP" },
           "abilities": { "label": "Abilities" },
           "skills": { "label": "Skills" },
-          "moves": { "label": "Moves" },
           "feats": { "label": "Feats" }
         }
       },
@@ -47,7 +47,6 @@
           "specialization": { "label": "Specialization" },
           "nature": { "label": "Nature" },
           "origin": { "label": "Origin" },
-          "item": { "label": "Item" },
           "level": { "label": "Level" },
           "friendship": {
             "label": "Friendship",
@@ -196,7 +195,9 @@
       "Hit": "On Hit",
       "D6": "On D6→6",
       "D56": "On D6→5-6",
-      "StatusCondition": "On Status Hit"
+      "AutoApplyOnStatus": "Auto Apply on Status",
+      "AutoApplyToRoom": "Auto Apply to Room",
+      "Flexible": "Flexible"
     },
     "Conditions": {
       "atk.Up": "Attack Up",
@@ -233,16 +234,38 @@
       "MagicCoat": "Magic Coat",
       "Eyedrop": "Eyedrop",
       "Insomnia": "Insomnia",
-      "Invulnerable": "Invulnerable"
+      "Invulnerable": "Invulnerable",
+      "Disabled": "Disabled",
+      "StatusDisabled": "Status Disabled",
+      "FlyingDisabled": "Flying Disabled",
+      "NoLoweredStats": "No Lowered Stats",
+      "Embargo": "Embargo",
+      "Tormented": "Tormented",
+      "Grudge": "Grudge",
+      "Seeded": "Seeded",
+      "Levitating": "Levitating",
+      "SaltCured": "Salt Cured",
+      "Cursed": "Cursed",
+      "HelpingHand": "Helping Hand",
+      "Foresighted": "Foresighted",
+      "TarShot": "Tar Shot",
+      "Snatch": "Snatch",
+      "Encore": "Encore",
+      "AquaVeil": "Aqua Veil"
     },
     "Effects": {
+      "MudSport": "Mud Sport",
+      "WaterSport": "Water Sport",
+      "SizeChange": "Size Change",
       "Push": "Push"
     },
     "Tags": {
       "Priority": "Priority",
       "HealPower": "Heal Power",
+      "HealHalf": "Heal Half",
       "Absorbing": "Absorbing",
-      "Multihit": "Multihit"
+      "Multihit": "Multihit",
+      "HighCritRatio": "High Crit. Ratio"
     },
     "Misc": {
       "SkillCheckOverride": "Skill Check Override (Optional)",

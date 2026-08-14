@@ -1,46 +1,57 @@
 <section class="standard-form move-options">
-  <fieldset>
-    <legend>Range</legend>
-    {{!-- Target Form Group --}}
-    <div class="form-group slim inline">
-      <label>Target</label>
-      <div class="form-fields">
-        {{#if document.system.target}}
-          <select name="system.target">
-            {{selectOptions targets selected=document.system.target localize=true}}
-          </select>
-        {{else}}
-          <select name="system.target" disabled>
-            <option value selected></option>
-          </select>
-        {{/if}}
+  <div>
+      <fieldset>
+      <legend>Range</legend>
+      {{!-- Target Form Group --}}
+      <div class="form-group slim inline">
+        <label>Target</label>
+        <div class="form-fields">
+          {{#if document.system.target}}
+            <select name="system.target">
+              {{selectOptions targets selected=document.system.target localize=true}}
+            </select>
+          {{else}}
+            <select name="system.target" disabled>
+              <option value selected></option>
+            </select>
+          {{/if}}
+        </div>
       </div>
-    </div>
-    {{!-- Range Form Group --}}
-    <div class="form-group slim inline">
-      <label>Range</label>
-      <div class="form-fields">
-        {{#if document.system.range}}
-          <select name="system.range">
-            {{selectOptions ranges selected=document.system.range localize=true}}
-          </select>
-        {{else}}
-          <select name="system.range" disabled>
-            {{!-- TODO: make this value null for both this and target --}}
-            <option value selected></option>
-          </select>
-        {{/if}}
+      {{!-- Range Form Group --}}
+      <div class="form-group slim inline">
+        <label>Range</label>
+        <div class="form-fields">
+          {{#if document.system.range}}
+            <select name="system.range">
+              {{selectOptions ranges selected=document.system.range localize=true}}
+            </select>
+          {{else}}
+            <select name="system.range" disabled>
+              {{!-- TODO: make this value null for both this and target --}}
+              <option value selected></option>
+            </select>
+          {{/if}}
+        </div>
       </div>
-    </div>
-    {{#if document.system.withRangeLevel}}
-      {{formGroup systemFields.rangeCount value=document.system.rangeCount localize=true type="number" classes="slim inline"}}
-    {{else}}
-      {{formGroup systemFields.rangeCount value=document.system.rangeCount localize=true type="number" classes="slim inline" disabled=true}}
-    {{/if}}
-    {{formGroup systemFields.priority value=document.system.priority localize=true type="boolean" classes="slim inline"}}
-  </fieldset>
+      {{#if document.system.withRangeLevel}}
+        {{formGroup systemFields.rangeCount value=document.system.rangeCount localize=true type="number" classes="slim inline"}}
+      {{else}}
+        {{formGroup systemFields.rangeCount value=document.system.rangeCount localize=true type="number" classes="slim inline" disabled=true}}
+      {{/if}}
+    </fieldset>
+    <fieldset class="tag-set scrollable">
+      <legend>Tags</legend>
+        {{#each tagGroups}}
+        <div class="tag-line">
+          {{formGroup field value=value name=namePrefix classes="slim inline" localize=true}}
+          <button type="button" data-action="deleteTag" data-tag-id="{{id}}" class="wide-button icon fa-solid fa-trash"></button>
+        </div>
+        {{/each}}
+      <button type="button" data-action="addTag" class="wide-button icon fa-solid fa-plus"></button>
+    </fieldset>
+  </div>
   <fieldset class="effect-set scrollable">
-    <legend>Effects</legend>
+    <legend>Effects</legend> {{!-- TODO: change legends to localized versions --}}
     {{#each effectGroups}}
     <fieldset>
       {{formGroup fields.triggerType value=values.triggerType name=(concat namePrefix "triggerType") classes="slim inline" label=(localize (concat labelPrefix "triggerType.label")) localize=true}}
@@ -48,7 +59,7 @@
         <legend>{{localize "SYSTEM.Models.Move.FIELDS.effects.appliedEffects.label"}}</legend>
         {{#each effects}}
           {{formGroup fields.effect value=values.effect name=(concat namePrefix "effect") classes="slim inline" label=(localize (concat labelPrefix "effect.label")) localize=true}}
-          {{#if (isStatCondition values.effect)}}
+          {{#if (hasEffectCount values.effect)}}
             {{formGroup fields.effectCount value=values.effectCount name=(concat namePrefix "effectCount") classes="slim inline" label=(localize (concat labelPrefix "effectCount.label")) localize=true}}
           {{/if}}
           {{formGroup fields.affectsUser value=values.affectsUser name=(concat namePrefix "affectsUser") classes="slim inline" label=(localize (concat labelPrefix "affectsUser.label")) localize=true}}

@@ -27,5 +27,10 @@
 - Fix all GitHub issues
 - Test all the mechanics with 3x3 characters and see if it works out
 
-- Implement the following moves' effects:
+- Implement the following moves' effects if I want to do more:
   - Charge
+  - Round
+  - Defense Curl
+  - Low Kick
+  - Spite (and find out how to determine spite PP reduction)
+  - Worry Seed

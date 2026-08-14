@@ -1,5 +1,5 @@
-import { filePath, getSkillDie, toModString, toFormGroup } from '../constants.mjs';
-import { abilities, classes, proficiencies, specializations, types, skills } from './types.mjs'
+import { filePath, getSkillDie, toModString, toFormGroup, getMoveDie } from '../constants.mjs';
+import { abilities, classes, proficiencies, specializations, categories, types, skills } from './types.mjs'
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
@@ -13,7 +13,10 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     },
     actions: {
       clearTrack: CharacterSheet.clearTrack,
-      rollDie: CharacterSheet.rollDie
+      rollDie: CharacterSheet.rollDie,
+      rollMoveDie: CharacterSheet.rollMoveDie,
+      removeMove: CharacterSheet.removeMove,
+      editPP: CharacterSheet.editPP
     }
   }
 
@@ -24,7 +27,6 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
         { id: "about", label: "SYSTEM.Tabs.About", group: "primary" },
         { id: "moves", label: "SYSTEM.Tabs.Moves", group: "primary" },
         { id: "conditions", label: "SYSTEM.Tabs.Conditions", group: "primary" },
-        { id: "tracks", label: "SYSTEM.Tabs.Tracks", group: "primary" },
         { id: "feats", label: "SYSTEM.Tabs.Feats", group: "primary" },
       ],
       initial: "stats",
@@ -39,18 +41,20 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     about: { template: filePath("templates/actor/sections/about.hbs") },
     moves: { template: filePath("templates/actor/sections/moves.hbs") },
     conditions: { template: filePath("templates/actor/sections/conditions.hbs") },
-    tracks: { template: filePath("templates/actor/sections/tracks.hbs") },
     feats: { template: filePath("templates/actor/sections/feats.hbs") },
   }
 
   async _prepareContext(options) {
     return {
       ...await super._prepareContext(options),
+      moves: this.actor.items.filter(item => item.type === "Move"),
       types: toFormGroup(types),
       classes: toFormGroup(classes),
       specializations: toFormGroup(specializations),
       abilities,
       proficiencies,
+      typesRecord: types,
+      categories,
       skills,
       systemFields: this.document.system.schema.fields,
       tabs: this._prepareTabs("primary"),
@@ -77,5 +81,48 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
       speaker: ChatMessage.implementation.getSpeaker({ actor: this.document }),
       flavor: target.dataset.name
     });
+  }
+
+  static async rollMoveDie(event, target) {
+    const move = this.actor.items.get(target.dataset.id);
+    const { sides, modifier } = getMoveDie(this, move);
+    new Roll(`${sides}d6x${toModString(modifier)}`).toMessage({
+      speaker: ChatMessage.implementation.getSpeaker({ actor: this.document }),
+      flavor: `${move.name}${move.system.description ? ` - ${move.system.description}` : ""}`
+    });
+  }
+
+  static async removeMove(event, target) {
+    const moveId = target.dataset.id;
+    this.actor.items.get(moveId).delete();
+  }
+
+  static async editPP(event, target) {
+    console.log(event, target)
+  }
+}
+
+export class PlayerSheet extends CharacterSheet {
+  static PARTS = {
+    ...super.PARTS,
+    tracks: { template: filePath("templates/actor/sections/tracks.hbs") }
+  }
+
+  static TABS = {
+    ...super.TABS,
+    primary: {
+      ...super.TABS.primary,
+      tabs: [
+        ...super.TABS.primary.tabs,
+        { id: "tracks", label: "SYSTEM.Tabs.Tracks", group: "primary" },
+      ],
+    }
+  };
+
+  async _prepareContext(options) {
+    return {
+      ...await super._prepareContext(options),
+      isPlayerSheet: true
+    };
   }
 }

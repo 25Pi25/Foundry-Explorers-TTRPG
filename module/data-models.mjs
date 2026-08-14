@@ -1,4 +1,5 @@
-import { proficiencies, types, typeChart, abilities, skills, sizes, classes, specializations, categories, targets, ranges, triggerTypes, effects } from './types.mjs';
+import { proficiencies, types, typeChart, abilities, skills, sizes, classes,
+  specializations, categories, targets, ranges, triggerTypes, effects, tags } from './types.mjs';
 
 const { NumberField, SchemaField, StringField, HTMLField, ArrayField, TypedObjectField, BooleanField } = foundry.data.fields;
 
@@ -61,10 +62,8 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
       }),
       abilities: new SchemaField(abilityFields),
       skills: new SchemaField(skillFields),
-      moves: new ArrayField(new StringField({ required: true }), { max: 4 }),
       feats: new ArrayField(new StringField({ required: true })),
 
-      moveText: new StringField({ required: true }), // TODO: when these sections are implemented, remove the text fields
       blurbText: new StringField({ required: true }),
       conditionText: new StringField({ required: true }),
       featText: new StringField({ required: true }),
@@ -104,7 +103,6 @@ export class PlayerDataModel extends CharacterDataModel {
       specialization: new StringField({ required: true, nullable: true, choices: specializations }),
       nature: new StringField({ required: true }),
       origin: new StringField({ required: true }),
-      item: new StringField({ required: true, nullable: true }),
       level: new NumberField({ required: true, integer: true, min: 1, max: 10, initial: 1 }),
       friendship: new SchemaField({
         track: new NumberField({ required: true, integer: true, min: 0, max: 5, initial: 0 }),
@@ -136,21 +134,20 @@ export class MoveDataModel extends foundry.abstract.TypeDataModel {
       description: new StringField({ required: true }),
       type: new StringField({ required: true, choices: types, initial: 'normal' }),
       category: new StringField({ required: true, choices: categories, initial: 'physical' }),
-      power: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
+      power: new NumberField({ required: true, integer: true, min: 0, initial: 1 }),
+      ppLeft: new NumberField({ required: true, integer: true, min: 0, initial: 0 }), // TODO: if pp is updated, ppLeft should be updated?
       pp: new NumberField({ required: true, integer: true, min: 0, initial: 20 }),
       effects: new TypedObjectField(new SchemaField({
         triggerType: new StringField({ required: true, choices: triggerTypes, initial: 'hit' }),
         appliedEffects: new TypedObjectField(new SchemaField({
           affectsUser: new BooleanField({ required: true, initial: false }),
           effect: new StringField({ required: true, choices: effects, initial: 'atkUp' }),
-          integerInput: new NumberField({ integer: true }),
-          stringInput: new StringField(),
-          booleanInput: new BooleanField()
+          effectCount: new NumberField({ integer: true })
         }))
       })),
       offensiveCheck: new StringField({ required: true, choices: skills, nullable: true }),
       defensiveCheck: new StringField({ required: true, choices: skills, nullable: true }),
-      priority: new BooleanField({ required: true, initial: false }),
+      tags: new TypedObjectField(new StringField({ required: true, choices: tags, initial: 'priority' })),
       target: new StringField({ required: true, nullable: true, choices: targets, initial: 'foe' }),
       range: new StringField({ required: true, nullable: true, choices: ranges, initial: 'front' }),
       rangeCount: new NumberField({ required: true, nullable: true, integer: true, min: 1 }),

@@ -43,8 +43,11 @@ input.move-name {
 .move-options {
   margin-top: 10px;
   display: grid;
-  grid-template-columns: 49% 49%;
+  grid-template-columns: 47% 47%; /*TODO: space this out to better align with the scrollbar */
   gap: 2%;
+  max-height: 400px;
+  max-width: 100%;
+  overflow-y: scroll;
 }
 
 .move-options input {
@@ -78,8 +81,14 @@ input.move-name {
   text-align: center;
 }
 
-.effect-set {
-  height: 250px;
+.tag-set {
+  max-width: 100%;
+}
+
+.tag-line {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .effect-set, .effect-set fieldset {
