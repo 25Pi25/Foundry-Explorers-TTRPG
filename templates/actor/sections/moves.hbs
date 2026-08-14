@@ -10,7 +10,25 @@
         <p>{{localize (lookup typesRecord move.system.type)}} / <!--
         -->{{localize (lookup categories move.system.category)}}<!--
         -->{{#if move.system.power}}, {{localize "SYSTEM.Models.Move.FIELDS.power.label"}}&nbsp;{{move.system.power}}{{/if}}</p>
-        <p>{{move.system.description}}</p>
+        <p>{{#if move.system.description}}{{move.system.description}}{{/if}}</p>
+        <p>
+          Effects:
+        {{#each move.system.effects as |effect|}}
+        {{#if (equals effect.triggerType "hit")}}
+          {{#each effect.appliedEffects as |apply|}}
+          {{#with ../..}}
+            {{localize (lookup effects apply.effect)}}
+            {{#if apply.effectCount}}
+              ({{apply.effectCount}})
+            {{/if}}
+            {{#if apply.affectsUser}}
+              (User)
+            {{/if}}
+          {{/with}}
+          {{/each}}
+        {{/if}}
+        {{/each}}
+        </p>
         <div class="move-buttons">
           <button type="button" data-action="rollMoveDie" data-id="{{move.id}}">{{moveDie move}}</button>
           <button type="button" data-action="removeMove" data-id="{{move.id}}" class="icon fa-solid fa-trash"></button>

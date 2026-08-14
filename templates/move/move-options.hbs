@@ -41,17 +41,29 @@
     </fieldset>
     <fieldset class="tag-set scrollable">
       <legend>Tags</legend>
-        {{#each tagGroups}}
-        <div class="tag-line">
-          {{formGroup field value=value name=namePrefix classes="slim inline" localize=true}}
-          <button type="button" data-action="deleteTag" data-tag-id="{{id}}" class="wide-button icon fa-solid fa-trash"></button>
-        </div>
-        {{/each}}
+      {{#if isEditable}}
+      {{#each tagGroups}}
+      <div class="tag-line">
+      <div class="tag-line">
+        {{formGroup field value=value name=namePrefix classes="slim inline" localize=true}}
+        <button type="button" data-action="deleteTag" data-tag-id="{{id}}" class="wide-button icon fa-solid fa-trash"></button>
+      </div>
+      {{/each}}
       <button type="button" data-action="addTag" class="wide-button icon fa-solid fa-plus"></button>
+      {{else}}
+      <div class="tag-line">
+        {{#each tagGroups as |tag|}}
+        {{#with ..}}
+          <p>{{localize (lookup tags tag.value)}}</p>
+        {{/with}}
+        {{/each}}
+      </div>
+      {{/if}}
     </fieldset>
   </div>
   <fieldset class="effect-set scrollable">
     <legend>Effects</legend> {{!-- TODO: change legends to localized versions --}}
+    {{#if isEditable}}
     {{#each effectGroups}}
     <fieldset>
       {{formGroup fields.triggerType value=values.triggerType name=(concat namePrefix "triggerType") classes="slim inline" label=(localize (concat labelPrefix "triggerType.label")) localize=true}}
@@ -70,7 +82,28 @@
       <button type="button" data-action="deleteEffectGroup" data-effect-group-id="{{id}}" class="wide-button icon fa-solid fa-trash"></button>
     </fieldset>
     {{/each}}
-      <button type="button" data-action="addEffectGroup" class="wide-button icon fa-solid fa-plus"></button>
+    <button type="button" data-action="addEffectGroup" class="wide-button icon fa-solid fa-plus"></button>
+    {{else}}
+    {{#each effectGroups as |group|}}
+    {{#with ..}}
+    <p class="effect-item">{{localize (lookup triggerTypes group.values.triggerType)}}</p>
+      {{#each effectGroups as |group|}}
+      {{#each effects as |effect|}}
+      {{#with ../..}}
+        <p class="effect-item">&nbsp;&nbsp;&nbsp;&nbsp;{{localize (lookup effects effect.values.effect)}}
+        {{#if (hasEffectCount effect.values.effect)}}
+          ({{effect.values.effectCount}})
+        {{/if}}
+        {{#if group.values.affectsUser}}
+          (User)
+        {{/if}}
+        </p>
+      {{/with}}
+      {{/each}}
+      {{/each}}
+    {{/with}}
+    {{/each}}
+    {{/if}}
   </fieldset>
 </section>
 {{!-- <section class="standard-form">

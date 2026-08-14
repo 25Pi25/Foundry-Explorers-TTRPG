@@ -1,29 +1,40 @@
 import { effects, skillToAbility, statConditions, valueEffects } from './module/types.mjs';
 
 export const SYSTEM_ID = 'explorers';
+export const skillToDie = {
+  untrained: 1,
+  minor: 2,
+  major: 3
+}
 export const filePath = path => `systems/${SYSTEM_ID}/${path}`;
 export const toModString = mod => mod >= 0 ? `+${mod}` : mod.toString();
 export function getSkillDie(thisContext, skill) {
   const proficiency = thisContext.document.system.skills[skill];
   const abilityName = skillToAbility[skill];
   const ability = abilityName === "hp" ? thisContext.document.system.hp : thisContext.document.system.abilities[abilityName];
-  const skillValue = {
-    untrained: 1,
-    minor: 2,
-    major: 3
-  }[proficiency];
-  return { sides: skillValue, modifier: ability.mod }
+  return { sides: skillToDie[proficiency], modifier: ability.mod }
 }
 export function toSkillString(skill) {
   const { sides, modifier } = getSkillDie(this, skill);
   return `${sides}d6x${modifier !== 0 ? toModString(modifier) : ""}`;
 }
 export function getMoveDie(thisContext, move) { // TODO: add targeting & player context
+  const isPhysical = move.system.category === "physical" || move.system.category === "physicalStatus";
+  const isStatus = move.system.category === "physicalStatus" || move.system.category === "specialStatus";
+  const character = thisContext.document.system;
+  let baseModifier = isPhysical ? character.abilities.atk.value : character.abilities.spatk.value;
   let sides = move.system.power;
-  return { sides, modifier: 0 };
+  if (!sides) {
+    const hitEffect = Object.values(move.system.effects).find(effect => effect.triggerType === "hit");
+    if (!hitEffect) return null;
+    return { sides: isStatus ? move.system.offensiveCheck ? skillToDie[character.skills[move.system.offensiveCheck]] ?? 1 : 2 : 1, modifier: baseModifier };
+  }
+  return { sides, modifier: baseModifier };
 }
 export function toMoveString(move) {
-  const { sides, modifier } = getMoveDie(this, move);
+  const moveDie = getMoveDie(this, move);
+  if (!moveDie) return "Use";
+  const { sides, modifier } = moveDie;
   return `${sides}d6x${modifier !== 0 ? toModString(modifier) : ""}`;
 }
 export function toFormGroup(object) {

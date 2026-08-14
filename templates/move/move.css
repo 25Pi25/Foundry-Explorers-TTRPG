@@ -95,6 +95,10 @@ input.move-name {
   padding: 0.5rem;
 }
 
+.effect-item {
+  margin: 0;
+}
+
 .wide-button {
   width: 100%;
 }

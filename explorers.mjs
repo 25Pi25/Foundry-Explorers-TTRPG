@@ -36,6 +36,7 @@ Hooks.once("init", () => {
   Handlebars.registerHelper('moveDie', toMoveString);
   Handlebars.registerHelper('filePath', filePath);
   Handlebars.registerHelper('hasEffectCount', hasEffectCount);
+  Handlebars.registerHelper('equals', (a, b) => a === b);
 
   // Configure trackable attributes.
   CONFIG.Actor.trackableAttributes = {
