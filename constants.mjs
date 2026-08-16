@@ -22,7 +22,7 @@ export function getMoveDie(thisContext, move) { // TODO: add targeting & player 
   const isPhysical = move.system.category === "physical" || move.system.category === "physicalStatus";
   const isStatus = move.system.category === "physicalStatus" || move.system.category === "specialStatus";
   const character = thisContext.document.system;
-  let baseModifier = isPhysical ? character.abilities.atk.value : character.abilities.spatk.value;
+  let baseModifier = isPhysical ? character.abilities.atk.mod : character.abilities.spatk.mod;
   let sides = move.system.power;
   if (!sides) {
     const hitEffect = Object.values(move.system.effects).find(effect => effect.triggerType === "hit");

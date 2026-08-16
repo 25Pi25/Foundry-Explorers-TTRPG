@@ -80,15 +80,15 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
   }
 
   getTypeMatchup(attackType) {
-    let result = 1;
+    let result = 3;
     const attackChart = typeChart[attackType];
     for (const defendType of [this.type1, this.type2]) {
       if (defendType === null) continue;
-      if (attackChart.se.includes(defendType)) result *= 2;
-      else if (attackChart.nve.includes(defendType)) result *= 0.5;
-      else if (attackChart.immune.includes(defendType)) return 0;
+      if (attackChart.se.includes(defendType)) result += 1;
+      else if (attackChart.nve.includes(defendType)) result -= 1;
+      else if (attackChart.immune.includes(defendType)) return 'immune';
     }
-    return result;
+    return ['immune', 'mostlyIneffective', 'notVeryEffective', 'effective', 'superEffective', 'extremelyEffective'][result];
   }
 }
 

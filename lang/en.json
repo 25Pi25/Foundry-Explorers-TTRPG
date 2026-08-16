@@ -2,7 +2,18 @@
   "TYPES.Actor.Character": "Character",
   "TYPES.Actor.Player": "Player",
   "TYPES.Item.Move": "Move",
+  "CHAT": {
+    "RollPublic": "Roll Public",
+    "RollPrivate": "Roll Private",
+    "RollBlind": "Roll Blind",
+    "RollSelf": "Roll Self"
+  },
   "SYSTEM": {
+    "Dice": {
+      "Advantage": "Advantage",
+      "Normal": "Normal",
+      "Disadvantage": "Disadvantage"
+    },
     "Tabs": {
       "Stats": "Stats",
       "About": "About",
@@ -144,6 +155,14 @@
       "Dragon": "Dragon",
       "Dark": "Dark",
       "Fairy": "Fairy"
+    },
+    "TypeMatchups": {
+      "ExtremelyEffective": "Extremely Effective",
+      "SuperEffective": "Super Effective",
+      "Effective": "Effective",
+      "NotVeryEffective": "Not Very Effective",
+      "MostlyIneffective": "Mostly Ineffective",
+      "Immune": "Immune"
     },
     "Skills": {
       "Endurance": "Endurance",

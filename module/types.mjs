@@ -242,17 +242,16 @@ export const tags = {
   multihit: "SYSTEM.Tags.Multihit",
   highCritRatio: "SYSTEM.Tags.HighCritRatio"
 }
-export const effectInputs = {
-  // push: { number: "SYSTEM.EffectInputs.TileCount" },
-  // taunted: { number: "SYSTEM.EffectInputs.Duration" },
-  // flyingDisabled: { number: "SYSTEM.EffectInputs.Duration" },
-  // disabled: { number: "SYSTEM.EffectInputs.Duration" },
-  // weakWeather: { string: "SYSTEM.EffectInputs.Type" },
-  // embargo: { number: "SYSTEM.EffectInputs.Duration" },
-  // noLoweredStats: { number: "SYSTEM.EffectInputs.Duration" },
-  // chipDamage: { string: "SYSTEM.EffectInputs.DieRoll" },
-  // damageBoost: { string: "SYSTEM.EffectInputs.DieRoll" },
-  // sizeChange: { number: "System.EffectInputs.SizeFactor" },
-  // typeWeakness: { string: "SYSTEM.EffectInputs.Type" },
-  // insomnia: { number: "SYSTEM.EffectInputs.Duration" }
+export const advantage = {
+  advantage: "SYSTEM.Dice.Advantage",
+  normal: "SYSTEM.Dice.Normal",
+  disadvantage: "SYSTEM.Dice.Disadvantage",
+}
+export const typeMatchups = {
+  extremelyEffective: "SYSTEM.TypeMatchups.ExtremelyEffective",
+  superEffective: "SYSTEM.TypeMatchups.SuperEffective",
+  effective: "SYSTEM.TypeMatchups.Effective",
+  notVeryEffective: "SYSTEM.TypeMatchups.NotVeryEffective",
+  mostlyIneffective: "SYSTEM.TypeMatchups.MostlyIneffective",
+  immune: "SYSTEM.TypeMatchups.Immune"
 }

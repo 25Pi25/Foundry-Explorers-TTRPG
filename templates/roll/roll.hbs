@@ -1,0 +1,31 @@
+<section class="standard-form">
+  <p>Base {{moveInfo.sides}}d6x{{modString moveInfo.modifier}}</p>
+  <div class="roll-options">
+    <label>Extra Power</label><input type="number" data-name="extraPower" step="1">
+    <label>Extra Modifier</label><input type="number" data-name="extraModifier" step="1">
+    <label>Multiplier</label><input type="number" data-name="multiplier">
+    <label>Advantage</label>
+    <select data-name="advantage">
+      <option selected value="">Default</option>
+      {{#each advantage as |advOption advValue|}}
+      {{#with ..}}
+        <option {{#if (equals dialogState.advantage advValue)}}selected{{/if}} value={{advValue}}>{{localize advOption}}</option>
+      {{/with}}
+      {{/each}}
+    </select>
+    <label>Type Matchup</label>
+    <select data-name="typeMatchup">
+      <option selected value="">Default</option>
+      {{#each typeMatchups as |typeMatchup matchupValue|}}
+        <option value={{matchupValue}}>{{localize typeMatchup}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <button data-action="roll"><i class="icon fa-solid fa-dice-d6"></i>Roll</button>
+  <div class="roll-mode-buttons split-button">
+    <button type="button" class="{{#if (equals messageMode "publicroll")}}selected{{/if}} roll-btn ui-control icon fa-solid fa-globe" data-action="setMessageMode" data-messagemode="publicroll" data-tooltip="CHAT.RollPublic">
+    <button type="button" class="{{#if (equals messageMode "gmroll")}}selected{{/if}} roll-btn ui-control icon fa-solid fa-user-secret" data-action="setMessageMode" data-messagemode="gmroll" data-tooltip="CHAT.RollPrivate">
+    <button type="button" class="{{#if (equals messageMode "blindroll")}}selected{{/if}} roll-btn ui-control icon fa-solid fa-eye-slash" data-action="setMessageMode" data-messagemode="blindroll" data-tooltip="CHAT.RollBlind">
+    <button type="button" class="{{#if (equals messageMode "selfroll")}}selected{{/if}} roll-btn ui-control icon fa-solid fa-user" data-action="setMessageMode" data-messagemode="selfroll" data-tooltip="CHAT.RollSelf">
+  </div>
+</section>

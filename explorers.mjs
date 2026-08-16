@@ -1,11 +1,13 @@
-import { filePath, toMoveString, hasEffectCount, SYSTEM_ID, toSkillString } from './constants.mjs';
+import { filePath, toModString, toMoveString, hasEffectCount, SYSTEM_ID, toSkillString } from './constants.mjs';
 import { CharacterSheet, PlayerSheet } from './module/actor-sheet.mjs';
 import { CharacterDataModel, MoveDataModel, PlayerDataModel } from "./module/data-models.mjs";
 import { SystemToken } from './module/documents.mjs';
+import { ExplorersRoll } from './module/explorers-roll.mjs';
 import { ItemSheet } from './module/move-sheet.mjs';
 import { conditions } from './module/types.mjs';
 
 const { Localization } = foundry.helpers;
+const { Die } = foundry.dice.terms;
 const { Actors, Items } = foundry.documents.collections;
 
 
@@ -23,6 +25,7 @@ Hooks.once("init", () => {
   CONFIG.Item.dataModels = {
     Move: MoveDataModel
   };
+  CONFIG.Dice.rolls = [ExplorersRoll];
 
   // Configure Sheets.
   Actors.registerSheet(SYSTEM_ID, PlayerSheet, { types: ["Player"], makeDefault: true });
@@ -32,6 +35,7 @@ Hooks.once("init", () => {
     "templates/actor/partials/skill-block.hbs",
     "templates/actor/partials/move-block.hbs"].map(filePath);
   foundry.applications.handlebars.loadTemplates(templates);
+  Handlebars.registerHelper('modString', toModString);
   Handlebars.registerHelper('skillDie', toSkillString);
   Handlebars.registerHelper('moveDie', toMoveString);
   Handlebars.registerHelper('filePath', filePath);
