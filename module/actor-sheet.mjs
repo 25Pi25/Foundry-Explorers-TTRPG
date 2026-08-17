@@ -78,7 +78,7 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   }
 
   static async rollDie(event, target) {
-    const { sides, modifier } = getSkillDie(this, target.dataset.skill);
+    const { sides, modifier } = getSkillDie(this.document, target.dataset.skill);
     new Roll(`${sides}d6x${toModString(modifier)}`).toMessage({
       speaker: ChatMessage.implementation.getSpeaker({ actor: this.document }),
       flavor: target.dataset.name

@@ -27,7 +27,7 @@ export class ItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
 
   static PARTS = {
     move: { template: filePath("templates/move/move.hbs") },
-    options: { template: filePath("templates/move/move-options.hbs"), scrollable: [".move-options"] },
+    options: { template: filePath("templates/move/move-options.hbs"), scrollable: [".tag-set", "effect-set"] },
   }
 
   async _prepareContext(options) {

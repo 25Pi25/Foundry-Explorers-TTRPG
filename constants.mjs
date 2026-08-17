@@ -9,7 +9,7 @@ export const skillToDie = {
 export const filePath = path => `systems/${SYSTEM_ID}/${path}`;
 export const toModString = mod => mod >= 0 ? `+${mod}` : mod.toString();
 export function getMoveDie(actor, move) {
-  return move.power > 0 ? getDamageDie(actor, move) : getStatusDie(actor, move);
+  return move.system.power > 0 ? getDamageDie(actor, move) : getStatusDie(actor, move);
 }
 export function getDamageDie(actor, move) {
   const model = actor.system;

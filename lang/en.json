@@ -270,20 +270,26 @@
       "TarShot": "Tar Shot",
       "Snatch": "Snatch",
       "Encore": "Encore",
-      "AquaVeil": "Aqua Veil"
+      "AquaVeil": "Aqua Veil",
+      "QuickGuarded": "Quick Guarded",
+      "Stockpile": "Stockpile",
+      "WideGuarded": "Wide Guarded"
     },
     "Effects": {
       "MudSport": "Mud Sport",
       "WaterSport": "Water Sport",
       "SizeChange": "Size Change",
-      "Push": "Push"
+      "Push": "Push",
+      "Sandstorm": "Sandstorm"
     },
     "Tags": {
       "Priority": "Priority",
       "HealPower": "Heal Power",
       "HealHalf": "Heal Half",
+      "Recoil": "Recoil",
       "Absorbing": "Absorbing",
       "Multihit": "Multihit",
+      "MultihitHalf": "Multihit Half",
       "HighCritRatio": "High Crit. Ratio"
     },
     "Misc": {

@@ -211,13 +211,17 @@ export const conditions = {
   snatch: "SYSTEM.Conditions.Snatch",
   encore: "SYSTEM.Conditions.Encore",
   aquaVeil: "SYSTEM.Conditions.AquaVeil",
+  quickGuarded: "SYSTEM.Conditions.QuickGuarded",
+  stockpile: "SYSTEM.Conditions.Stockpile",
+  wideGuarded: "SYSTEM.Conditions.WideGuarded",
 };
 export const effects = {
   ...conditions,
   mudSport: "SYSTEM.Effects.MudSport",
   waterSport: "SYSTEM.Effects.WaterSport",
   sizeChange: "SYSTEM.Effects.SizeChange",
-  push: "SYSTEM.Effects.Push"
+  push: "SYSTEM.Effects.Push",
+  sandstorm: "SYSTEM.Effects.Sandstorm",
 }
 export const valueEffects = new Set([ // most of these will be duration, some will have other meanings
   'insomnia',
@@ -229,6 +233,7 @@ export const valueEffects = new Set([ // most of these will be duration, some wi
   'embargo',
   'levitating',
   'aquaVeil',
+  'stockpile',
   'mudSport',
   'waterSport',
   'sizeChange',
@@ -238,8 +243,10 @@ export const tags = {
   priority: "SYSTEM.Tags.Priority",
   healPower: "SYSTEM.Tags.HealPower",
   healHalf: "SYSTEM.Tags.HealHalf",
+  recoil: "SYSTEM.Tags.Recoil",
   absorbing: "SYSTEM.Tags.Absorbing",
   multihit: "SYSTEM.Tags.Multihit",
+  multihitHalf: "SYSTEM.Tags.MultihitHalf",
   highCritRatio: "SYSTEM.Tags.HighCritRatio"
 }
 export const advantage = {

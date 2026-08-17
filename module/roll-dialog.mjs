@@ -24,7 +24,9 @@ export class RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
   }
 
   get title() {
-    const { sides, modifier } = getMoveDie(this.user, this.move);
+    const moveDie = getMoveDie(this.user, this.move);
+    if (!moveDie) return this.move.name;
+    const { sides, modifier } = moveDie;
     return `${this.user.name}: ${this.move.name} (Base ${sides}d6x+${modifier})`;
   }
 
@@ -45,11 +47,6 @@ export class RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
       advantage: '',
       typeMatchup: ''
     };
-    const { sides, modifier } = getMoveDie(user, move);
-    this.moveInfo = {
-      sides,
-      modifier
-    };
     this.messageMode = 'publicroll';
   }
 
@@ -59,7 +56,6 @@ export class RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     context.advantage = advantage;
     context.typeMatchups = typeMatchups;
     context.messageMode = this.messageMode;
-    context.moveInfo = this.moveInfo;
     context.triggers = this.move.system.getTriggerTypes();
     context.hasPower = this.move.system.power > 0;
     return context;
