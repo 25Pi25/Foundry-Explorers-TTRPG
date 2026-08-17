@@ -1,6 +1,6 @@
-import { filePath, getSkillDie, toModString, toFormGroup, getMoveDie } from '../constants.mjs';
+import { filePath, getSkillDie, toModString, toFormGroup, getMoveDie, getStatusDie } from '../constants.mjs';
 import { CharacterDataModel } from './data-models.mjs';
-import { advantage, typeMatchups } from './types.mjs';
+import { advantage, effects, typeMatchups } from './types.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 const { ChatMessage } = foundry.documents;
@@ -14,7 +14,8 @@ export class RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     },
     actions: {
       setMessageMode: RollDialog.#setMessageMode,
-      roll: RollDialog.#roll
+      rollDamage: RollDialog.#rollDamage,
+      rollStatus: RollDialog.#rollStatus
     }
   }
 
@@ -59,6 +60,8 @@ export class RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     context.typeMatchups = typeMatchups;
     context.messageMode = this.messageMode;
     context.moveInfo = this.moveInfo;
+    context.triggers = this.move.system.getTriggerTypes();
+    context.hasPower = this.move.system.power > 0;
     return context;
   }
 
@@ -78,7 +81,7 @@ export class RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     this.render();
   }
 
-  static async #roll(event, target) {
+  static async #rollDamage() {
     const userSystem = this.user.system;
     let { sides, modifier } = getMoveDie(this.user, this.move);
     sides += this.dialogState.extraPower;
@@ -130,7 +133,27 @@ export class RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
       new Roll(`${multiplier != 1 ? "floor((" : ""}${sides}d6x${advantageString}${toModString(modifier)}${multiplier != 1 ? `) * ${multiplier})` : ""}`)
       .toMessage({
         speaker: ChatMessage.implementation.getSpeaker({ actor: this.user }),
-        flavor: `${additionString}${this.move.name}${target ? ` (${target.parent.name})` : ""}${this.move.system.description ? ` - ${this.move.system.description}` : ""}`
+        flavor: `${additionString}${this.move.name}${target ? ` (${target.parent.name})` : ""} - Power`
+      }, { rollMode: this.messageMode });
+    }
+  }
+
+  static async #rollStatus() {
+    let { sides, modifier } = getStatusDie(this.user, this.move);
+    sides += this.dialogState.extraPower;
+    modifier += this.dialogState.extraModifier;
+    let targetRolls = game.user.targets.map(target => target.actor.system);
+    if (targetRolls.size == 0) targetRolls = [null];
+    for (const target of targetRolls) {
+      const hitEffects = [];
+      this.move.system.getTriggerEffects('hit').forEach(effect => {
+        hitEffects.push(game.i18n.localize(effects[effect.effect]))
+      });
+
+      new Roll(`${sides}d6x${toModString(modifier)}`)
+      .toMessage({
+        speaker: ChatMessage.implementation.getSpeaker({ actor: this.user }),
+        flavor: `${this.move.name}${target ? ` (${target.parent.name})` : ""} - Status (${hitEffects.join()})`
       }, { rollMode: this.messageMode });
     }
   }

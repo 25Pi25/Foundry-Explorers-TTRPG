@@ -46,6 +46,7 @@ Hooks.once("init", () => {
   Handlebars.registerHelper('filePath', filePath);
   Handlebars.registerHelper('hasEffectCount', hasEffectCount);
   Handlebars.registerHelper('equals', (a, b) => a === b);
+  Handlebars.registerHelper('inSet', (a, b) => a.has(b));
 
   // Configure trackable attributes.
   CONFIG.Actor.trackableAttributes = {

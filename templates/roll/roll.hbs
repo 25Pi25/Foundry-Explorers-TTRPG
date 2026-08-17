@@ -20,7 +20,10 @@
       {{/each}}
     </select>
   </div>
-  <button data-action="roll"><i class="icon fa-solid fa-dice-d6"></i>Roll</button>
+  <div class="roll-types">
+    {{#if hasPower}}<button data-action="rollDamage"><i class="icon fa-solid fa-dice-d6"></i>Roll</button>{{/if}}
+    {{#if (inSet triggers "hit")}}<button data-action="rollStatus"><i class="icon fa-solid fa-dice-d6"></i>Status</button>{{/if}}
+  </div>
   <div class="roll-mode-buttons split-button">
     <button type="button" class="{{#if (equals messageMode "publicroll")}}selected{{/if}} roll-btn ui-control icon fa-solid fa-globe" data-action="setMessageMode" data-messagemode="publicroll" data-tooltip="CHAT.RollPublic">
     <button type="button" class="{{#if (equals messageMode "gmroll")}}selected{{/if}} roll-btn ui-control icon fa-solid fa-user-secret" data-action="setMessageMode" data-messagemode="gmroll" data-tooltip="CHAT.RollPrivate">

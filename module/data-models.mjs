@@ -156,6 +156,7 @@ export class MoveDataModel extends foundry.abstract.TypeDataModel {
   }
 
   prepareDerivedData() {
+    this.isPhysical = this.category === 'physical' || this.category === 'physicalStatus';
     this.isStatus = this.category === 'physicalStatus' || this.category === 'specialStatus';
     this.withRangeLevel = ['away', 'ahead', 'range'].includes(this.range);
   }
@@ -174,6 +175,20 @@ export class MoveDataModel extends foundry.abstract.TypeDataModel {
     if ((data.target === null) !== (data.range === 'special')) {
       throw new Error("You can only have no target if your move is special.");
     }
+  }
+
+  getTriggerTypes() {
+    return new Set(Object.values(this.effects).map(effect => effect.triggerType));
+  }
+
+  getTriggerEffects(triggerType) {
+    const typeValue = Object.values(this.effects).find(effect => effect.triggerType == triggerType);
+    if (!typeValue) return null;
+    return new Set(Object.values(typeValue.appliedEffects));
+  }
+
+  hasTag(tag) {
+    return Object.values(this.tags).includes(tag);
   }
 }
 

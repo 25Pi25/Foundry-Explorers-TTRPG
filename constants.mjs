@@ -8,33 +8,37 @@ export const skillToDie = {
 }
 export const filePath = path => `systems/${SYSTEM_ID}/${path}`;
 export const toModString = mod => mod >= 0 ? `+${mod}` : mod.toString();
-export function getSkillDie(thisContext, skill) {
-  const proficiency = thisContext.document.system.skills[skill];
+export function getMoveDie(actor, move) {
+  return move.power > 0 ? getDamageDie(actor, move) : getStatusDie(actor, move);
+}
+export function getDamageDie(actor, move) {
+  const model = actor.system;
+  return {
+    sides: move.system.power, 
+    modifier: move.system.isPhysical ? model.abilities.atk.mod : model.abilities.spatk.mod
+  };
+}
+export function getStatusDie(actor, move) {
+  if (!move.system.getTriggerTypes().has('hit')) return null;
+  if (move.system.offensiveCheck) return getSkillDie(actor, move.system.offensiveCheck);
+  const model = actor.system;
+  const baseModifier = move.system.isPhysical ? model.abilities.atk.mod : model.abilities.spatk.mod;
+  return { sides: move.system.isStatus ? 2 : 1, modifier: baseModifier };
+}
+export function getSkillDie(actor, skill) {
+  const proficiency = actor.system.skills[skill];
   const abilityName = skillToAbility[skill];
-  const ability = abilityName === "hp" ? thisContext.document.system.hp : thisContext.document.system.abilities[abilityName];
+  const ability = abilityName === "hp" ? actor.system.hp : actor.system.abilities[abilityName];
   return { sides: skillToDie[proficiency], modifier: ability.mod }
-}
-export function toSkillString(skill) {
-  const { sides, modifier } = getSkillDie(this, skill);
-  return `${sides}d6x${modifier !== 0 ? toModString(modifier) : ""}`;
-}
-export function getMoveDie(thisContext, move) { // TODO: add targeting & player context
-  const isPhysical = move.system.category === "physical" || move.system.category === "physicalStatus";
-  const isStatus = move.system.category === "physicalStatus" || move.system.category === "specialStatus";
-  const character = thisContext.system;
-  let baseModifier = isPhysical ? character.abilities.atk.mod : character.abilities.spatk.mod;
-  let sides = move.system.power;
-  if (!sides) {
-    const hitEffect = Object.values(move.system.effects).find(effect => effect.triggerType === "hit");
-    if (!hitEffect) return null;
-    return { sides: isStatus ? move.system.offensiveCheck ? skillToDie[character.skills[move.system.offensiveCheck]] ?? 1 : 2 : 1, modifier: baseModifier };
-  }
-  return { sides, modifier: baseModifier };
 }
 export function toMoveString(move) {
   const moveDie = getMoveDie(this.document, move);
   if (!moveDie) return "Use";
   const { sides, modifier } = moveDie;
+  return `${sides}d6x${modifier !== 0 ? toModString(modifier) : ""}`;
+}
+export function toSkillString(skill) {
+  const { sides, modifier } = getSkillDie(this.document, skill);
   return `${sides}d6x${modifier !== 0 ? toModString(modifier) : ""}`;
 }
 export function toFormGroup(object) {
