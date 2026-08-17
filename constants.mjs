@@ -21,7 +21,7 @@ export function toSkillString(skill) {
 export function getMoveDie(thisContext, move) { // TODO: add targeting & player context
   const isPhysical = move.system.category === "physical" || move.system.category === "physicalStatus";
   const isStatus = move.system.category === "physicalStatus" || move.system.category === "specialStatus";
-  const character = thisContext.document.system;
+  const character = thisContext.system;
   let baseModifier = isPhysical ? character.abilities.atk.mod : character.abilities.spatk.mod;
   let sides = move.system.power;
   if (!sides) {
@@ -32,7 +32,7 @@ export function getMoveDie(thisContext, move) { // TODO: add targeting & player 
   return { sides, modifier: baseModifier };
 }
 export function toMoveString(move) {
-  const moveDie = getMoveDie(this, move);
+  const moveDie = getMoveDie(this.document, move);
   if (!moveDie) return "Use";
   const { sides, modifier } = moveDie;
   return `${sides}d6x${modifier !== 0 ? toModString(modifier) : ""}`;

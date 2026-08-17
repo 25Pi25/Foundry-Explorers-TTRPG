@@ -3,13 +3,18 @@ import { CharacterSheet, PlayerSheet } from './module/actor-sheet.mjs';
 import { CharacterDataModel, MoveDataModel, PlayerDataModel } from "./module/data-models.mjs";
 import { SystemToken } from './module/documents.mjs';
 import { ExplorersRoll } from './module/explorers-roll.mjs';
+import macros from './module/macros.mjs';
 import { ItemSheet } from './module/move-sheet.mjs';
 import { conditions } from './module/types.mjs';
 
 const { Localization } = foundry.helpers;
 const { Die } = foundry.dice.terms;
+const { Item, Macro } = foundry.documents;
 const { Actors, Items } = foundry.documents.collections;
 
+globalThis.explorers = {
+  macros
+}
 
 Hooks.once("init", () => {
   // Configure custom Document implementations.
@@ -66,3 +71,40 @@ Hooks.once("i18nInit", () => {
   Localization.localizeDataModel(PlayerDataModel);
   Localization.localizeDataModel(MoveDataModel);
 });
+
+Hooks.once("ready", async () => {
+  Hooks.on("hotbarDrop", (bar, data, slot) => {
+    if (data.type == "Item") {
+      assignItemMacro(data, slot);
+      return false;
+    }
+  });
+});
+
+async function assignItemMacro(itemData, slot) {
+  const item = await getDocumentClass("Item").fromDropData(itemData);
+  let command, name;
+  switch (item.type) {
+    case "Move":
+      if (item.actor) {
+        name = item.actor.name;
+        command = `await explorers.macros.openRoll("${item.actor.id}", "${item.id}");`;
+      } else {
+        command = `await foundry.applications.ui.Hotbar.toggleDocumentSheet("${item.uuid}");`;
+      }
+      break;
+    default:
+      command = `await foundry.applications.ui.Hotbar.toggleDocumentSheet("${item.uuid}");`;
+  }
+
+  let macro = game.macros.find((m) => (m.name === item.name) && (m.command === command));
+  if (!macro) {
+    macro = await Macro.create({
+      name: `${item.name}${name ? ` (${name})`: ""}`,
+      type: "script",
+      img: item.img,
+      command
+    });
+  }
+  game.user.assignHotbarMacro(macro, slot);
+}

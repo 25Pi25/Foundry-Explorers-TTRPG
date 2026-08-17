@@ -4,7 +4,7 @@
   <div class="move-grid">
     {{#each moves as |move id|}}
     {{#with ..}}
-    <fieldset class="move-block draggable" data-document-uuid="{{move.uuid}}">
+    <fieldset class="move-block draggable" data-item-id="{{move.id}}">
       <legend>{{move.name}}</legend>
       <div class="move-block-sections">
         <p>{{localize (lookup typesRecord move.system.type)}} / <!--

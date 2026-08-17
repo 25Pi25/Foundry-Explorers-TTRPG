@@ -22,9 +22,16 @@ export class RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     roll: { template: filePath("templates/roll/roll.hbs") },
   }
 
+  get title() {
+    const { sides, modifier } = getMoveDie(this.user, this.move);
+    return `${this.user.name}: ${this.move.name} (Base ${sides}d6x+${modifier})`;
+  }
+
   constructor(options={}) {
     super(options);
-    const { user, move } = options;
+    const { userId, moveId } = options;
+    const user = options.user ?? game.actors.get(userId);
+    const move = options.move ?? user.items.get(moveId) ?? game.items.get(moveId);
     if (!user) throw new Error("No user given.");
     if (!move) throw new Error("No move given.");
     this.user = user;
@@ -72,7 +79,7 @@ export class RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
   }
 
   static async #roll(event, target) {
-    const userSystem = this.user.actor.system;
+    const userSystem = this.user.system;
     let { sides, modifier } = getMoveDie(this.user, this.move);
     sides += this.dialogState.extraPower;
     modifier += this.dialogState.extraModifier;
@@ -83,37 +90,47 @@ export class RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
       if (matchup === '' && target) {
         matchup = target.getTypeMatchup(this.move.system.type);
       }
+      let additionString = "";
       let multiplier = this.dialogState.multiplier;
       switch (matchup) {
         case 'mostlyIneffective':
           multiplier *= 0.5;
           sides -= 1;
+          additionString += `<span style=\"color:red;font-weight:bold;\">+${game.i18n.localize(typeMatchups[matchup])}</span><br>`;
           break;
         case 'notVeryEffective':
           sides -= 1;
+          additionString += `<span style=\"color:red;font-weight:bold;\">+${game.i18n.localize(typeMatchups[matchup])}</span><br>`;
           break;
         case 'superEffective':
           sides += 1;
+          additionString += `<span style=\"color:green;font-weight:bold;\">+${game.i18n.localize(typeMatchups[matchup])}</span><br>`;
           break;
         case 'extremelyEffective':
           multiplier *= 2;
           sides += 1;
+          additionString += `<span style=\"color:green;font-weight:bold;\">+${game.i18n.localize(typeMatchups[matchup])}</span><br>`;
+          break;
+        case 'immune':
+          multiplier = 0;
+          additionString += `<span style=\"color:red;font-weight:bold;\">+${game.i18n.localize(typeMatchups[matchup])}</span><br>`;
           break;
       }
       let advantageState = this.dialogState.advantage;
       if (advantageState === '') {
         if (userSystem.type1 == this.move.system.type || userSystem.type2 == this.move.system.type) {
           advantageState = 'advantage';
+          additionString += "<span style=\"color:green;font-weight:bold;\">+STAB</span><br>";
         } else advantageState = 'normal';
       };
       let advantageString = '';
       if (advantageState == 'advantage') advantageString = 'r<3';
       else if (advantageState == 'disadvantage') advantageString = 'r>3';
 
-      new Roll(matchup == 'immune' ? "0" : `${multiplier != 1 ? "floor((" : ""}${sides}d6x${advantageString}${toModString(modifier)}${multiplier != 1 ? `) * ${multiplier})` : ""}`)
+      new Roll(`${multiplier != 1 ? "floor((" : ""}${sides}d6x${advantageString}${toModString(modifier)}${multiplier != 1 ? `) * ${multiplier})` : ""}`)
       .toMessage({
         speaker: ChatMessage.implementation.getSpeaker({ actor: this.user }),
-        flavor: `${this.move.name}${target ? ` (${target.parent.name})` : ""}${this.move.system.description ? ` - ${this.move.system.description}` : ""}`
+        flavor: `${additionString}${this.move.name}${target ? ` (${target.parent.name})` : ""}${this.move.system.description ? ` - ${this.move.system.description}` : ""}`
       }, { rollMode: this.messageMode });
     }
   }
