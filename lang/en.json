@@ -8,6 +8,9 @@
     "RollBlind": "Roll Blind",
     "RollSelf": "Roll Self"
   },
+  "COMPENDIUMS": {
+    "Moves": "Moves"
+  },
   "SYSTEM": {
     "Dice": {
       "Advantage": "Advantage",
