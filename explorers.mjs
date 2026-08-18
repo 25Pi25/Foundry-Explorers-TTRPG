@@ -88,11 +88,11 @@ Hooks.once("ready", async () => {
 
 async function assignItemMacro(itemData, slot) {
   const item = await getDocumentClass("Item").fromDropData(itemData);
-  let command, name;
+  let command, name = `Display ${item.name}`;
   switch (item.type) {
     case "Move":
       if (item.actor) {
-        name = item.actor.name;
+        name = `Roll ${item.name}${item.actor.name ? ` (${item.actor.name})`: ""}`;
         command = `await explorers.macros.openRoll("${item.actor.id}", "${item.id}");`;
       } else {
         command = `await foundry.applications.ui.Hotbar.toggleDocumentSheet("${item.uuid}");`;
@@ -105,7 +105,7 @@ async function assignItemMacro(itemData, slot) {
   let macro = game.macros.find((m) => (m.name === item.name) && (m.command === command));
   if (!macro) {
     macro = await Macro.create({
-      name: `${item.name}${name ? ` (${name})`: ""}`,
+      name,
       type: "script",
       img: item.img,
       command

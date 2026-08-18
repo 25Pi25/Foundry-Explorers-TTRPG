@@ -40,8 +40,8 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     tabs: { template: "templates/generic/tab-navigation.hbs" },
     stats: { template: filePath("templates/actor/sections/stats.hbs"), scrollable: [""] },
     about: { template: filePath("templates/actor/sections/about.hbs") },
-    moves: { template: filePath("templates/actor/sections/moves.hbs") },
-    items: { template: filePath("templates/actor/sections/items.hbs") },
+    moves: { template: filePath("templates/actor/sections/moves.hbs"), scrollable: [".move-grid"] },
+    items: { template: filePath("templates/actor/sections/items.hbs"), scrollable: [".item-list"] },
     feats: { template: filePath("templates/actor/sections/feats.hbs") },
   }
 

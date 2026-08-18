@@ -47,7 +47,6 @@ input.move-name {
   gap: 2%;
   max-height: 400px;
   max-width: 100%;
-  overflow-y: scroll;
 }
 
 .move-options input {
