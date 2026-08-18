@@ -214,6 +214,7 @@ export const conditions = {
   quickGuarded: "SYSTEM.Conditions.QuickGuarded",
   stockpile: "SYSTEM.Conditions.Stockpile",
   wideGuarded: "SYSTEM.Conditions.WideGuarded",
+  destinyBonded: "SYSTEM.Conditions.DestinyBonded",
 };
 export const effects = {
   ...conditions,
