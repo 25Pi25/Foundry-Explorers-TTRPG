@@ -9,7 +9,8 @@
     "RollSelf": "Roll Self"
   },
   "COMPENDIUMS": {
-    "Moves": "Moves"
+    "Moves": "Moves",
+    "Items": "Items"
   },
   "SYSTEM": {
     "Dice": {
@@ -21,9 +22,26 @@
       "Stats": "Stats",
       "About": "About",
       "Moves": "Moves",
-      "Conditions": "Conditions",
+      "Items": "Items",
       "Tracks": "Tracks",
       "Feats": "Feats"
+    },
+    "Items": {
+      "Categories": {
+        "Foods": "Foods",
+        "Seeds": "Seeds",
+        "Medicines": "Medicines",
+        "Orbs": "Orbs",
+        "ScarvesAndBands": "Scarves & Bands",
+        "Scopes": "Scopes",
+        "BattleItems": "Battle Items",
+        "Ribbons": "Ribbons",
+        "Gems": "Gems",
+        "ThrownItems": "Thrown Items",
+        "EvolutionItems": "Evolution Items",
+        "FormChangingItems": "Form Changing Items",
+        "TmsAndHms": "TMs & HMs"
+      }
     },
     "Abilities": {
       "HP.Full": "HP",
@@ -73,6 +91,13 @@
             "available": { "label": "Available Tokens" },
             "max": { "label": "Maximum Tokens" }
           }
+        }
+      },
+      "Item": {
+        "FIELDS": {
+          "description": { "label": "Description" },
+          "category": { "label": "Category" },
+          "price": { "label": "Price" }
         }
       },
       "Move": {

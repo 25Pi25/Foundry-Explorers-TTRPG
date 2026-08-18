@@ -1,12 +1,11 @@
 import { filePath, hasEffectCount, toFormGroup } from '../constants.mjs';
-import { MoveDataModel } from './data-models.mjs';
 import { effects, ranges, tags, targets, triggerTypes, types } from './types.mjs';
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ItemSheetV2 } = foundry.applications.sheets;
 const { ChatMessage } = foundry.documents;
 
-export class ItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
+export class MoveSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
   static DEFAULT_OPTIONS = {
     tag: "form",
     form: {
@@ -16,12 +15,12 @@ export class ItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
       width: 600,
     },
     actions: {
-      addEffectGroup: ItemSheet.addEffectGroup,
-      deleteEffectGroup: ItemSheet.deleteEffectGroup,
-      addEffect: ItemSheet.addEffect,
-      deleteEffect: ItemSheet.deleteEffect,
-      addTag: ItemSheet.addTag,
-      deleteTag: ItemSheet.deleteTag,
+      addEffectGroup: MoveSheet.addEffectGroup,
+      deleteEffectGroup: MoveSheet.deleteEffectGroup,
+      addEffect: MoveSheet.addEffect,
+      deleteEffect: MoveSheet.deleteEffect,
+      addTag: MoveSheet.addTag,
+      deleteTag: MoveSheet.deleteTag,
     }
   }
 

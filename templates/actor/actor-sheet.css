@@ -118,7 +118,7 @@ input.character-name {
 
 /* Moves */
 
-.move-help {
+.move-help, .item-help {
   display: grid;
   place-items: center;
   height: 410px;
@@ -156,6 +156,21 @@ input.character-name {
 .pp-left {
   width: 35px;
   text-align: center;
+}
+
+/* Items */
+
+.item-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.item-row {
+  display: grid;
+  align-items: center;
+  text-align: center;
+  grid-template-columns: 20% 40% 20% 10% 10%;
 }
 
 /* Tracks */

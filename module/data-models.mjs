@@ -1,5 +1,6 @@
 import { proficiencies, types, typeChart, abilities, skills, sizes, classes,
-  specializations, categories, targets, ranges, triggerTypes, effects, tags } from './types.mjs';
+  specializations, categories, targets, ranges, triggerTypes, effects, tags, 
+  itemCategories} from './types.mjs';
 
 const { NumberField, SchemaField, StringField, HTMLField, ArrayField, TypedObjectField, BooleanField } = foundry.data.fields;
 
@@ -65,7 +66,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
       feats: new ArrayField(new StringField({ required: true })),
 
       blurbText: new StringField({ required: true }),
-      conditionText: new StringField({ required: true }),
+      itemText: new StringField({ required: true }),
       featText: new StringField({ required: true }),
     };
   }
@@ -126,6 +127,18 @@ export class PlayerDataModel extends CharacterDataModel {
   }
 }
 
+export class ItemDataModel extends foundry.abstract.TypeDataModel {
+  static LOCALIZATION_PREFIXES = ["SYSTEM.Models.Item"];
+
+  static defineSchema() {
+    return {
+      description: new StringField({ required: true }),
+      category: new StringField({ required: true, choices: itemCategories, initial: 'foods' }),
+      price: new NumberField({ required: true, nullable: true, integer: true, min: 0 })
+    };
+  }
+}
+
 export class MoveDataModel extends foundry.abstract.TypeDataModel {
   static LOCALIZATION_PREFIXES = ["SYSTEM.Models.Move"];
 
@@ -165,7 +178,7 @@ export class MoveDataModel extends foundry.abstract.TypeDataModel {
     if (data.withRangeLevel === (data.rangeCount === null)) {
       throw new Error("Attribute \"rangeCount\" is either being specified when it shouldn't, or not being specified when it should.");
     }
-    // TODO: validate effects
+    // TODO: check if applied effects not in the value set have a number, and vice versa
     // if (data.effects.some(effect => ['statUp', 'statDown'].includes(effect.effect) === !effect.ability)) {
     //   throw new Error("Attribute \"ability\" and \"count\" should only be specified for Stat Up/Stat Down.");
     // }

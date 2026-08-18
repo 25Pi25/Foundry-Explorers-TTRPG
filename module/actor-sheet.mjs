@@ -1,6 +1,6 @@
 import { filePath, getSkillDie, toModString, toFormGroup, getMoveDie } from '../constants.mjs';
 import { MoveRollDialog, SkillRollDialog } from './roll-dialog.mjs';
-import { abilities, classes, proficiencies, specializations, categories, types, skills, effects } from './types.mjs'
+import { abilities, classes, proficiencies, specializations, categories, types, skills, effects, itemCategories } from './types.mjs'
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
@@ -16,7 +16,7 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
       clearTrack: CharacterSheet.clearTrack,
       rollDie: CharacterSheet.rollDie,
       rollMoveDie: CharacterSheet.rollMoveDie,
-      removeMove: CharacterSheet.removeMove,
+      removeItem: CharacterSheet.removeItem,
       editPP: CharacterSheet.editPP
     }
   }
@@ -27,7 +27,7 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
         { id: "stats", label: "SYSTEM.Tabs.Stats", group: "primary" },
         { id: "about", label: "SYSTEM.Tabs.About", group: "primary" },
         { id: "moves", label: "SYSTEM.Tabs.Moves", group: "primary" },
-        { id: "conditions", label: "SYSTEM.Tabs.Conditions", group: "primary" },
+        { id: "items", label: "SYSTEM.Tabs.Items", group: "primary" },
         { id: "feats", label: "SYSTEM.Tabs.Feats", group: "primary" },
       ],
       initial: "stats",
@@ -41,7 +41,7 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     stats: { template: filePath("templates/actor/sections/stats.hbs"), scrollable: [""] },
     about: { template: filePath("templates/actor/sections/about.hbs") },
     moves: { template: filePath("templates/actor/sections/moves.hbs") },
-    conditions: { template: filePath("templates/actor/sections/conditions.hbs") },
+    items: { template: filePath("templates/actor/sections/items.hbs") },
     feats: { template: filePath("templates/actor/sections/feats.hbs") },
   }
 
@@ -49,6 +49,7 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     return {
       ...await super._prepareContext(options),
       moves: this.actor.items.filter(item => item.type === "Move"),
+      items: this.actor.items.filter(item => item.type !== "Move"),
       types: toFormGroup(types),
       classes: toFormGroup(classes),
       specializations: toFormGroup(specializations),
@@ -56,6 +57,7 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
       proficiencies,
       typesRecord: types,
       categories,
+      itemCategories,
       skills,
       effects,
       systemFields: this.document.system.schema.fields,
@@ -91,9 +93,10 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     // });
   }
 
-  static async removeMove(event, target) {
-    const moveId = target.dataset.id;
-    this.actor.items.get(moveId).delete();
+  static async removeItem(event, target) {
+    const id = target.dataset.id;
+    this.actor.items.get(id).delete();
+    this.render();
   }
 
   static async editPP(event, target) {

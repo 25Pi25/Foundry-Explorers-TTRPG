@@ -1,0 +1,14 @@
+<section class="standard-form">
+    <div class="move-header">
+      <div class="center">
+        <img src="{{document.img}}" title="{{document.name}}" style="cursor: pointer;"
+          height="70" width="70" class="edit-avatar" data-action="editImage" data-edit="img" />
+      </div>
+      <div class="center">
+        <input type="text" name="name" value="{{document.name}}" class="move-name">
+      </div>
+    </div>
+    {{formGroup systemFields.description value=document.system.description localize=true elementType="textarea"}}
+    {{formGroup systemFields.category value=document.system.category localize=true}}
+    {{formGroup systemFields.price value=document.system.price localize=true}}
+</section>

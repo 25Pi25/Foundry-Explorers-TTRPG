@@ -28,7 +28,8 @@ export class RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
       extraDie: 0,
       extraModifier: 0,
       multiplier: 1,
-      advantage: ''
+      advantage: '',
+      highCrit: false
     };
   }
 
@@ -47,6 +48,9 @@ export class RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
       if (typeof this.dialogState[inputName] == 'number') {
         this.dialogState[inputName] = Number(event.target.value);
       }
+      else if (typeof this.dialogState[inputName] == 'boolean') {
+        this.dialogState[inputName] = event.target.checked;
+      }
       else this.dialogState[inputName] = event.target.value;
     }
   }
@@ -57,6 +61,7 @@ export class RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
       modifier: dialog.dialogState.extraModifier,
       advantage: dialog.dialogState.advantage || 'normal',
       multiplier: dialog.dialogState.multiplier,
+      highCrit: dialog.dialogState.highCrit
     }
   }
 

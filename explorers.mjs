@@ -1,10 +1,11 @@
 import { filePath, toModString, toMoveString, hasEffectCount, SYSTEM_ID, toSkillString } from './constants.mjs';
 import { CharacterSheet, PlayerSheet } from './module/actor-sheet.mjs';
-import { CharacterDataModel, MoveDataModel, PlayerDataModel } from "./module/data-models.mjs";
+import { CharacterDataModel, ItemDataModel, MoveDataModel, PlayerDataModel } from "./module/data-models.mjs";
 import { SystemToken } from './module/documents.mjs';
 import { ExplorersDie, ExplorersRoll } from './module/explorers-roll.mjs';
+import { ItemSheet } from './module/item-sheet.mjs';
 import macros from './module/macros.mjs';
-import { ItemSheet } from './module/move-sheet.mjs';
+import { MoveSheet } from './module/move-sheet.mjs';
 import { conditions } from './module/types.mjs';
 
 const { Localization } = foundry.helpers;
@@ -28,6 +29,7 @@ Hooks.once("init", () => {
     Player: PlayerDataModel
   };
   CONFIG.Item.dataModels = {
+    Item: ItemDataModel,
     Move: MoveDataModel
   };
   CONFIG.Dice.rolls = [ExplorersRoll];
@@ -35,11 +37,11 @@ Hooks.once("init", () => {
 
   // Configure Sheets.
   Actors.registerSheet(SYSTEM_ID, PlayerSheet, { types: ["Player"], makeDefault: true });
-  Actors.registerSheet(SYSTEM_ID, CharacterSheet, { types: ["Character"]});
-  Items.registerSheet(SYSTEM_ID, ItemSheet, { makeDefault: true });
+  Actors.registerSheet(SYSTEM_ID, CharacterSheet, { types: ["Character"] });
+  Items.registerSheet(SYSTEM_ID, ItemSheet, { types: ["Item"], makeDefault: true });
+  Items.registerSheet(SYSTEM_ID, MoveSheet, { types: ["Move"] });
   const templates = ["templates/actor/partials/stat-block.hbs",
-    "templates/actor/partials/skill-block.hbs",
-    "templates/actor/partials/move-block.hbs"].map(filePath);
+    "templates/actor/partials/skill-block.hbs"].map(filePath);
   foundry.applications.handlebars.loadTemplates(templates);
   Handlebars.registerHelper('modString', toModString);
   Handlebars.registerHelper('skillDie', toSkillString);
@@ -71,6 +73,7 @@ Hooks.once("init", () => {
 Hooks.once("i18nInit", () => {
   Localization.localizeDataModel(CharacterDataModel);
   Localization.localizeDataModel(PlayerDataModel);
+  Localization.localizeDataModel(ItemDataModel);
   Localization.localizeDataModel(MoveDataModel);
 });
 

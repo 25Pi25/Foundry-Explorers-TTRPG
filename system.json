@@ -25,13 +25,20 @@
       "path": "packs/moves",
       "type": "Item",
       "banner": "systems/explorers/assets/banners/moves.webp"
+    },
+    {
+      "name": "items",
+      "label": "COMPENDIUMS.Items",
+      "path": "packs/items",
+      "type": "Item",
+      "banner": "systems/explorers/assets/banners/items.webp"
     }
   ],
   "packFolders": [
     {
       "name": "Core Rulebook",
       "color": "#000000",
-      "packs": ["moves"]
+      "packs": ["moves", "items"]
     }
   ],
   "relationships": [],
@@ -48,7 +55,8 @@
       "Player": {}
     },
     "Item": {
-      "Move": { "htmlFields": ["description"] }
+      "Move": { "htmlFields": ["description"] },
+      "Item": { "htmlFields": ["description"] }
     }
   },
   "socket": false,

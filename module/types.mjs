@@ -262,3 +262,18 @@ export const typeMatchups = {
   mostlyIneffective: "SYSTEM.TypeMatchups.MostlyIneffective",
   immune: "SYSTEM.TypeMatchups.Immune"
 }
+export const itemCategories = {
+  foods: "SYSTEM.Items.Categories.Foods",
+  seeds: "SYSTEM.Items.Categories.Seeds",
+  medicines: "SYSTEM.Items.Categories.Medicines",
+  orbs: "SYSTEM.Items.Categories.Orbs",
+  scarvesAndBands: "SYSTEM.Items.Categories.ScarvesAndBands",
+  scopes: "SYSTEM.Items.Categories.Scopes",
+  battleItems: "SYSTEM.Items.Categories.BattleItems",
+  ribbons: "SYSTEM.Items.Categories.Ribbons",
+  gems: "SYSTEM.Items.Categories.Gems",
+  thrownItems: "SYSTEM.Items.Categories.ThrownItems",
+  evolutionItems: "SYSTEM.Items.Categories.EvolutionItems",
+  formChangingItems: "SYSTEM.Items.Categories.FormChangingItems",
+  tmsAndHms: "SYSTEM.Items.Categories.TmsAndHms",
+}
