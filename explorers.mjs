@@ -2,7 +2,7 @@ import { filePath, toModString, toMoveString, hasEffectCount, SYSTEM_ID, toSkill
 import { CharacterSheet, PlayerSheet } from './module/actor-sheet.mjs';
 import { CharacterDataModel, MoveDataModel, PlayerDataModel } from "./module/data-models.mjs";
 import { SystemToken } from './module/documents.mjs';
-import { ExplorersRoll } from './module/explorers-roll.mjs';
+import { ExplorersDie, ExplorersRoll } from './module/explorers-roll.mjs';
 import macros from './module/macros.mjs';
 import { ItemSheet } from './module/move-sheet.mjs';
 import { conditions } from './module/types.mjs';
@@ -31,6 +31,7 @@ Hooks.once("init", () => {
     Move: MoveDataModel
   };
   CONFIG.Dice.rolls = [ExplorersRoll];
+  CONFIG.Dice.terms.d = ExplorersDie;
 
   // Configure Sheets.
   Actors.registerSheet(SYSTEM_ID, PlayerSheet, { types: ["Player"], makeDefault: true });

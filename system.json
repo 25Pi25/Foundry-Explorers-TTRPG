@@ -23,7 +23,8 @@
       "name": "moves",
       "label": "COMPENDIUMS.Moves",
       "path": "packs/moves",
-      "type": "Item"
+      "type": "Item",
+      "banner": "systems/explorers/assets/banners/moves.webp"
     }
   ],
   "packFolders": [

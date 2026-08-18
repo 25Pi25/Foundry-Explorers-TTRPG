@@ -1,5 +1,5 @@
 import { filePath, getSkillDie, toModString, toFormGroup, getMoveDie } from '../constants.mjs';
-import { RollDialog } from './roll-dialog.mjs';
+import { MoveRollDialog, SkillRollDialog } from './roll-dialog.mjs';
 import { abilities, classes, proficiencies, specializations, categories, types, skills, effects } from './types.mjs'
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
@@ -78,16 +78,12 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   }
 
   static async rollDie(event, target) {
-    const { sides, modifier } = getSkillDie(this.document, target.dataset.skill);
-    new Roll(`${sides}d6x${toModString(modifier)}`).toMessage({
-      speaker: ChatMessage.implementation.getSpeaker({ actor: this.document }),
-      flavor: target.dataset.name
-    });
+    new SkillRollDialog({ user: this.actor, skill: target.dataset.skill }).render({ force: true });
   }
 
   static async rollMoveDie(event, target) {
     const move = this.actor.items.get(target.dataset.id);
-    new RollDialog({ user: this.actor, move }).render({ force: true });
+    new MoveRollDialog({ user: this.actor, move }).render({ force: true });
     // const { sides, modifier } = getMoveDie(this, move);
     // new Roll(`${sides}d6x${toModString(modifier)}`).toMessage({
     //   speaker: ChatMessage.implementation.getSpeaker({ actor: this.document }),

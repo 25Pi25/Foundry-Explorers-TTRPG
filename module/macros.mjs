@@ -1,9 +1,9 @@
-import { RollDialog } from './roll-dialog.mjs';
+import { MoveRollDialog } from './roll-dialog.mjs';
 
 const { fromUuid } = foundry.utils;
 
 export default {
   async openRoll(userId, moveId) {
-    new RollDialog({ userId, moveId }).render({ force: true });
+    new MoveRollDialog({ userId, moveId }).render({ force: true });
   }
 }

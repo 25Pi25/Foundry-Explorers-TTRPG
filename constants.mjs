@@ -8,6 +8,11 @@ export const skillToDie = {
 }
 export const filePath = path => `systems/${SYSTEM_ID}/${path}`;
 export const toModString = mod => mod >= 0 ? `+${mod}` : mod.toString();
+export function getDieString({ sides, modifier, advantage = 'normal', multiplier = 1 }) {
+  const modString = modifier !== 0 ? toModString(modifier) : "";
+  const advString = advantage == 'normal' ? "" : advantage == 'advantage' ? "r<3" : "r>3";
+  return `${multiplier != 1 ? "floor((" : ""}${sides}d6${advString}x${modString}${multiplier != 1 ? `) * ${multiplier})` : ""}`;
+}
 export function getMoveDie(actor, move) {
   return move.system.power > 0 ? getDamageDie(actor, move) : getStatusDie(actor, move);
 }
@@ -35,11 +40,11 @@ export function toMoveString(move) {
   const moveDie = getMoveDie(this.document, move);
   if (!moveDie) return "Use";
   const { sides, modifier } = moveDie;
-  return `${sides}d6x${modifier !== 0 ? toModString(modifier) : ""}`;
+  return getDieString({ sides, modifier });
 }
 export function toSkillString(skill) {
   const { sides, modifier } = getSkillDie(this.document, skill);
-  return `${sides}d6x${modifier !== 0 ? toModString(modifier) : ""}`;
+  return getDieString({ sides, modifier });
 }
 export function toFormGroup(object) {
   return Object.entries(object).map(([value, label]) => ({ value, label }));

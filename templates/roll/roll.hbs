@@ -1,6 +1,6 @@
 <section class="standard-form">
   <div class="roll-options">
-    <label>Extra Power</label><input type="number" data-name="extraPower" step="1">
+    <label>Extra Die</label><input type="number" data-name="extraDie" step="1">
     <label>Extra Modifier</label><input type="number" data-name="extraModifier" step="1">
     <label>Multiplier</label><input type="number" data-name="multiplier">
     <label>Advantage</label>
@@ -12,6 +12,7 @@
       {{/with}}
       {{/each}}
     </select>
+    {{#if isMove}}
     <label>Type Matchup</label>
     <select data-name="typeMatchup">
       <option selected value="">Default</option>
@@ -19,10 +20,16 @@
         <option value={{matchupValue}}>{{localize typeMatchup}}</option>
       {{/each}}
     </select>
+    {{/if}}
   </div>
   <div class="roll-types">
-    {{#if hasPower}}<button data-action="rollDamage"><i class="icon fa-solid fa-dice-d6"></i>Roll</button>{{/if}}
-    {{#if (inSet triggers "hit")}}<button data-action="rollStatus"><i class="icon fa-solid fa-dice-d6"></i>Status</button>{{/if}}
+    {{#if isMove}}
+      {{#if hasPower}}<button data-action="roll"><i class="icon fa-solid fa-dice-d6"></i>Power</button>{{/if}}
+      {{#if (inSet triggers "hit")}}<button data-action="rollStatus"><i class="icon fa-solid fa-dice-d6"></i>Status</button>{{/if}}
+    {{else}}
+      <button data-action="roll"><i class="icon fa-solid fa-dice-d6"></i>Roll</button>
+    {{/if}}
+
   </div>
   <div class="roll-mode-buttons split-button">
     <button type="button" class="{{#if (equals messageMode "publicroll")}}selected{{/if}} roll-btn ui-control icon fa-solid fa-globe" data-action="setMessageMode" data-messagemode="publicroll" data-tooltip="CHAT.RollPublic">
