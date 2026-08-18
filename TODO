@@ -1,21 +1,21 @@
 - Write a list of status conditions ✓
 - (NEXT) Integrate effect inputs X (too much work for small scope of the project)
-- (NEXT) Add move section and draggable moves
+- (NEXT) Add move section and draggable moves ✓
 - Integrate status conditions into game mechanics
 - Design actor sheets ✓
   - Remove condition section or add something else there instead?
 - Design move sheets ✓
-- Design item sheets
-- Design a readonly version of both sheets
-- Design a Character version of the Player sheet
-- Figure out the system for displaying type matchup
+- Design item sheets ✓
+- Design a readonly version of both sheets ✓
+- Design a Character version of the Player sheet ✓
+- Figure out the system for displaying type matchup ✓
 - Fix combat initiative to WORK ✓
   - Update initiative immediately when starting?
   - Add priority support somewhere?
 - Add friendship track and adventure tokens ✓
-- Item system
+- Item system ✓
 - Display skill rolls to the player ✓
-- Figure out how the fuck you automate rolls with move power increase/decrease and advantage/disadvantage
+- Figure out how the fuck you automate rolls with move power increase/decrease and advantage/disadvantage ✓
 - Support for feats?????
 - Tile/Range system display
 - Fill out pack for items/moves
@@ -34,3 +34,4 @@
   - Low Kick
   - Spite (and find out how to determine spite PP reduction)
   - Worry Seed
+  - Weather/Terrain Moves

@@ -2,10 +2,10 @@
   "id": "explorers",
   "title": "Explorers! a TTRPG",
   "description": "A tabletop roleplaying game for explorers",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "url": "https://github.com/25Pi25/Foundry-Explorers-TTRPG",
   "manifest": "https://raw.githubusercontent.com/25Pi25/Foundry-Explorers-TTRPG/main/system.json",
-  "download": "https://github.com/25Pi25/Foundry-Explorers-TTRPG/releases/download/v1.5.2/explorers.zip",
+  "download": "https://github.com/25Pi25/Foundry-Explorers-TTRPG/releases/download/v1.5.3/explorers.zip",
   "compatibility": {
     "minimum": 13,
     "verified": 13
@@ -32,13 +32,20 @@
       "path": "packs/items",
       "type": "Item",
       "banner": "systems/explorers/assets/banners/items.webp"
+    },
+    {
+      "name": "enemies",
+      "label": "COMPENDIUMS.Enemies",
+      "path": "packs/enemies",
+      "type": "Actor",
+      "banner": "systems/explorers/assets/banners/enemies.webp"
     }
   ],
   "packFolders": [
     {
       "name": "Core Rulebook",
       "color": "#000000",
-      "packs": ["moves", "items"]
+      "packs": ["moves", "items", "enemies"]
     }
   ],
   "relationships": [],

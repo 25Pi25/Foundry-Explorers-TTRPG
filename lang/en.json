@@ -11,7 +11,8 @@
   },
   "COMPENDIUMS": {
     "Moves": "Moves",
-    "Items": "Items"
+    "Items": "Items",
+    "Enemies": "Enemies"
   },
   "SYSTEM": {
     "Dice": {
