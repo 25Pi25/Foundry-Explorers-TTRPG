@@ -152,6 +152,13 @@ export class MoveRollDialog extends RollDialog {
   }
 
   static async #rollDamage() {
+    if (this.move.actor.id == this.user.id) { // TODO: make sure this.user is owned by the person running the command
+      const isUsed = this.move.system.use();
+      if (!isUsed) {
+        ui.notifications.error("You're out of PP!");
+        return;
+      }
+    }
     const userSystem = this.user.system;
     const die = RollDialog.getDialogDie(this);
     let { sides, modifier } = getMoveDie(this.user, this.move);

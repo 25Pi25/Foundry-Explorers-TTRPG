@@ -16,8 +16,7 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
       clearTrack: CharacterSheet.clearTrack,
       rollDie: CharacterSheet.rollDie,
       rollMoveDie: CharacterSheet.rollMoveDie,
-      removeItem: CharacterSheet.removeItem,
-      editPP: CharacterSheet.editPP
+      removeItem: CharacterSheet.removeItem
     }
   }
 
@@ -65,6 +64,13 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     };
   }
 
+  _onChangeForm(config, event) {
+    super._onChangeForm(config, event);
+    const inputName = event.target.dataset.name;
+    if (!inputName == 'ppLeft') return;
+    this.editPP(event, event.target);
+  }
+
   static clearTrack() {
     const friendship = this.document.system.friendship;
     if (!friendship.isClearable) return;
@@ -99,8 +105,10 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     this.render();
   }
 
-  static async editPP(event, target) {
-    console.log(event, target)
+  async editPP(event, target) {
+    const id = target.dataset.id;
+    const item = this.actor.items.get(id);
+    await item.update({ "system.ppLeft": Number(target.value) });
   }
 }
 

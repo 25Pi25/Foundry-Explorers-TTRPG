@@ -203,6 +203,12 @@ export class MoveDataModel extends foundry.abstract.TypeDataModel {
   hasTag(tag) {
     return Object.values(this.tags).includes(tag);
   }
+
+  use() {
+    if (this.ppLeft == 0) return false;
+    this.parent.update({ "system.ppLeft": this.ppLeft-1 })
+    return true;
+  }
 }
 
 export class FeatDataModel extends foundry.abstract.TypeDataModel {
