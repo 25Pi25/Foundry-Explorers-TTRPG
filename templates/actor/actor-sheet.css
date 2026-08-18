@@ -166,6 +166,10 @@ input.character-name {
   justify-content: space-around;
 }
 
+.item-list {
+  height: 400px;
+}
+
 .item-row {
   display: grid;
   align-items: center;

@@ -172,11 +172,11 @@ export class MoveRollDialog extends RollDialog {
           break;
         case 'notVeryEffective':
           die.sides -= 1;
-          die.additionString += `<span style=\"color:red;font-weight:bold;\">+${game.i18n.localize(typeMatchups[matchup])}</span><br>`;
+          additionString += `<span style=\"color:red;font-weight:bold;\">+${game.i18n.localize(typeMatchups[matchup])}</span><br>`;
           break;
         case 'superEffective':
           die.sides += 1;
-          die.additionString += `<span style=\"color:green;font-weight:bold;\">+${game.i18n.localize(typeMatchups[matchup])}</span><br>`;
+          additionString += `<span style=\"color:green;font-weight:bold;\">+${game.i18n.localize(typeMatchups[matchup])}</span><br>`;
           break;
         case 'extremelyEffective':
           die.multiplier *= 2;
