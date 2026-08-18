@@ -264,6 +264,8 @@ export const typeMatchups = {
 }
 export const itemCategories = {
   foods: "SYSTEM.Items.Categories.Foods",
+  berries: "SYSTEM.Items.Categories.Berries",
+  gummies: "SYSTEM.Items.Categories.Gummies",
   seeds: "SYSTEM.Items.Categories.Seeds",
   medicines: "SYSTEM.Items.Categories.Medicines",
   orbs: "SYSTEM.Items.Categories.Orbs",

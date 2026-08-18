@@ -2,6 +2,7 @@
   "TYPES.Actor.Character": "Character",
   "TYPES.Actor.Player": "Player",
   "TYPES.Item.Move": "Move",
+  "TYPES.Item.Item": "Item",
   "CHAT": {
     "RollPublic": "Roll Public",
     "RollPrivate": "Roll Private",
@@ -29,6 +30,8 @@
     "Items": {
       "Categories": {
         "Foods": "Foods",
+        "Berries": "Berries",
+        "Gummies": "Gummies",
         "Seeds": "Seeds",
         "Medicines": "Medicines",
         "Orbs": "Orbs",

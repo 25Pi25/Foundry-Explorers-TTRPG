@@ -59,7 +59,7 @@ export class RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     return {
       sides: dialog.dialogState.extraDie,
       modifier: dialog.dialogState.extraModifier,
-      advantage: dialog.dialogState.advantage || 'normal',
+      advantage: dialog.dialogState.advantage,
       multiplier: dialog.dialogState.multiplier,
       highCrit: dialog.dialogState.highCrit
     }
