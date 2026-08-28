@@ -4,7 +4,7 @@
   <div class="move-grid scrollable">
     {{#each moves as |move id|}}
     {{#with ..}}
-    <fieldset class="move-block draggable" data-item-id="{{move.id}}">
+    <fieldset class="move-block">
       <legend>{{move.name}}</legend>
       <div class="move-block-sections">
         <p>{{localize (lookup typesRecord move.system.type)}} / <!--
@@ -30,7 +30,7 @@
         {{/each}}
         </p>
         <div class="move-buttons">
-          <button type="button" data-action="rollMoveDie" data-id="{{move.id}}">{{moveDie move}}</button>
+          <button type="button" class="draggable" data-item-id="{{move.id}}" data-action="rollMoveDie" data-id="{{move.id}}">{{moveDie move}}</button>
           <button type="button" data-action="removeItem" data-id="{{move.id}}" class="icon fa-solid fa-trash"></button>
           <p><input type="number" data-name="ppLeft" data-id="{{move.id}}" value="{{move.system.ppLeft}}" class="pp-left"></input> / {{move.system.pp}} PP</p>
         </div>

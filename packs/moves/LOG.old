@@ -1,8 +1,7 @@
-2026/08/28-00:27:41.673 35c0 Log #249: 0 ops saved to Table #253 OK
-2026/08/28-00:27:41.693 35c0 Archiving C:\Users\sec\AppData\Local\FoundryVTT\Data\systems\explorers\packs\moves/000249.log: OK
-2026/08/28-00:27:41.693 35c0 Log #252: 0 ops saved to Table #254 OK
-2026/08/28-00:27:41.694 35c0 Archiving C:\Users\sec\AppData\Local\FoundryVTT\Data\systems\explorers\packs\moves/000252.log: OK
-2026/08/28-00:27:41.695 35c0 Table #246: 537 entries OK
-2026/08/28-00:27:41.699 35c0 Archiving C:\Users\sec\AppData\Local\FoundryVTT\Data\systems\explorers\packs\moves/MANIFEST-000247: OK
-2026/08/28-00:27:41.699 35c0 Archiving C:\Users\sec\AppData\Local\FoundryVTT\Data\systems\explorers\packs\moves/MANIFEST-000251: OK
-2026/08/28-00:27:41.705 35c0 **** Repaired leveldb C:\Users\sec\AppData\Local\FoundryVTT\Data\systems\explorers\packs\moves; recovered 1 files; 182382 bytes. Some data may have been lost. ****
+2026/08/28-15:47:36.652 60c Recovering log #285
+2026/08/28-15:47:36.656 60c Delete type=0 #285
+2026/08/28-15:47:36.656 60c Delete type=3 #283
+2026/08/28-15:49:16.486 e90 Level-0 table #290: started
+2026/08/28-15:49:16.486 e90 Level-0 table #290: 0 bytes OK
+2026/08/28-15:49:16.488 e90 Delete type=0 #288
+2026/08/28-15:49:16.488 e90 Manual compaction at level-0 from '!folders!2uN51SBXPRy0kVta' @ 72057594037927935 : 1 .. '!items!zz3CGLgybSEDxy9j' @ 0 : 0; will stop at (end)

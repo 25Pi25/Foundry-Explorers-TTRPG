@@ -154,7 +154,7 @@ export const triggerTypes = {
   autoApplyToRoom: "SYSTEM.TriggerTypes.AutoApplyToRoom",
   flexible: "SYSTEM.TriggerTypes.Flexible"
 }
-export const statConditions = {
+export const statConditions = { // changes your raw stats by a specific value
   atkUp: "SYSTEM.Conditions.atk.Up",
   atkDown: "SYSTEM.Conditions.atk.Down",
   defUp: "SYSTEM.Conditions.def.Up",
@@ -168,7 +168,7 @@ export const statConditions = {
   iqUp: "SYSTEM.Conditions.iq.Up",
   iqDown: "SYSTEM.Conditions.iq.Down",
 };
-export const conditions = {
+export const conditions = { // requires a status condition check
   ...statConditions,
   paralyzed: "SYSTEM.Conditions.Paralyzed",
   burned: "SYSTEM.Conditions.Burned",
@@ -194,7 +194,7 @@ export const conditions = {
   insomnia: "SYSTEM.Conditions.Insomnia",
   invulnerable: "SYSTEM.Conditions.Invulnerable",
 };
-export const stateConditions = {
+export const stateConditions = { // does not require a status condition save
   ...conditions,
   disabled: "SYSTEM.Conditions.Disabled",
   statusDisabled: "SYSTEM.Conditions.StatusDisabled",
@@ -221,7 +221,7 @@ export const stateConditions = {
   recharging: "SYSTEM.Conditions.Recharging",
   abilitySuppressed: "SYSTEM.Conditions.AbilitySuppressed",
 };
-export const effects = {
+export const effects = { // Non-conditions that causes instantaneous effects
   ...stateConditions,
   mudSport: "SYSTEM.Effects.MudSport",
   waterSport: "SYSTEM.Effects.WaterSport",
@@ -257,7 +257,17 @@ export const tags = {
   multihit: "SYSTEM.Tags.Multihit",
   multihitHalf: "SYSTEM.Tags.MultihitHalf",
   highCritRatio: "SYSTEM.Tags.HighCritRatio",
-  noCrit: "SYSTEM.Tags.NoCrit"
+  noCrit: "SYSTEM.Tags.NoCrit",
+  ballBomb: "SYSTEM.Tags.BallBomb",
+  biting: "SYSTEM.Tags.Biting",
+  dance: "SYSTEM.Tags.Dance",
+  sound: "SYSTEM.Tags.Sound",
+  explosive: "SYSTEM.Tags.Explosive",
+  powderSpore: "SYSTEM.Tags.PowderSpore",
+  pulse: "SYSTEM.Tags.Pulse",
+  punch: "SYSTEM.Tags.Punch",
+  slice: "SYSTEM.Tags.Slice",
+  wind: "SYSTEM.Tags.Wind",
 }
 export const advantage = {
   advantage: "SYSTEM.Dice.Advantage",

@@ -12,7 +12,8 @@
   "COMPENDIUMS": {
     "Moves": "Moves",
     "Items": "Items",
-    "Enemies": "Enemies"
+    "Enemies": "Enemies",
+    "Tables": "Tables"
   },
   "SYSTEM": {
     "Dice": {
@@ -327,7 +328,17 @@
       "Multihit": "Multihit",
       "MultihitHalf": "Multihit Half",
       "HighCritRatio": "High Crit. Ratio",
-      "NoCrit": "No Critical Hits"
+      "NoCrit": "No Critical Hits",
+      "BallBomb": "Ball/Bomb Move",
+      "Biting": "Biting Move",
+      "Dance": "Dancing Move",
+      "Sound": "Sound-Based Move",
+      "Explosive": "Explosive Move",
+      "PowderSpore": "Powder/Spore Move",
+      "Pulse": "Pulse Move",
+      "Punch": "Punching Move",
+      "Slice": "Slicing Move",
+      "Wind": "Wind Move"
     },
     "Misc": {
       "SkillCheckOverride": "Skill Check Override (Optional)",

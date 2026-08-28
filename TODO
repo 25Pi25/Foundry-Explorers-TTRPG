@@ -3,7 +3,7 @@
 - (NEXT) Add move section and draggable moves ✓
 - Integrate status conditions into game mechanics
 - Design actor sheets ✓
-  - Remove condition section or add something else there instead?
+  - Remove condition section or add something else there instead? ✓
 - Design move sheets ✓
 - Design item sheets ✓
 - Design a readonly version of both sheets ✓
@@ -23,7 +23,7 @@
 - Fill out pack for traps too!
 - Dungeon Tokens?
 - what if i added nature colors that would be funny
-- Perhaps a pack for the sample enemies
+- Perhaps a pack for the sample enemies ✓
 - Finish all TODO comments
 - Fix all GitHub issues
 - Test all the mechanics with 3x3 characters and see if it works out
@@ -45,3 +45,9 @@
   - Dragon Ascent better than V-Create (no speed down)
   - Petal Blizzard is spelled wrong
   - Misty Explosion has no PP
+  - Blinded says the "target" is no longer blinded instead of the Pokemon
+  - Acid Bomb is called "Acid Spray" in the Move Groups section
+  - Bug Bite is not a biting move (NOT implemented)
+  - Between Revelation/Rain Dance, both are not dancing moves
+  - Sleep Powder doesn't exist but is listed in Move Groups
+  - Razor/Ominous/Silver Wind are not wind moves

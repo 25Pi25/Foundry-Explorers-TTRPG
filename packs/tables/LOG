@@ -1,0 +1,7 @@
+2026/08/28-15:49:26.026 f0c Recovering log #271
+2026/08/28-15:49:26.032 f0c Delete type=0 #271
+2026/08/28-15:49:26.033 f0c Delete type=3 #269
+2026/08/28-16:06:34.535 e90 Level-0 table #276: started
+2026/08/28-16:06:34.547 e90 Level-0 table #276: 3430 bytes OK
+2026/08/28-16:06:34.548 e90 Delete type=0 #274
+2026/08/28-16:06:34.553 e90 Manual compaction at level-0 from '!actors!4WbOKcWBvT5RWNN7' @ 72057594037927935 : 1 .. '!tables.results!np9q7Hk86oyzJRiv.mzA5nbo3k1qBJN6r' @ 0 : 0; will stop at (end)

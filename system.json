@@ -39,13 +39,20 @@
       "path": "packs/enemies",
       "type": "Actor",
       "banner": "systems/explorers/assets/banners/enemies.webp"
+    },
+    {
+      "name": "tables",
+      "label": "COMPENDIUMS.Tables",
+      "path": "packs/tables",
+      "type": "RollTable",
+      "banner": "systems/explorers/assets/banners/tables.webp"
     }
   ],
   "packFolders": [
     {
       "name": "Core Rulebook",
       "color": "#000000",
-      "packs": ["moves", "items", "enemies"]
+      "packs": ["moves", "items", "enemies", "tables"]
     }
   ],
   "relationships": [],

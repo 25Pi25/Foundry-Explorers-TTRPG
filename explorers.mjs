@@ -93,7 +93,7 @@ async function assignItemMacro(itemData, slot) {
     case "Move":
       if (item.actor) {
         name = `Roll ${item.name}${item.actor.name ? ` (${item.actor.name})`: ""}`;
-        command = `await explorers.macros.openRoll("${item.actor.id}", "${item.id}");`;
+        command = `await explorers.macros.openMoveRoll("${item.actor.id}", "${item.id}");`;
       } else {
         command = `await foundry.applications.ui.Hotbar.toggleDocumentSheet("${item.uuid}");`;
       }
