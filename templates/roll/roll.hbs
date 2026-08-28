@@ -5,7 +5,7 @@
     <label>Multiplier</label><input type="number" data-name="multiplier">
     <label>Advantage</label>
     <select data-name="advantage">
-      <option selected value="">Default</option>
+      {{#if isMove}}<option selected value="">Default</option>{{/if}}
       {{#each advantage as |advOption advValue|}}
       {{#with ..}}
         <option {{#if (equals dialogState.advantage advValue)}}selected{{/if}} value={{advValue}}>{{localize advOption}}</option>

@@ -1,14 +1,19 @@
-2026/08/18-02:45:19.856 3470 Recovering log #219
-2026/08/18-02:45:19.862 3470 Delete type=0 #219
-2026/08/18-02:45:19.862 3470 Delete type=3 #218
-2026/08/18-02:45:20.373 32c8 Level-0 table #223: started
-2026/08/18-02:45:20.384 32c8 Level-0 table #223: 135584 bytes OK
-2026/08/18-02:45:20.386 32c8 Delete type=0 #221
-2026/08/18-02:45:20.387 32c8 Manual compaction at level-0 from '!folders!2uN51SBXPRy0kVta' @ 72057594037927935 : 1 .. '!items!ztPW7z6DrbMegPOB' @ 0 : 0; will stop at '!items!ztPW7z6DrbMegPOB' @ 3171 : 1
-2026/08/18-02:45:20.387 32c8 Compacting 1@0 + 1@1 files
-2026/08/18-02:45:20.400 32c8 Generated table #224@0: 409 keys, 135584 bytes
-2026/08/18-02:45:20.400 32c8 Compacted 1@0 + 1@1 files => 135584 bytes
-2026/08/18-02:45:20.402 32c8 compacted to: files[ 0 1 0 0 0 0 0 ]
-2026/08/18-02:45:20.403 32c8 Delete type=2 #183
-2026/08/18-02:45:20.403 32c8 Delete type=2 #223
-2026/08/18-02:45:20.404 32c8 Manual compaction at level-0 from '!items!ztPW7z6DrbMegPOB' @ 3171 : 1 .. '!items!ztPW7z6DrbMegPOB' @ 0 : 0; will stop at (end)
+2026/08/27-23:46:48.811 3a4c Recovering log #240
+2026/08/27-23:46:48.816 3a4c Delete type=2 #224
+2026/08/27-23:46:48.817 3a4c Delete type=2 #230
+2026/08/27-23:46:48.817 3a4c Delete type=2 #233
+2026/08/27-23:46:48.817 3a4c Delete type=2 #236
+2026/08/27-23:46:48.817 3a4c Delete type=2 #239
+2026/08/27-23:46:48.817 3a4c Delete type=0 #240
+2026/08/27-23:46:48.817 3a4c Delete type=3 #238
+2026/08/27-23:46:49.422 464c Level-0 table #245: started
+2026/08/27-23:46:49.428 464c Level-0 table #245: 182382 bytes OK
+2026/08/27-23:46:49.430 464c Delete type=0 #243
+2026/08/27-23:46:49.430 464c Manual compaction at level-0 from '!folders!2uN51SBXPRy0kVta' @ 72057594037927935 : 1 .. '!items!zz3CGLgybSEDxy9j' @ 0 : 0; will stop at '!items!zz3CGLgybSEDxy9j' @ 4001 : 1
+2026/08/27-23:46:49.431 464c Compacting 1@0 + 1@1 files
+2026/08/27-23:46:49.440 464c Generated table #246@0: 537 keys, 182382 bytes
+2026/08/27-23:46:49.440 464c Compacted 1@0 + 1@1 files => 182382 bytes
+2026/08/27-23:46:49.441 464c compacted to: files[ 0 1 0 0 0 0 0 ]
+2026/08/27-23:46:49.441 464c Delete type=2 #241
+2026/08/27-23:46:49.441 464c Delete type=2 #245
+2026/08/27-23:46:49.442 464c Manual compaction at level-0 from '!items!zz3CGLgybSEDxy9j' @ 4001 : 1 .. '!items!zz3CGLgybSEDxy9j' @ 0 : 0; will stop at (end)

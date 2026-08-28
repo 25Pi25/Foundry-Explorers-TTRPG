@@ -193,7 +193,9 @@ export const conditions = {
   eyedrop: "SYSTEM.Conditions.Eyedrop",
   insomnia: "SYSTEM.Conditions.Insomnia",
   invulnerable: "SYSTEM.Conditions.Invulnerable",
-  
+};
+export const stateConditions = {
+  ...conditions,
   disabled: "SYSTEM.Conditions.Disabled",
   statusDisabled: "SYSTEM.Conditions.StatusDisabled",
   flyingDisabled: "SYSTEM.Conditions.FlyingDisabled", 
@@ -215,14 +217,18 @@ export const conditions = {
   stockpile: "SYSTEM.Conditions.Stockpile",
   wideGuarded: "SYSTEM.Conditions.WideGuarded",
   destinyBonded: "SYSTEM.Conditions.DestinyBonded",
+  doubleDamage: "SYSTEM.Conditions.DoubleDamage",
+  recharging: "SYSTEM.Conditions.Recharging",
+  abilitySuppressed: "SYSTEM.Conditions.AbilitySuppressed",
 };
 export const effects = {
-  ...conditions,
+  ...stateConditions,
   mudSport: "SYSTEM.Effects.MudSport",
   waterSport: "SYSTEM.Effects.WaterSport",
   sizeChange: "SYSTEM.Effects.SizeChange",
   push: "SYSTEM.Effects.Push",
   sandstorm: "SYSTEM.Effects.Sandstorm",
+  instantKO: "SYSTEM.Effects.InstantKO",
 }
 export const valueEffects = new Set([ // most of these will be duration, some will have other meanings
   'insomnia',
@@ -235,6 +241,9 @@ export const valueEffects = new Set([ // most of these will be duration, some wi
   'levitating',
   'aquaVeil',
   'stockpile',
+  'doubleDamage',
+  'recharging',
+  'abilitySuppressed',
   'mudSport',
   'waterSport',
   'sizeChange',
@@ -245,10 +254,10 @@ export const tags = {
   healPower: "SYSTEM.Tags.HealPower",
   healHalf: "SYSTEM.Tags.HealHalf",
   recoil: "SYSTEM.Tags.Recoil",
-  absorbing: "SYSTEM.Tags.Absorbing",
   multihit: "SYSTEM.Tags.Multihit",
   multihitHalf: "SYSTEM.Tags.MultihitHalf",
-  highCritRatio: "SYSTEM.Tags.HighCritRatio"
+  highCritRatio: "SYSTEM.Tags.HighCritRatio",
+  noCrit: "SYSTEM.Tags.NoCrit"
 }
 export const advantage = {
   advantage: "SYSTEM.Dice.Advantage",

@@ -66,7 +66,6 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
       feats: new ArrayField(new StringField({ required: true })),
 
       blurbText: new StringField({ required: true }),
-      itemText: new StringField({ required: true }),
       featText: new StringField({ required: true }),
     };
   }
@@ -206,7 +205,7 @@ export class MoveDataModel extends foundry.abstract.TypeDataModel {
 
   use() {
     if (this.ppLeft == 0) return false;
-    this.parent.update({ "system.ppLeft": this.ppLeft-1 })
+    this.parent.update({ "system.ppLeft": this.ppLeft-1 });
     return true;
   }
 }

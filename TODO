@@ -18,7 +18,8 @@
 - Figure out how the fuck you automate rolls with move power increase/decrease and advantage/disadvantage ✓
 - Support for feats?????
 - Tile/Range system display
-- Fill out pack for items/moves
+- Fill out pack for moves ✓
+- Fill out pack for items
 - Fill out pack for traps too!
 - Dungeon Tokens?
 - what if i added nature colors that would be funny
@@ -26,6 +27,7 @@
 - Finish all TODO comments
 - Fix all GitHub issues
 - Test all the mechanics with 3x3 characters and see if it works out
+- Figure out how the dragging macro system will work (need to be able to open actor's moves)
 
 - Implement the following moves' effects if I want to do more:
   - Charge
@@ -35,3 +37,11 @@
   - Spite (and find out how to determine spite PP reduction)
   - Worry Seed
   - Weather/Terrain Moves
+
+- Find issues in the system
+  - Hammer Arm has 5 power but no drawback (speed down 2 on user instead of target?)
+  - Gunk Shot is Normal type
+  - Fusion Bolt seems a little underpowered? Could be wrong
+  - Dragon Ascent better than V-Create (no speed down)
+  - Petal Blizzard is spelled wrong
+  - Misty Explosion has no PP

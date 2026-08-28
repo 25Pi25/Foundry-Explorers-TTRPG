@@ -306,24 +306,28 @@
       "QuickGuarded": "Quick Guarded",
       "Stockpile": "Stockpile",
       "WideGuarded": "Wide Guarded",
-      "DestinyBonded": "Destiny Bonded"
+      "DestinyBonded": "Destiny Bonded",
+      "DoubleDamage": "Double Damage",
+      "Recharging": "Recharging",
+      "AbilitySuppressed": "Ability Suppressed"
     },
     "Effects": {
       "MudSport": "Mud Sport",
       "WaterSport": "Water Sport",
       "SizeChange": "Size Change",
       "Push": "Push",
-      "Sandstorm": "Sandstorm"
+      "Sandstorm": "Sandstorm",
+      "InstantKO": "Instant KO"
     },
     "Tags": {
       "Priority": "Priority",
       "HealPower": "Heal Power",
       "HealHalf": "Heal Half",
       "Recoil": "Recoil",
-      "Absorbing": "Absorbing",
       "Multihit": "Multihit",
       "MultihitHalf": "Multihit Half",
-      "HighCritRatio": "High Crit. Ratio"
+      "HighCritRatio": "High Crit. Ratio",
+      "NoCrit": "No Critical Hits"
     },
     "Misc": {
       "SkillCheckOverride": "Skill Check Override (Optional)",

@@ -1,6 +1,6 @@
 import { filePath, getSkillDie, toModString, toFormGroup, getMoveDie } from '../constants.mjs';
 import { MoveRollDialog, SkillRollDialog } from './roll-dialog.mjs';
-import { abilities, classes, proficiencies, specializations, categories, types, skills, effects, itemCategories } from './types.mjs'
+import { abilities, classes, proficiencies, specializations, categories, types, skills, effects, itemCategories, sizes } from './types.mjs'
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
@@ -59,6 +59,7 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
       itemCategories,
       skills,
       effects,
+      sizes: toFormGroup(sizes),
       systemFields: this.document.system.schema.fields,
       tabs: this._prepareTabs("primary"),
     };

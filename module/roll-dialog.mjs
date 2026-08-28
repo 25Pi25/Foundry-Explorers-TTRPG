@@ -28,7 +28,7 @@ export class RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
       extraDie: 0,
       extraModifier: 0,
       multiplier: 1,
-      advantage: '',
+      advantage: 'normal',
       highCrit: false
     };
   }
@@ -139,6 +139,7 @@ export class MoveRollDialog extends RollDialog {
 
     this.user = user;
     this.move = move;
+    this.dialogState.advantage = ''; // Allowed a default option
     this.dialogState.typeMatchup = '';
   }
 
