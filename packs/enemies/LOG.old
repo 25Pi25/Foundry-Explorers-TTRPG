@@ -1,17 +1,8 @@
-2026/08/27-23:47:20.784 1714 Recovering log #227
-2026/08/27-23:47:20.784 1714 Level-0 table #229: started
-2026/08/27-23:47:20.796 1714 Level-0 table #229: 2061 bytes OK
-2026/08/27-23:47:20.801 1714 Delete type=0 #227
-2026/08/27-23:47:20.802 1714 Delete type=3 #226
-2026/08/27-23:56:43.951 4698 Level-0 table #232: started
-2026/08/27-23:56:43.952 4698 Level-0 table #232: 0 bytes OK
-2026/08/27-23:56:43.956 4698 Delete type=0 #230
-2026/08/27-23:56:43.966 4698 Manual compaction at level-0 from '!actors!4WbOKcWBvT5RWNN7' @ 72057594037927935 : 1 .. '!items!ztPW7z6DrbMegPOB' @ 0 : 0; will stop at '!actors!OBc0DqObtn6z56Ru' @ 3317 : 1
-2026/08/27-23:56:43.966 4698 Compacting 2@0 + 1@1 files
-2026/08/27-23:56:43.977 4698 Generated table #233@0: 429 keys, 155491 bytes
-2026/08/27-23:56:43.978 4698 Compacted 2@0 + 1@1 files => 155491 bytes
-2026/08/27-23:56:43.979 4698 compacted to: files[ 0 1 0 0 0 0 0 ]
-2026/08/27-23:56:43.979 4698 Delete type=2 #216
-2026/08/27-23:56:43.980 4698 Delete type=2 #222
-2026/08/27-23:56:43.980 4698 Delete type=2 #229
-2026/08/27-23:56:43.980 4698 Manual compaction at level-0 from '!actors!OBc0DqObtn6z56Ru' @ 3317 : 1 .. '!items!ztPW7z6DrbMegPOB' @ 0 : 0; will stop at (end)
+2026/08/28-00:27:41.774 35c0 Log #231: 0 ops saved to Table #236 OK
+2026/08/28-00:27:41.775 35c0 Archiving C:\Users\sec\AppData\Local\FoundryVTT\Data\systems\explorers\packs\enemies/000231.log: OK
+2026/08/28-00:27:41.775 35c0 Log #235: 0 ops saved to Table #237 OK
+2026/08/28-00:27:41.776 35c0 Archiving C:\Users\sec\AppData\Local\FoundryVTT\Data\systems\explorers\packs\enemies/000235.log: OK
+2026/08/28-00:27:41.777 35c0 Table #233: 429 entries OK
+2026/08/28-00:27:41.781 35c0 Archiving C:\Users\sec\AppData\Local\FoundryVTT\Data\systems\explorers\packs\enemies/MANIFEST-000228: OK
+2026/08/28-00:27:41.782 35c0 Archiving C:\Users\sec\AppData\Local\FoundryVTT\Data\systems\explorers\packs\enemies/MANIFEST-000234: OK
+2026/08/28-00:27:41.788 35c0 **** Repaired leveldb C:\Users\sec\AppData\Local\FoundryVTT\Data\systems\explorers\packs\enemies; recovered 1 files; 155491 bytes. Some data may have been lost. ****

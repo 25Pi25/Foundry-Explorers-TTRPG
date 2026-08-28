@@ -30,7 +30,8 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
     this.parent.updateSource({
       prototypeToken: {
         actorLink: true,
-        disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY,
+        disposition: CONST.TOKEN_DISPOSITIONS.NEUTRAL,
+        lockRotation: true,
         sight: {
           enabled: true,
           range: 20,
@@ -94,6 +95,17 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 
 export class PlayerDataModel extends CharacterDataModel {
   static LOCALIZATION_PREFIXES = super.LOCALIZATION_PREFIXES.concat("SYSTEM.Models.Player");
+
+  async _preCreate(data, options, user) {
+    const isAllowed = await super._preCreate(data, options, user);
+    if (isAllowed === false) return false;
+
+    this.parent.updateSource({
+      prototypeToken: {
+        disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
+      }
+    });
+  }
 
   static defineSchema() {
     return {
