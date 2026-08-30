@@ -150,10 +150,10 @@ export const triggerTypes = {
   hit: "SYSTEM.TriggerTypes.Hit",
   d6: "SYSTEM.TriggerTypes.D6",
   d56: "SYSTEM.TriggerTypes.D56",
-  abilitiesutoApplyOnStatus: "SYSTEM.TriggerTypes.AutoApplyOnStatus", // TODO: fix typo without breaking compendium
+  autoApplyOnStatus: "SYSTEM.TriggerTypes.AutoApplyOnStatus", // TODO: fix typo without breaking compendium
   autoApplyToRoom: "SYSTEM.TriggerTypes.AutoApplyToRoom",
   flexible: "SYSTEM.TriggerTypes.Flexible"
-}
+};
 export const statConditions = { // changes your raw stats by a specific value
   atkUp: "SYSTEM.Conditions.atk.Up",
   atkDown: "SYSTEM.Conditions.atk.Down",
@@ -229,7 +229,7 @@ export const effects = { // Non-conditions that causes instantaneous effects
   push: "SYSTEM.Effects.Push",
   sandstorm: "SYSTEM.Effects.Sandstorm",
   instantKO: "SYSTEM.Effects.InstantKO",
-}
+};
 export const valueEffects = new Set([ // most of these will be duration, some will have other meanings
   'insomnia',
   'magicCoat',
@@ -248,8 +248,21 @@ export const valueEffects = new Set([ // most of these will be duration, some wi
   'waterSport',
   'sizeChange',
   'push'
-])
+]);
+export const moveCategories = {
+  ballBomb: "SYSTEM.MoveCategories.BallBomb",
+  biting: "SYSTEM.MoveCategories.Biting",
+  dance: "SYSTEM.MoveCategories.Dance",
+  sound: "SYSTEM.MoveCategories.Sound",
+  explosive: "SYSTEM.MoveCategories.Explosive",
+  powderSpore: "SYSTEM.MoveCategories.PowderSpore",
+  pulse: "SYSTEM.MoveCategories.Pulse",
+  punch: "SYSTEM.MoveCategories.Punch",
+  slice: "SYSTEM.MoveCategories.Slice",
+  wind: "SYSTEM.MoveCategories.Wind",
+}
 export const tags = {
+  ...moveCategories,
   priority: "SYSTEM.Tags.Priority",
   healPower: "SYSTEM.Tags.HealPower",
   healHalf: "SYSTEM.Tags.HealHalf",
@@ -258,22 +271,16 @@ export const tags = {
   multihitHalf: "SYSTEM.Tags.MultihitHalf",
   highCritRatio: "SYSTEM.Tags.HighCritRatio",
   noCrit: "SYSTEM.Tags.NoCrit",
-  ballBomb: "SYSTEM.Tags.BallBomb",
-  biting: "SYSTEM.Tags.Biting",
-  dance: "SYSTEM.Tags.Dance",
-  sound: "SYSTEM.Tags.Sound",
-  explosive: "SYSTEM.Tags.Explosive",
-  powderSpore: "SYSTEM.Tags.PowderSpore",
-  pulse: "SYSTEM.Tags.Pulse",
-  punch: "SYSTEM.Tags.Punch",
-  slice: "SYSTEM.Tags.Slice",
-  wind: "SYSTEM.Tags.Wind",
-}
+  changeOffense: "SYSTEM.Tags.ChangeOffense", // implemented
+  changeDefense: "SYSTEM.Tags.ChangeDefense",
+  usesHighestOffense: "SYSTEM.Tags.UsesHighestOffense", // implemented
+  usesHighestDefense: "SYSTEM.Tags.UsesHighestDefense",
+};
 export const advantage = {
   advantage: "SYSTEM.Dice.Advantage",
   normal: "SYSTEM.Dice.Normal",
   disadvantage: "SYSTEM.Dice.Disadvantage",
-}
+};
 export const typeMatchups = {
   extremelyEffective: "SYSTEM.TypeMatchups.ExtremelyEffective",
   superEffective: "SYSTEM.TypeMatchups.SuperEffective",
@@ -281,7 +288,7 @@ export const typeMatchups = {
   notVeryEffective: "SYSTEM.TypeMatchups.NotVeryEffective",
   mostlyIneffective: "SYSTEM.TypeMatchups.MostlyIneffective",
   immune: "SYSTEM.TypeMatchups.Immune"
-}
+};
 export const itemCategories = {
   foods: "SYSTEM.Items.Categories.Foods",
   berries: "SYSTEM.Items.Categories.Berries",
@@ -298,4 +305,4 @@ export const itemCategories = {
   evolutionItems: "SYSTEM.Items.Categories.EvolutionItems",
   formChangingItems: "SYSTEM.Items.Categories.FormChangingItems",
   tmsAndHms: "SYSTEM.Items.Categories.TmsAndHms",
-}
+};

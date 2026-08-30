@@ -329,6 +329,12 @@
       "MultihitHalf": "Multihit Half",
       "HighCritRatio": "High Crit. Ratio",
       "NoCrit": "No Critical Hits",
+      "ChangeOffense": "Change Offense",
+      "ChangeDefense": "Change Defense",
+      "UsesHighestOffense": "Uses Highest Offense",
+      "UsesHighestDefense": "Uses Highest Defense"
+    },
+    "MoveCategories": {
       "BallBomb": "Ball/Bomb Move",
       "Biting": "Biting Move",
       "Dance": "Dancing Move",

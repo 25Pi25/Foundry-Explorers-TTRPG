@@ -45,31 +45,31 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   }
 
   async _prepareContext(options) {
-    return {
-      ...await super._prepareContext(options),
-      moves: this.actor.items.filter(item => item.type === "Move"),
-      items: this.actor.items.filter(item => item.type !== "Move"),
-      types: toFormGroup(types),
-      classes: toFormGroup(classes),
-      specializations: toFormGroup(specializations),
-      abilities,
-      proficiencies,
-      typesRecord: types,
-      categories,
-      itemCategories,
-      skills,
-      effects,
-      sizes: toFormGroup(sizes),
-      systemFields: this.document.system.schema.fields,
-      tabs: this._prepareTabs("primary"),
-    };
+    const context = await super._prepareContext(options);
+    context.moves = this.actor.items.filter(item => item.type === "Move");
+    context.items = this.actor.items.filter(item => item.type !== "Move");
+    context.types = toFormGroup(types);
+    context.classes = toFormGroup(classes);
+    context.specializations = toFormGroup(specializations);
+    context.abilities = abilities;
+    context.proficiencies = proficiencies;
+    context.typesRecord = types;
+    context.categories = categories;
+    context.itemCategories = itemCategories;
+    context.skills = skills;
+    context.effects = effects;
+    context.sizes = toFormGroup(sizes);
+    context.systemFields = this.document.system.schema.fields;
+    context.tabs = this._prepareTabs("primary");
+    context.heldItemName = this.actor.items.get(this.document.system.heldItem ?? "")?.name
+    return context;
   }
 
   _onChangeForm(config, event) {
     super._onChangeForm(config, event);
     const inputName = event.target.dataset.name;
-    if (!inputName == 'ppLeft') return;
-    this.editPP(event, event.target);
+    if (inputName === 'ppLeft') this.editPP(event, event.target);
+    if (inputName === 'heldItem') this.setHeldItem(event, event.target);
   }
 
   static clearTrack() {
@@ -111,6 +111,14 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     const item = this.actor.items.get(id);
     await item.update({ "system.ppLeft": Number(target.value) });
   }
+
+  async setHeldItem(event, target) {
+    await this.document.update({
+      system: {
+        heldItem: target.checked ? target.dataset.id : null
+      }
+    });
+  }
 }
 
 export class PlayerSheet extends CharacterSheet {
@@ -131,9 +139,8 @@ export class PlayerSheet extends CharacterSheet {
   };
 
   async _prepareContext(options) {
-    return {
-      ...await super._prepareContext(options),
-      isPlayerSheet: true
-    };
+    const context = await super._prepareContext(options);
+    context.isPlayerSheet = true;
+    return context;
   }
 }

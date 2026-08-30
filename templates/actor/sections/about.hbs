@@ -4,6 +4,12 @@
     {{formGroup systemFields.type2 value=document.system.type2 options=types localize=true}}
     {{formGroup systemFields.species value=document.system.species}}
     {{formGroup systemFields.size value=document.system.size options=sizes localize=true}}
+    <div class="form-group">
+      <label>{{localize "SYSTEM.Models.Character.FIELDS.heldItem.label"}}</label>
+      <div class="form-fields">
+        <input type="text" disabled value="{{heldItemName}}">
+      </div>
+    </div>
     {{#if isPlayerSheet}}
     {{formGroup systemFields.class value=document.system.class options=classes localize=true}}
     {{formGroup systemFields.specialization value=document.system.specialization options=specializations localize=true}}

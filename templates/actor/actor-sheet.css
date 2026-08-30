@@ -174,7 +174,11 @@ input.character-name {
   display: grid;
   align-items: center;
   text-align: center;
-  grid-template-columns: 20% 40% 20% 10% 10%;
+  grid-template-columns: 20% 40% 20% 7% 8% 5%;
+}
+
+.held-item-box {
+  place-self: center;
 }
 
 /* Tracks */

@@ -18,9 +18,12 @@ export function getMoveDie(actor, move) {
 }
 export function getDamageDie(actor, move) {
   const model = actor.system;
+  let isPhysical = move.system.isPhysical;
+  if (move.system.hasTag('usesHighestOffense')) isPhysical = model.abilities.atk.mod > model.abilities.spatk.mod;
+  if (move.system.hasTag('changeOffense')) isPhysical = !isPhysical;
   return {
     sides: move.system.power, 
-    modifier: move.system.isPhysical ? model.abilities.atk.mod : model.abilities.spatk.mod
+    modifier: isPhysical ? model.abilities.atk.mod : model.abilities.spatk.mod
   };
 }
 export function getStatusDie(actor, move) {
