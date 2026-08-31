@@ -1,16 +1,8 @@
-2026/08/30-15:30:55.693 1654 Recovering log #280
-2026/08/30-15:30:55.697 1654 Delete type=0 #280
-2026/08/30-15:30:55.697 1654 Delete type=3 #279
-2026/08/30-18:53:39.947 22b8 Level-0 table #284: started
-2026/08/30-18:53:39.953 22b8 Level-0 table #284: 8153 bytes OK
-2026/08/30-18:53:39.955 22b8 Delete type=0 #282
-2026/08/30-18:53:39.974 22b8 Manual compaction at level-0 from '!actors!4WbOKcWBvT5RWNN7' @ 72057594037927935 : 1 .. '!tables.results!np9q7Hk86oyzJRiv.mzA5nbo3k1qBJN6r' @ 0 : 0; will stop at (end)
-2026/08/30-18:53:39.984 22b8 Manual compaction at level-1 from '!actors!4WbOKcWBvT5RWNN7' @ 72057594037927935 : 1 .. '!tables.results!np9q7Hk86oyzJRiv.mzA5nbo3k1qBJN6r' @ 0 : 0; will stop at '!tables.results!k2W9m48VLFvC8AYr.gP8dgGSFARgHtsmT' @ 3347 : 1
-2026/08/30-18:53:39.985 22b8 Compacting 2@1 + 1@2 files
-2026/08/30-18:53:39.994 22b8 Generated table #285@1: 453 keys, 159585 bytes
-2026/08/30-18:53:39.994 22b8 Compacted 2@1 + 1@2 files => 159585 bytes
-2026/08/30-18:53:39.997 22b8 compacted to: files[ 0 0 1 0 0 0 0 ]
-2026/08/30-18:53:39.997 22b8 Delete type=2 #246
-2026/08/30-18:53:39.997 22b8 Delete type=2 #276
-2026/08/30-18:53:39.997 22b8 Delete type=2 #284
-2026/08/30-18:53:40.004 22b8 Manual compaction at level-1 from '!tables.results!k2W9m48VLFvC8AYr.gP8dgGSFARgHtsmT' @ 3347 : 1 .. '!tables.results!np9q7Hk86oyzJRiv.mzA5nbo3k1qBJN6r' @ 0 : 0; will stop at (end)
+2026/08/31-00:17:11.314 349c Recovering log #290
+2026/08/31-00:17:11.320 349c Delete type=0 #290
+2026/08/31-00:17:11.320 349c Delete type=3 #288
+2026/08/31-01:55:14.633 4bc0 Level-0 table #295: started
+2026/08/31-01:55:14.633 4bc0 Level-0 table #295: 0 bytes OK
+2026/08/31-01:55:14.636 4bc0 Delete type=0 #293
+2026/08/31-01:55:14.660 4bc0 Manual compaction at level-0 from '!actors!4WbOKcWBvT5RWNN7' @ 72057594037927935 : 1 .. '!tables.results!np9q7Hk86oyzJRiv.mzA5nbo3k1qBJN6r' @ 0 : 0; will stop at (end)
+2026/08/31-01:55:14.660 4bc0 Manual compaction at level-1 from '!actors!4WbOKcWBvT5RWNN7' @ 72057594037927935 : 1 .. '!tables.results!np9q7Hk86oyzJRiv.mzA5nbo3k1qBJN6r' @ 0 : 0; will stop at (end)

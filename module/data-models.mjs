@@ -59,7 +59,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
       heldItem: new StringField({ required: true, nullable: true, initial: null }),
       size: new StringField({ required: true, choices: sizes, initial: 'medium' }),
       hp: new SchemaField({
-        raw: new NumberField({ required: true, integer: true, min: 1, initial: 25 }),
+        raw: new NumberField({ required: true, integer: true, min: 0, initial: 25 }),
         max: new NumberField({ required: true, integer: true, min: 1, initial: 25 })
       }),
       abilities: new SchemaField(abilityFields),

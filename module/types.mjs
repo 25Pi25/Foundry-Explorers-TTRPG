@@ -221,13 +221,32 @@ export const stateConditions = { // does not require a status condition save
   recharging: "SYSTEM.Conditions.Recharging",
   abilitySuppressed: "SYSTEM.Conditions.AbilitySuppressed",
 };
+export const weathers = {
+  clearWeather: "SYSTEM.Weathers.ClearWeather",
+  harshSunlight: "SYSTEM.Weathers.HarshSunlight",
+  rain: "SYSTEM.Weathers.Rain",
+  sandstorm: "SYSTEM.Weathers.Sandstorm",
+  snowstorm: "SYSTEM.Weathers.Snowstorm",
+  fog: "SYSTEM.Weathers.Fog",
+  extremelyHarshSunlight: "SYSTEM.Weathers.ExtremelyHarshSunlight",
+  heavyRain: "SYSTEM.Weathers.HeavyRain",
+  strongWinds: "SYSTEM.Weathers.StrongWinds",
+}
+export const terrains = {
+  clearTerrain: "SYSTEM.Terrains.ClearTerrain",
+  electricTerrain: "SYSTEM.Terrains.ElectricTerrain",
+  mistyTerrain: "SYSTEM.Terrains.MistyTerrain",
+  grassyTerrain: "SYSTEM.Terrains.GrassyTerrain",
+  psychicTerrain: "SYSTEM.Terrains.PsychicTerrain",  
+}
 export const effects = { // Non-conditions that causes instantaneous effects
   ...stateConditions,
+  ...weathers,
+  ...terrains,
   mudSport: "SYSTEM.Effects.MudSport",
   waterSport: "SYSTEM.Effects.WaterSport",
   sizeChange: "SYSTEM.Effects.SizeChange",
   push: "SYSTEM.Effects.Push",
-  sandstorm: "SYSTEM.Effects.Sandstorm",
   instantKO: "SYSTEM.Effects.InstantKO",
 };
 export const valueEffects = new Set([ // most of these will be duration, some will have other meanings

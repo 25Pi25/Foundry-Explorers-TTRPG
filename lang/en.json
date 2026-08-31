@@ -312,12 +312,29 @@
       "Recharging": "Recharging",
       "AbilitySuppressed": "Ability Suppressed"
     },
+    "Weathers": {
+      "ClearWeather": "Clear Weather",
+      "HarshSunlight": "Harsh Sunlight",
+      "Rain": "Rain",
+      "Sandstorm": "Sandstorm",
+      "Snowstorm": "Snowstorm",
+      "Fog": "Fog",
+      "ExtremelyHarshSunlight": "Extremely Harsh Sunlight",
+      "HeavyRain": "Heavy Rain",
+      "StrongWinds": "Strong Winds"
+    },
+    "Terrains": {
+      "ClearTerrain": "Clear Terrain",
+      "ElectricTerrain": "Electric Terrain",
+      "MistyTerrain": "Misty Terrain",
+      "GrassyTerrain": "Grassy Terrain",
+      "PsychicTerrain": "Psychic Terrain"
+    },
     "Effects": {
       "MudSport": "Mud Sport",
       "WaterSport": "Water Sport",
       "SizeChange": "Size Change",
       "Push": "Push",
-      "Sandstorm": "Sandstorm",
       "InstantKO": "Instant KO"
     },
     "Tags": {

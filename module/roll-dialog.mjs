@@ -176,11 +176,11 @@ export class MoveRollDialog extends RollDialog {
         case 'mostlyIneffective':
           die.multiplier *= 0.5;
           die.sides -= 1;
-          additionString += `<span style=\"color:red;font-weight:bold;\">+${game.i18n.localize(typeMatchups[matchup])}</span><br>`;
+          additionString += `<span style=\"color:red;font-weight:bold;\">-${game.i18n.localize(typeMatchups[matchup])}</span><br>`;
           break;
         case 'notVeryEffective':
           die.sides -= 1;
-          additionString += `<span style=\"color:red;font-weight:bold;\">+${game.i18n.localize(typeMatchups[matchup])}</span><br>`;
+          additionString += `<span style=\"color:red;font-weight:bold;\">-${game.i18n.localize(typeMatchups[matchup])}</span><br>`;
           break;
         case 'superEffective':
           die.sides += 1;
@@ -193,7 +193,7 @@ export class MoveRollDialog extends RollDialog {
           break;
         case 'immune':
           die.multiplier = 0;
-          additionString += `<span style=\"color:red;font-weight:bold;\">+${game.i18n.localize(typeMatchups[matchup])}</span><br>`;
+          additionString += `<span style=\"color:red;font-weight:bold;\">-${game.i18n.localize(typeMatchups[matchup])}</span><br>`;
           break;
       }
       if (die.advantage === '') {

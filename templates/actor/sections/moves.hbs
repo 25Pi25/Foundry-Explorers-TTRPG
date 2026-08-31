@@ -32,7 +32,7 @@
         <div class="move-buttons">
           <button type="button" class="draggable" data-item-id="{{move.id}}" data-action="rollMoveDie" data-id="{{move.id}}">{{moveDie move}}</button>
           <button type="button" data-action="removeItem" data-id="{{move.id}}" class="icon fa-solid fa-trash"></button>
-          <p><input type="number" data-name="ppLeft" data-id="{{move.id}}" value="{{move.system.ppLeft}}" class="pp-left"></input> / {{move.system.pp}} PP</p>
+          <p><input type="number" data-name="ppLeft" data-id="{{move.id}}" value="{{move.system.ppLeft}}" class="pp-left" min="0" max="{{move.system.pp}}"></input> / {{move.system.pp}} PP</p>
         </div>
       </div>
     </fieldset>

@@ -27,9 +27,10 @@ input.character-name {
 }
 
 .hp-total {
-  display: flex;
+  display: grid;
   align-items: center;
-  gap: 0.3rem;
+  text-align: center;
+  grid-template-columns: 45% 10% 45%;
 }
 
 /* Stats */

@@ -30,7 +30,9 @@
 - Test all the mechanics with 3x3 characters and see if it works out
 - Figure out how the dragging macro system will work (need to be able to open actor's moves)
 - Remove all instances of hardcoded english text and replace with lang.json references
-- Do a big refactor of the code but keep it compatiblie with previous versions
+- Do a big refactor of the code but keep it compatible with previous versions
+- Add buttons on rolls to take damage
+- Add buttons on rolls to apply status effects
 
 - Implement the following moves' effects if I want to do more:
   - Charge

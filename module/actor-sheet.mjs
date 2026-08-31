@@ -1,10 +1,9 @@
-import { filePath, getSkillDie, toModString, toFormGroup, getMoveDie } from '../constants.mjs';
+import { filePath, toFormGroup } from '../constants.mjs';
 import { MoveRollDialog, SkillRollDialog } from './roll-dialog.mjs';
 import { abilities, classes, proficiencies, specializations, categories, types, skills, effects, itemCategories, sizes } from './types.mjs'
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
-const { ChatMessage } = foundry.documents;
 
 export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   static DEFAULT_OPTIONS = {
