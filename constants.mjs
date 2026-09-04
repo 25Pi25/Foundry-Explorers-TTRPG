@@ -27,6 +27,7 @@ export function getDamageDie(actor, move) {
   };
 }
 export function getStatusDie(actor, move) {
+  console.log(move.system.getTriggerTypes().has('hit'))
   if (!move.system.getTriggerTypes().has('hit')) return null;
   if (move.system.offensiveCheck) return getSkillDie(actor, move.system.offensiveCheck);
   const model = actor.system;

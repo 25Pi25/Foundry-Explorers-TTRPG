@@ -56,6 +56,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
       species: new StringField({ required: true }),
       type1: new StringField({ required: true, choices: types, initial: 'normal' }),
       type2: new StringField({ required: true, nullable: true, choices: types }),
+      poke: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
       heldItem: new StringField({ required: true, nullable: true, initial: null }),
       size: new StringField({ required: true, choices: sizes, initial: 'medium' }),
       hp: new SchemaField({

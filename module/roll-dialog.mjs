@@ -215,8 +215,8 @@ export class MoveRollDialog extends RollDialog {
     const statusDie = getStatusDie(this.user, this.move);
     if (this.move.system.power == 0) {
       const { sides, modifier } = RollDialog.getDialogDie(this);
-      statusDie.sides = sides;
-      statusDie.modifier = modifier;
+      statusDie.sides += sides;
+      statusDie.modifier += modifier;
     }
     const targetRolls = game.user.targets.size > 0 ? game.user.targets.map(target => target.actor.system) : [null];
     for (const target of targetRolls) {

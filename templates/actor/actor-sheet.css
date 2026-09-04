@@ -16,6 +16,13 @@ section[data-tab="stats"] {
   place-items: center;
 }
 
+.center-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: center;
+  gap: 3px;
+}
 
 input.character-name {
   height: 80%;

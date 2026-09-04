@@ -7,13 +7,16 @@
     <input type="text" name="name" value="{{document.name}}" class="character-name">
   </div>
   <div class="center">
-    <label>{{localize "SYSTEM.Models.Character.FIELDS.hp.label"}}</label>
-    <div class="hp-total">
-      {{formGroup systemFields.hp.fields.raw value=document.system.hp.raw type="number" max=document.system.hp.max}}
-      <p>/</p>
-      <div class="form-group slim inline">
-        <input type="number" value="{{document.system.hp.max}}" disabled>
+    <div class="center-row">
+      <label>{{localize "SYSTEM.Models.Character.FIELDS.hp.label"}}</label>
+      <div class="hp-total">
+        {{formGroup systemFields.hp.fields.raw value=document.system.hp.raw type="number" max=document.system.hp.max}}
+        <p>/</p>
+        <div class="form-group slim inline">
+          <input type="number" value="{{document.system.hp.max}}" disabled>
+        </div>
       </div>
     </div>
+    {{formGroup systemFields.poke value=document.system.poke classes="slim inline center-row"}}
   </div>
 </div>

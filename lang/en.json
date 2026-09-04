@@ -70,6 +70,7 @@
           "species": { "label": "Species" },
           "type1": { "label": "Type 1" },
           "type2": { "label": "Type 2" },
+          "poke": { "label": "Poké" },
           "heldItem": { "label": "Held Item" },
           "size": { "label": "Size" },
           "hp": { "label": "HP" },
