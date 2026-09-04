@@ -33,6 +33,8 @@
 - Do a big refactor of the code but keep it compatible with previous versions
 - Add buttons on rolls to take damage
 - Add buttons on rolls to apply status effects
+- Use DocumentUUIDField for held item?
+- Add Poké field to actor
 
 - Implement the following moves' effects if I want to do more:
   - Charge

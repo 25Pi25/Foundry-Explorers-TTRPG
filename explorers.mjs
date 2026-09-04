@@ -6,6 +6,7 @@ import { ExplorersDie, ExplorersRoll } from './module/explorers-roll.mjs';
 import { ItemSheet } from './module/item-sheet.mjs';
 import macros from './module/macros.mjs';
 import { MoveSheet } from './module/move-sheet.mjs';
+import BaseMessageModel from './module/roll-message.mjs';
 import { conditions } from './module/types.mjs';
 
 const { Localization } = foundry.helpers;
@@ -34,6 +35,7 @@ Hooks.once("init", () => {
   };
   CONFIG.Dice.rolls = [ExplorersRoll];
   CONFIG.Dice.terms.d = ExplorersDie;
+  CONFIG.ChatMessage.dataModels.base = BaseMessageModel;
 
   // Configure Sheets.
   Actors.registerSheet(SYSTEM_ID, PlayerSheet, { types: ["Player"], makeDefault: true });
@@ -113,3 +115,15 @@ async function assignItemMacro(itemData, slot) {
   }
   game.user.assignHotbarMacro(macro, slot);
 }
+
+async function renderChatMessageHTML(message, html, context) {
+  if (!message.isContentVisible) return;
+  if (typeof message.system.alterMessageHTML === "function") {
+    await message.system.alterMessageHTML(html);
+  }
+  if (typeof message.system.addListeners === "function") {
+    await message.system.addListeners(html);
+  }
+}
+
+Hooks.on("renderChatMessageHTML", renderChatMessageHTML);

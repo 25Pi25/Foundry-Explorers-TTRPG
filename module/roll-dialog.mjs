@@ -1,5 +1,6 @@
 import { filePath, getSkillDie, toModString, toFormGroup, getMoveDie, getStatusDie, getDieString } from '../constants.mjs';
 import { CharacterDataModel } from './data-models.mjs';
+import { ExplorersRoll } from './explorers-roll.mjs';
 import { advantage, effects, skills, typeMatchups } from './types.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -166,6 +167,7 @@ export class MoveRollDialog extends RollDialog {
     die.sides += sides;
     die.modifier += modifier;
     const targetRolls = game.user.targets.size > 0 ? game.user.targets.map(target => target.actor.system) : [null];
+    const rolls = [];
     for (const target of targetRolls) {
       let matchup = this.dialogState.typeMatchup;
       if (matchup === '' && target) {
@@ -175,19 +177,14 @@ export class MoveRollDialog extends RollDialog {
       switch (matchup) {
         case 'mostlyIneffective':
           die.multiplier *= 0.5;
-          die.sides -= 1;
-          additionString += `<span style=\"color:red;font-weight:bold;\">-${game.i18n.localize(typeMatchups[matchup])}</span><br>`;
-          break;
         case 'notVeryEffective':
-          die.sides -= 1;
+          if (die.sides !== 1) die.sides -= 1;
+          else die.multiplier *= 0.5;
           additionString += `<span style=\"color:red;font-weight:bold;\">-${game.i18n.localize(typeMatchups[matchup])}</span><br>`;
-          break;
-        case 'superEffective':
-          die.sides += 1;
-          additionString += `<span style=\"color:green;font-weight:bold;\">+${game.i18n.localize(typeMatchups[matchup])}</span><br>`;
           break;
         case 'extremelyEffective':
           die.multiplier *= 2;
+        case 'superEffective':
           die.sides += 1;
           additionString += `<span style=\"color:green;font-weight:bold;\">+${game.i18n.localize(typeMatchups[matchup])}</span><br>`;
           break;
@@ -203,12 +200,13 @@ export class MoveRollDialog extends RollDialog {
         } else die.advantage = 'normal';
       };
 
-      new Roll(getDieString(die))
-      .toMessage({
-        speaker: ChatMessage.implementation.getSpeaker({ actor: this.user }),
-        flavor: `${additionString}${this.move.name}${target ? ` (${target.parent.name})` : ""} - Power`
-      }, { rollMode: this.messageMode });
+      rolls.push(new ExplorersRoll(getDieString(die), {}, { flavor: additionString }));
     }
+    await Promise.all(rolls.map(roll => roll.evaluate()));
+    ChatMessage.create({
+      flavor: `<span style=\"color:green;font-weight:bold;\">${this.move.name} - Power</span>`,
+      rolls
+    });
   }
 
   static async #rollStatus() {

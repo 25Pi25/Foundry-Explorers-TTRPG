@@ -1,7 +1,7 @@
 <div class="skill-block">
   <div class="form-group slim inline">
     <label>{{localize name}}</label>
-    <button type="button" data-action="rollDie" data-skill="{{skill}}" data-name="{{localize name}}">{{skillDie skill}}</button>
+    <button type="button" class="draggable" data-action="rollDie" data-skill="{{skill}}" data-name="{{localize name}}">{{skillDie skill}}</button>
     {{formInput field value=value choices=proficiencies localize=true}}
   </div>
 </div>
